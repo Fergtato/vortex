@@ -19,7 +19,10 @@
 		    <li><span href="#">Active</span></li>
 		</ul>
 
-	    <span class="uk-label uk-margin">Default</span>
+	    <span class="uk-label uk-margin">Year &#215;</span>
+	    <span class="uk-label uk-margin">Genre &#215;</span>
+	    <span class="uk-label uk-margin">Rating &#215;</span>
+	    <span class="uk-label uk-margin">Keyword &#215;</span>
 
 	    <div class="uk-child-width-1-2@s uk-grid-collapse uk-text-center" uk-grid>
 		    <div>
@@ -50,6 +53,7 @@
 		            <h3 class="">Light</h3>
 		            <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 		            <button class="uk-button uk-button-primary">Button</button>
+		            <span class="uk-label uk-margin">Year &#215;</span>
 		        </div>
 		    </div>
 		</div>
