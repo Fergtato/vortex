@@ -1,0 +1,41 @@
+// 1. Custom variables and variable overwrites.
+$theme-color-pink: #F62459;
+$theme-color-blue: #19B5FE;
+$theme-color-purple: #9B59B6;
+
+$theme-color: $theme-color-pink;
+
+$global-background: #fff;
+$global-primary-background: $theme-color;
+$global-secondary-background: #424242;
+$global-link-color: #1e87f0;
+$global-link-hover-color: #0f6ecd;
+
+$breadcrumb-divider: ">";
+
+$inverse-global-primary-background: $theme-color;
+$inverse-global-inverse-color: #fff;
+
+// 2. Import default variables and available mixins.
+@import "../node_modules/uikit/src/scss/variables.scss";
+@import "../node_modules/uikit/src/scss/mixins.scss";
+
+// 3. Custom mixin overwrites.
+@mixin hook-card() { color: #000; }
+
+// 4. Import UIkit.
+@import "../node_modules/uikit/src/scss/uikit.scss";
+
+// 5. Custom styles
+.uk-button {
+	border-radius: 300px;
+}
+.uk-label {
+	border-radius: 300px;
+}
+
+.test-bar {
+	width: 100%;
+	height: 5px;
+	background-color: $theme-color;
+}
