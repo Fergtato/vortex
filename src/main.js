@@ -17,7 +17,7 @@ import VueFire from 'vuefire';
 import './firebase';
 Vue.use(VueFire);
 
-//Import UiKit
+//Import UiKit and Icons
 import UIkit from 'uikit';
 import Icons from 'uikit/dist/js/uikit-icons';
 UIkit.use(Icons);
@@ -28,3 +28,5 @@ new Vue({
  	el: '#app',
  	render: h => h(App)
 })
+
+//git pushed
