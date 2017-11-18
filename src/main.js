@@ -1,6 +1,6 @@
 //Import Vue
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from 'vue';
+import App from './App.vue';
 
 //Import Router
 import VueRouter from 'vue-router';
@@ -21,6 +21,9 @@ Vue.use(VueFire);
 import UIkit from 'uikit';
 import Icons from 'uikit/dist/js/uikit-icons';
 UIkit.use(Icons);
+
+import HomeNav from './components/HomeNav.vue';
+Vue.component('home-nav', HomeNav);
 
 
 new Vue({
