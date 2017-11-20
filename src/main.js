@@ -25,6 +25,9 @@ UIkit.use(Icons);
 import HomeNav from './components/HomeNav.vue';
 Vue.component('home-nav', HomeNav);
 
+import DashNav from './components/DashNav.vue';
+Vue.component('dash-nav', DashNav);
+
 
 new Vue({
 	router,

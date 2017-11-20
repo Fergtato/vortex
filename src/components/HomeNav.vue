@@ -6,7 +6,7 @@
 			
 			<div class="uk-grid-collapse" uk-grid>
 			    <div class="uk-width-1-5@m">
-			        <h2 class="uk-margin-remove uk-text-left fa-vertical-align">LOGO</h2>
+			        <h2 class="uk-margin-remove uk-text-left fa-vertical-align"><span class="fa-logo">V</span>ORTEX</h2>
 			    </div>
 			    <div class="uk-width-expand@m uk-text-center">
 					<form class="uk-search uk-search-default uk-width-1-1 fa-vertical-align">
@@ -15,9 +15,12 @@
 		            </form>
 			    </div>
 			    <div class="uk-width-1-5@m">
-			    	<div class="fa-vertical-align uk-text-right">
-						<button class="uk-button uk-button-link">LOG IN</button>
-			    		<button class="uk-button uk-button-link uk-margin-left">SIGN UP</button>
+			    	<div v-if="!loggedIn" class="fa-vertical-align uk-text-right">
+			    		<router-link to="/login" class="uk-button uk-button-link">LOG IN</router-link>
+			    		<router-link to="/signup" class="uk-button uk-button-link uk-margin-left">SIGN UP</router-link>
+		    		</div>
+		    		<div v-else class="fa-vertical-align uk-text-right">
+			    		<router-link to="/user" class="uk-button uk-button-link">{{user.displayName}}</router-link>
 		    		</div>
 			    </div>
 			</div>
@@ -109,3 +112,27 @@
 
 </div>
 </template>
+
+<script>
+import firebase from 'firebase';
+
+export default {
+  name: 'auth',
+  data() {
+    return {
+      user: {},
+      loggedIn: false
+    }
+  },
+  created() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user) {
+        this.user = user;
+        this.loggedIn = true;
+      } else {
+        this.loggedIn = false;
+      }
+     });
+  }
+}
+</script>

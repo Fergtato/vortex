@@ -3,7 +3,6 @@
 		
 		<home-nav></home-nav>
 
-		<h1>Home Page</h1>
 		<div class="uk-margin">
 			<button class="uk-button uk-button-default">Default</button>
 			<button class="uk-button uk-button-primary">Primary</button>

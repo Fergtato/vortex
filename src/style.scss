@@ -1,6 +1,7 @@
 // 1. Custom variables and variable overwrites.
 
 $theme-color-pink: #F62459;
+$theme-color-pink-alt: #FF0042;
 $theme-color-blue: #19B5FE;
 $theme-color-purple: #9B59B6;
 
@@ -8,9 +9,11 @@ $theme-color: $theme-color-pink;
 
 $global-background: #fff;
 $global-primary-background: $theme-color;
-$global-secondary-background: #424242;
+$global-secondary-background: #373F52;
 $global-link-color: #1e87f0;
 $global-link-hover-color: #0f6ecd;
+
+$dash-content-background-light: #F5F8FC;
 
 $button-link-hover-text-decoration: none;
 $inverse-button-link-color: #fff;
@@ -22,6 +25,11 @@ $navbar-nav-item-height: 50px;
 $inverse-navbar-nav-item-color: #fff;
 $inverse-navbar-nav-item-hover-color: $theme-color;
 
+//colours for dashboard side nav menu
+$inverse-nav-default-item-color: #fff;
+$inverse-nav-default-item-hover-color: $theme-color;
+$inverse-nav-default-sublist-item-hover-color: $theme-color;
+
 // $dropdown-nav-item-hover-color: $theme-color;
 // $dropdown-nav-sublist-item-hover-color: $theme-color;
 // $navbar-dropdown-nav-item-hover-color: $theme-color;
@@ -32,8 +40,6 @@ $inverse-navbar-nav-item-hover-color: $theme-color;
 // $inverse-link-text-hover-color: $theme-color;
 // $nav-default-item-hover-color: $theme-color;
 // $nav-default-sublist-item-hover-color: $theme-color;
-// $inverse-nav-default-item-hover-color: $theme-color;
-// $inverse-nav-default-sublist-item-hover-color: $theme-color;
 // $inverse-nav-primary-item-hover-color: $theme-color;
 // $inverse-nav-primary-sublist-item-hover-color: $theme-color;
 
@@ -61,9 +67,27 @@ $inverse-global-inverse-color: #fff;
 // 3. Custom mixin overwrites.
 @mixin hook-card() { color: #000; }
 
+
+@mixin font($font-family, $font-file) {
+  @font-face {
+    font-family: $font-family;
+    src: url($font-file+'.eot');
+    src: url($font-file+'.eot?#iefix') format('embedded-opentype'),
+	  url($font-file+'.woff') format('woff'),
+	  url($font-file+'.ttf') format('truetype'),
+	  url($font-file+'.svg#aller') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+}
+
+
+@include font('Zelda', '/assets/fonts/Zelda');
+
 // 4. Import UIkit.
 @import "../node_modules/uikit/src/scss/uikit.scss";
 // @import "forms.scss";
+
 
 
 // 5. Custom styles
@@ -75,7 +99,7 @@ $inverse-global-inverse-color: #fff;
 }
 .uk-input {
 	border-bottom: 1px solid #999;
-	padding: 0;
+	// padding: 0;
 }
 .uk-input:focus {
 	border-bottom: 2px solid $theme-color;
@@ -102,10 +126,60 @@ $inverse-global-inverse-color: #fff;
     // color: #fff !important;
 }
 
+.fa-logo {
+	font-family: Zelda;
+	color: $theme-color;
+}
+
+.fa-poster {
+	border-radius: 3px;
+}
+.fa-poster-overlay {
+	border-radius: 0px 0px 3px 3px;
+}
+
 .fa-top-nav {
 	width: 100%;
 	height: 100px;
 	background-color: darken($global-secondary-background, 6%);
+}
+
+.fa-dash-nav-top {
+	width: 100%;
+	height: 70px;
+	background-color: $global-secondary-background;
+}
+
+.fa-dash-nav-side {
+  position: fixed;
+  height: 100vh;
+  width: 210px;
+  background-color: darken($global-secondary-background, 6%);
+}
+
+.fa-vertical-align-dash {
+	text-align: center;
+	vertical-align: middle;
+	line-height: 70px; 
+}
+
+@media only screen and (max-width: 640px) {
+  .fa-dash-content-wrapper {
+    padding-left: 0px;
+  }
+}
+@media only screen and (min-width: 640px) {
+  .fa-dash-content-wrapper {
+    padding-left: 250px;
+  }
+}
+
+.fa-dash-content-wrapper {
+  background-color: #2F3647;
+}
+.fa-dash-content {
+  background-color: $dash-content-background-light;
+  padding: 20px;
 }
 
 .fa-vertical-align {
