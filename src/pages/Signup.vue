@@ -98,7 +98,7 @@ export default {
 	created() {
 		firebase.auth().onAuthStateChanged((user) => {
     		if(user) {
-    			this.$router.push('/user')
+    			this.$router.push(this.$router.go(-1))
     		} else {
         		// this.$router.push('/auth')
     		}

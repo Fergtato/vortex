@@ -29,7 +29,7 @@ export default {
     		if(user) {
         		this.user = firebase.auth().currentUser;
     		} else {
-        		this.$router.push('/')
+        		this.$router.push(this.$router.go(-1))
     		}
     	});
 	}

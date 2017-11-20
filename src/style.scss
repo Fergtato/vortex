@@ -4,14 +4,17 @@ $theme-color-pink: #F62459;
 $theme-color-pink-alt: #FF0042;
 $theme-color-blue: #19B5FE;
 $theme-color-purple: #9B59B6;
+$theme-color-yellow : #F1C40F;
+$theme-color-orange: #E67E22;
+$theme-color-green: #24F62E;
 
 $theme-color: $theme-color-pink;
 
 $global-background: #fff;
 $global-primary-background: $theme-color;
 $global-secondary-background: #373F52;
-$global-link-color: #1e87f0;
-$global-link-hover-color: #0f6ecd;
+$global-link-color: $theme-color;
+$global-link-hover-color: darken($theme-color, 8%);
 
 $dash-content-background-light: #F5F8FC;
 
@@ -53,9 +56,14 @@ $inverse-search-color: #333;
 $inverse-search-placeholder-color: #D1D1D1;
 $inverse-search-icon-color: #333;
 
+$overlay-default-background: rgba($global-background, 1);
+$overlay-primary-background: rgba($global-secondary-background, 1);
+
+$spinner-stroke-width: 2;
+
 $breadcrumb-divider: ">";
-$label-padding-vertical: 4px;
-$label-padding-horizontal: 10px;
+$badge-padding-vertical: 5px;
+$badge-padding-horizontal: 8px;
 
 $inverse-global-primary-background: $theme-color;
 $inverse-global-inverse-color: #fff;
@@ -102,9 +110,6 @@ $inverse-global-inverse-color: #fff;
 .uk-button {
 	border-radius: 300px;
 }
-.uk-label {
-	border-radius: 300px;
-}
 .uk-input {
 	border-bottom: 1px solid #999;
 	// padding: 0;
@@ -121,11 +126,11 @@ $inverse-global-inverse-color: #fff;
 }
 
 .uk-search-input {
-  border-radius: 300px;
-  border: 2px solid #fff;
+	border-radius: 300px;
+	border: 2px solid #fff;
 }
 .uk-search-input:focus {
-  border: 2px solid $theme-color;
+	border: 2px solid $theme-color;
 }
 .uk-search-icon-flip {
     // background: #fb1e51;
@@ -142,11 +147,15 @@ $inverse-global-inverse-color: #fff;
 .fa-poster {
 	border-radius: 3px;
 	box-shadow: 0px 4px 15px -2px rgba(0,0,0,0.75);
-	transition: 0.2s;
+	transition: 0.3s ease-out;
 }
 .fa-poster:hover {
 	box-shadow: 0px 11px 32px 2px rgba(0,0,0,0.75);
-	transition: 0.2s;
+	transition: 0.3s ease-out;
+}
+.fa-poster-pull {
+    top: -256px;
+    position: relative;
 }
 
 .fa-top-nav {
@@ -162,10 +171,10 @@ $inverse-global-inverse-color: #fff;
 }
 
 .fa-dash-nav-side {
-  position: fixed;
-  height: 100vh;
-  width: 210px;
-  background-color: darken($global-secondary-background, 6%);
+	position: fixed;
+	height: 100vh;
+	width: 210px;
+	background-color: darken($global-secondary-background, 6%);
 }
 
 .fa-vertical-align-dash {
@@ -186,11 +195,30 @@ $inverse-global-inverse-color: #fff;
 }
 
 .fa-dash-content-wrapper {
-  background-color: #2F3647;
+	background-color: #2F3647;
 }
 .fa-dash-content {
-  background-color: $dash-content-background-light;
-  padding: 20px;
+  	background-color: $dash-content-background-light;
+  	padding: 20px;
+}
+
+.fa-movie-banner {
+	width: 100%;
+	height: 350px;
+  	background-color: $dash-content-background-light;
+}
+.fa-banner-overlay {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.fa-loader {
+	position: absolute;
+	background-color: $dash-content-background-light;
+	z-index: 10;
+	width: 100%;
+	height: 100%;
 }
 
 .fa-vertical-align {

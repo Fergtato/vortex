@@ -73,10 +73,17 @@ export default {
 	        }).catch(function(error) {console.log(error)});
 	    }
 	},
+	watch: {
+      '$route' (to, from) {
+        console.log("hey");
+        
+      }
+    },
 	created() {
+		console.log("hey");
 		firebase.auth().onAuthStateChanged((user) => {
 	     	if(user) {
-	    		this.$router.push('/user')
+	    		this.$router.push(this.$router.go(-1))
 	    	} else {
 	        	// this.$router.push('/auth')
 	    	}

@@ -4,6 +4,11 @@
 		<dash-nav></dash-nav>
 
 		<div class="fa-dash-content-wrapper uk-dark uk-preserve-color">
+
+			<div v-if="showLoader" class="fa-loader uk-padding">
+	     		<h2 class="uk-margin">Loading...</h2>
+	     	</div>
+
 	     	<div class="fa-dash-content">
 
 
@@ -14,21 +19,28 @@
 				<!-- repeat for every movie -->
 	        	<div v-for="movie in movies">
 					
-					<router-link to="/user">
+					
 	        		<div class="fa-poster uk-inline-clip uk-transition-toggle">
+	        			<router-link :to="`/movies/${movie.id}`">
 	        			<img :src="`https://image.tmdb.org/t/p/w342${movie.poster_path}`" alt="">
+	        			</router-link>
 	        			<div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
-	        				<p class="uk-margin-remove">Hello</p>
+	        				<ul class="uk-iconnav">
+							    <li><a href="#" uk-icon="icon: plus"></a></li>
+							    <li><a href="#" uk-icon="icon: heart"></a></li>
+							    <li><a href="#" uk-icon="icon: bookmark"></a></li>
+							    <li><a href="#" uk-icon="icon: bolt"></a></li>
+							</ul>
 	        			</div>
 	        		</div>
-	        		</router-link>
+	        		
 
 	        	</div>
 
 	        </div>
 
 	        <div class="uk-container uk-text-center uk-padding">
-	        	<button class="uk-button uk-button-primary">Show More</button>
+	        	<button @click="showMore" class="uk-button uk-button-primary">Show More</button>
 	        </div>
 
 	        <!-- <ul>
@@ -37,7 +49,9 @@
 	          </li>
 	        </ul> -->
 
-	        <!-- <pre>{{movies}}</pre> -->
+	        <pre>{{movies}}</pre>
+
+
 
 
 	     	</div>
@@ -54,7 +68,9 @@ import axios from 'axios';
     data() {
       return {
         apiUrl: '',
-        movies: []
+        movies: {},
+        page: 1,
+        showLoader: true
       }
     },
     watch: {
@@ -62,12 +78,25 @@ import axios from 'axios';
 
       }
     },
+    methods: {
+    	showMore() {
+    		this.page++;
+    		this.apiUrl = 'https://api.themoviedb.org/3/movie/popular?api_key=136727d529c2b6275946c6442cee626d&page=' + this.page;
+
+			axios.get(this.apiUrl)
+				.then((response) => {
+					console.log(response.data.results);
+				this.movies.push(response.data.results);
+			});
+    	}
+    },
     created() {
-      this.apiUrl = 'https://api.themoviedb.org/3/movie/popular?api_key=136727d529c2b6275946c6442cee626d';
+      this.apiUrl = 'https://api.themoviedb.org/3/movie/popular?api_key=136727d529c2b6275946c6442cee626d&page=' + this.page;
       console.log("created");
       axios.get(this.apiUrl)
       .then((response) => {
         this.movies = response.data.results;
+        this.showLoader = false;
         console.log("Data Retrieved...");
       });
 

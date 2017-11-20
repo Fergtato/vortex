@@ -10,7 +10,7 @@
 			    </div>
 			    <div class="uk-width-expand@m uk-text-center">
 					<form class="uk-search uk-search-default uk-width-1-1 fa-vertical-align">
-		                <router-link to="/login" class="uk-search-icon-flip" uk-search-icon></router-link>
+		                <router-link to="/search" class="uk-search-icon-flip" uk-search-icon></router-link>
 		                <input class="uk-search-input" type="search" placeholder="Search...">
 		            </form>
 			    </div>
