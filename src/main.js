@@ -28,6 +28,7 @@ Vue.component('home-nav', HomeNav);
 import DashNav from './components/DashNav.vue';
 Vue.component('dash-nav', DashNav);
 
+//Hey Aimee :P
 
 new Vue({
 	router,
