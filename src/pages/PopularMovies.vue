@@ -85,10 +85,13 @@ import axios from 'axios';
 
 			axios.get(this.apiUrl)
 				.then((response) => {
-					console.log(this.movies);
-					console.log(response.data.results);
-				this.movies.concat(response.data.results);
-				console.log(this.movies);
+				
+
+				for (var i = 0; i < response.data.results.length; i++) {
+					this.movies.push(response.data.results[i]);
+				}
+				
+
 			});
     	}
     },
