@@ -172,7 +172,7 @@ import axios from 'axios';
     created() {
 
 		this.apiCalls();
-		//hello
+		//goodbye
 
     },
     filters: {
