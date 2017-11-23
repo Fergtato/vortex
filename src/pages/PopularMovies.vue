@@ -49,7 +49,7 @@
 	          </li>
 	        </ul> -->
 
-	        <pre>{{movies}}</pre>
+	        <!-- <pre>{{movies}}</pre> -->
 
 
 

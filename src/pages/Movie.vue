@@ -42,7 +42,7 @@
 	        			<p>
 	        				<span class="uk-text-bold">Runtime</span>
 	        				<br>
-	        				{{movie.runtime}}
+	        				{{movie.runtime}} mins
 	        			</p>
 	        			<p>
 	        				<span class="uk-text-bold">Budget</span>
@@ -79,6 +79,16 @@
 					<button class="uk-button uk-button-primary uk-button" href="#trailer-modal" uk-toggle> 
 						<span uk-icon="icon: play"></span> Play Trailer
 					</button>
+					
+					<h3>Cast</h3>
+					<ul class="uk-list">
+					    <li v-for="person in cast.slice(0,8)">{{person.name}} - {{person.character}}</li>
+					</ul>
+
+					<h3>Crew</h3>
+					<ul class="uk-list">
+					    <li v-for="person in crew.slice(0,8)">{{person.name}} - {{person.job}}</li>
+					</ul>
 
 			    </div>
 
@@ -93,16 +103,23 @@
 			</div>
 			
 
-			<h3>Videos</h3>
+			<h3>Cast</h3>
+			<pre>{{cast}}</pre>
+			<h3>Crew</h3>
+			<pre>{{crew}}</pre>
+
+			<!-- <h3>Videos</h3>
 			<pre>{{videos}}</pre>
 			<h3>Details</h3>
-			<pre>{{movie}}</pre>
+			<pre>{{movie}}</pre> -->
 
 	     	</div>
 	    </div>
 
 	</div>
 </template>
+
+
 
 <script>
 import firebase from 'firebase';
@@ -113,9 +130,12 @@ import axios from 'axios';
       return {
         apiUrl: 'https://api.themoviedb.org/3/movie/' + this.$route.params.movieId + '?api_key=136727d529c2b6275946c6442cee626d',
         videosUrl: 'https://api.themoviedb.org/3/movie/' + this.$route.params.movieId + '/videos?api_key=136727d529c2b6275946c6442cee626d',
+        creditsUrl: 'https://api.themoviedb.org/3/movie/' + this.$route.params.movieId + '/credits?api_key=136727d529c2b6275946c6442cee626d',
         movie: {},
         genres: {},
         videos: {},
+        cast: {},
+        crew: {},
         trailerKey: ''
       }
     },
@@ -131,6 +151,12 @@ import axios from 'axios';
 	        .then((response) => {
 	          this.videos = response.data.results;
 	          this.trailerKey = this.videos[0].key;
+	        });
+
+	        axios.get(this.creditsUrl)
+	        .then((response) => {
+	          this.cast = response.data.cast;
+	          this.crew = response.data.crew;
 	        });
     	}
     },
