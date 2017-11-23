@@ -97,12 +97,11 @@ import axios from 'axios';
     },
     created() {
       this.apiUrl = 'https://api.themoviedb.org/3/movie/popular?api_key=136727d529c2b6275946c6442cee626d&page=' + this.page;
-      console.log("created");
+
       axios.get(this.apiUrl)
       .then((response) => {
         this.movies = response.data.results;
         this.showLoader = false;
-        console.log("Data Retrieved...");
       });
 
     }
