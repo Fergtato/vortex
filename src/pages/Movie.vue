@@ -79,6 +79,29 @@
 					<button class="uk-button uk-button-primary uk-button" href="#trailer-modal" uk-toggle> 
 						<span uk-icon="icon: play"></span> Play Trailer
 					</button>
+
+					
+					<h3>Cast</h3>
+
+					<div class="uk-grid-match uk-grid-small uk-child-width-1-5@m" uk-grid>
+
+					    <div v-for="person in cast.slice(0,5)">
+					        <div class="uk-card uk-card-default uk-box-shadow-large">
+					            <div class="uk-card-media-top">
+					                <img class="fa-cast-image" :src="`https://image.tmdb.org/t/p/w342${person.profile_path}`" alt="">
+					            </div>
+					            <div class="uk-card-body uk-padding-small">
+					                <p class="uk-text-bold uk-margin-small-bottom">{{person.name}}</p>
+					                <p class="uk-margin-remove-top">{{person.character}}</p>
+					            </div>
+					        </div>
+					    </div>
+					    
+					</div>
+					
+					<router-link to="/login" class="uk-button uk-button-link uk-margin-top">Full Cast & Crew</router-link>
+
+
 					
 					<h3>Cast</h3>
 					<ul class="uk-list">
@@ -139,6 +162,11 @@ import axios from 'axios';
         trailerKey: ''
       }
     },
+    computed: {
+    	testVar() {
+    		return this.$store.state.testVar;
+    	}
+    },
     methods: {
     	apiCalls() {
     		axios.get(this.apiUrl)
@@ -172,7 +200,6 @@ import axios from 'axios';
     created() {
 
 		this.apiCalls();
-		//goodbye
 
     },
     filters: {

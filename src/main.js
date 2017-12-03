@@ -28,10 +28,14 @@ Vue.component('home-nav', HomeNav);
 import DashNav from './components/DashNav.vue';
 Vue.component('dash-nav', DashNav);
 
-//Hey Aimee :P
+import Poster from './components/Poster.vue';
+Vue.component('poster', Poster);
+
+import {store} from './store/store';
 
 new Vue({
 	router,
+	store: store,
  	el: '#app',
  	render: h => h(App)
 })
