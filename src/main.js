@@ -28,6 +28,9 @@ Vue.component('home-nav', HomeNav);
 import DashNav from './components/DashNav.vue';
 Vue.component('dash-nav', DashNav);
 
+import Grid from './components/Grid.vue';
+Vue.component('grid', Grid);
+
 import Poster from './components/Poster.vue';
 Vue.component('poster', Poster);
 

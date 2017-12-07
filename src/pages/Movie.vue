@@ -47,12 +47,12 @@
 	        			<p>
 	        				<span class="uk-text-bold">Budget</span>
 	        				<br>
-	        				${{movie.budget}}
+	        				${{movie.budget | priceFormat}}
 	        			</p>
 	        			<p>
 	        				<span class="uk-text-bold">Revenue</span>
 	        				<br>
-	        				${{movie.revenue}}
+	        				${{movie.revenue | priceFormat}}
 	        			</p>
 	        			<p class="uk-text-truncate">
 	        				<span class="uk-text-bold">Homepage</span>
@@ -99,19 +99,8 @@
 					    
 					</div>
 					
-					<router-link to="/login" class="uk-button uk-button-link uk-margin-top">Full Cast & Crew</router-link>
+					<router-link :to="`/movies/${movie.id}/cast`" class="uk-button uk-button-link uk-margin-top">Full Cast & Crew</router-link>
 
-
-					
-					<h3>Cast</h3>
-					<ul class="uk-list">
-					    <li v-for="person in cast.slice(0,8)">{{person.name}} - {{person.character}}</li>
-					</ul>
-
-					<h3>Crew</h3>
-					<ul class="uk-list">
-					    <li v-for="person in crew.slice(0,8)">{{person.name}} - {{person.job}}</li>
-					</ul>
 
 			    </div>
 
@@ -124,17 +113,9 @@
 			        <iframe :src="`//www.youtube.com/embed/${trailerKey}`" width="1120" height="630" frameborder="0" uk-video></iframe>
 			    </div>
 			</div>
-			
 
-			<h3>Cast</h3>
-			<pre>{{cast}}</pre>
-			<h3>Crew</h3>
-			<pre>{{crew}}</pre>
+			<!-- <router-link to='/movies/346364'>IT</router-link> -->
 
-			<!-- <h3>Videos</h3>
-			<pre>{{videos}}</pre>
-			<h3>Details</h3>
-			<pre>{{movie}}</pre> -->
 
 	     	</div>
 	    </div>
@@ -151,6 +132,7 @@ import axios from 'axios';
   export default {
     data() {
       return {
+      	title: 'Movie - Vortex',
         apiUrl: 'https://api.themoviedb.org/3/movie/' + this.$route.params.movieId + '?api_key=136727d529c2b6275946c6442cee626d',
         videosUrl: 'https://api.themoviedb.org/3/movie/' + this.$route.params.movieId + '/videos?api_key=136727d529c2b6275946c6442cee626d',
         creditsUrl: 'https://api.themoviedb.org/3/movie/' + this.$route.params.movieId + '/credits?api_key=136727d529c2b6275946c6442cee626d',
@@ -162,17 +144,13 @@ import axios from 'axios';
         trailerKey: ''
       }
     },
-    computed: {
-    	testVar() {
-    		return this.$store.state.testVar;
-    	}
-    },
     methods: {
     	apiCalls() {
     		axios.get(this.apiUrl)
 			.then((response) => {
 				this.movie = response.data;
 				this.genres = this.movie.genres;
+				this.title = this.movie.title + ' - Vortex';
 			});
 
 			axios.get(this.videosUrl)
@@ -189,22 +167,32 @@ import axios from 'axios';
     	}
     },
     watch: {
-      '$route' (to, from) {
-        this.apiUrl = 'https://api.themoviedb.org/3/movie/' + to.params.movieId + '?api_key=136727d529c2b6275946c6442cee626d';
-        this.videosUrl = 'https://api.themoviedb.org/3/movie/' + this.$route.params.movieId + '/videos?api_key=136727d529c2b6275946c6442cee626d';
-
-        this.apiCalls();
+		'$route' (to, from) {
+			this.apiUrl = 'https://api.themoviedb.org/3/movie/' + to.params.movieId + '?api_key=136727d529c2b6275946c6442cee626d';
+			this.videosUrl = 'https://api.themoviedb.org/3/movie/' + to.params.movieId + '/videos?api_key=136727d529c2b6275946c6442cee626d';
+			this.creditsUrl = 'https://api.themoviedb.org/3/movie/' + to.params.movieId + '/credits?api_key=136727d529c2b6275946c6442cee626d';
         
-      }
+
+			this.apiCalls();
+
+		},
+	    title() {
+			document.title = this.title;
+	    }
     },
     created() {
 
 		this.apiCalls();
 
+		document.title = this.title;
+
     },
     filters: {
     	truncate: function(string, value) {
     		return string.substring(0, value);
+    	},
+    	priceFormat: function(value) {
+    		return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     	}
     }
   }

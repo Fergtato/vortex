@@ -3,13 +3,14 @@
 		<div class="fa-poster uk-inline-clip uk-transition-toggle">
 			<router-link :to="`/${type}s/${media.id}`">
 			<img :src="`https://image.tmdb.org/t/p/w342${media.poster_path}`" alt="">
+			<!-- <p>{{media.title}}</p> -->
 			</router-link>
 			<div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
 				<ul class="uk-iconnav">
-				    <li><a href="#" uk-icon="icon: plus"></a></li>
+				    <!-- <li><a href="#" uk-icon="icon: plus"></a></li>
 				    <li><a href="#" uk-icon="icon: heart"></a></li>
 				    <li><a href="#" uk-icon="icon: bookmark"></a></li>
-				    <li><a href="#" uk-icon="icon: bolt"></a></li>
+				    <li><a href="#" uk-icon="icon: bolt"></a></li> -->
 				</ul>
 			</div>
 		</div>
