@@ -22,8 +22,10 @@
 <script>
 	import firebase from 'firebase';
 	import axios from 'axios';
+	import tmdb from '../mixins/tmdb.js';
 
 	export default {
+		mixins: [tmdb],
 		props: ['type', 'cat'],
 		data() {
 			return {
@@ -44,16 +46,12 @@
 	    methods: {
 	    	showMore() {
 	    		this.grid.page++;
-	    		this.apiUrl = 'https://api.themoviedb.org/3/' + this.type + '/' + this.cat + '?api_key=136727d529c2b6275946c6442cee626d&page=' + this.grid.page;
+	    		this.apiUrl = this.createUrl(this.type, this.cat, this.grid.page);
 
 				axios.get(this.apiUrl)
 					.then((response) => {
 
-					// for (var i = 0; i < response.data.results.length; i++) {
-					// 	this.$store.state.popularMoviesGrid.movies.push(response.data.results[i]);
-					// }
-
-					this.$store.commit('addToGrid', {response: response, grid: this.grid});
+					this.$store.commit('appendToGrid', {response: response, grid: this.grid});
 
 				});
 	    	}
@@ -62,18 +60,17 @@
 
 		    if (this.grid.page == 1 && this.grid.movies.length == 0) {
 
-			    this.apiUrl = 'https://api.themoviedb.org/3/' + this.type + '/' + this.cat + '?api_key=136727d529c2b6275946c6442cee626d&page=' + this.grid.page;
+			    this.apiUrl = this.createUrl(this.type, this.cat, this.grid.page);
 
 			    axios.get(this.apiUrl)
 			    .then((response) => {
 
-			    	this.$store.commit('addToGrid', {response: response, grid: this.grid});
+			    	this.$store.commit('appendToGrid', {response: response, grid: this.grid});
 
 			    });
 
 			}
 
-
-    }
+    	}
 	}
 </script>

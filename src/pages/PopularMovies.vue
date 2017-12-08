@@ -50,8 +50,10 @@
 <script>
 import firebase from 'firebase';
 import axios from 'axios';
+import tmdb from '../mixins/tmdb.js';
 
   export default {
+  	mixins: [tmdb],
     data() {
       return {
       	title: 'Popular Movies - Vortex',
@@ -60,6 +62,11 @@ import axios from 'axios';
         // showLoader: true
       }
     },
+    methods: {
+		testFunc() {
+			console.log(this.createStuff());
+		}
+	},
     watch: {
         title() {
             document.title = this.title;

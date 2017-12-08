@@ -16,7 +16,7 @@ export const store = new Vuex.Store({
 		}
 	},
 	mutations: {
-		addToGrid(state, payload) {
+		appendToGrid(state, payload) {
 
 			for (var i = 0; i < payload.response.data.results.length; i++) {
 				payload.grid.movies.push(payload.response.data.results[i]);
