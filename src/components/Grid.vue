@@ -12,6 +12,10 @@
         </div>
 
         <div class="uk-container uk-text-center uk-padding">
+        	<div v-if="showLoader" class="uk-margin-bottom">
+        		<div uk-spinner></div>
+        	</div>
+        	<br>
 	    	<button @click="showMore" class="uk-button uk-button-primary">Show More</button>
 	    </div>
 
@@ -30,7 +34,8 @@
 		props: ['type', 'cat'],
 		data() {
 			return {
-				tmdbListUrl: ''
+				tmdbListUrl: '',
+				showLoader: false
 			}
 		},
 		computed: {
@@ -52,6 +57,7 @@
 	    },
 	    methods: {
 	    	showMore() {
+	    		this.showLoader = true;
 	    		this.grid.page++;
 	    		this.tmdbListUrl = this.getTmdbListUrl(this.type, this.cat, this.grid.page);
 
@@ -59,6 +65,7 @@
 					.then((response) => {
 
 					this.$store.commit('appendToGrid', {response: response, grid: this.grid});
+					this.showLoader = false;
 
 				});
 	    	}

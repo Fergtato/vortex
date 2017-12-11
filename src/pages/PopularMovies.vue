@@ -51,13 +51,6 @@ import tmdb from '../mixins/tmdb.js';
     },
     created() {
 		  document.title = this.title;
-
-      axios.get("http://ipinfo.io")
-          .then((response) => {
-
-          console.log(response.data);
-
-        });
     }
   }
 </script>
