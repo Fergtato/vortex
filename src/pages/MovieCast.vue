@@ -26,13 +26,15 @@
 <script>
 import firebase from 'firebase';
 import axios from 'axios';
+import tmdb from '../mixins/tmdb.js';
 
   export default {
+  	mixins: [tmdb],
     data() {
       return {
       	title: 'Cast - Vortex',
-      	apiUrl: 'https://api.themoviedb.org/3/movie/' + this.$route.params.movieId + '?api_key=136727d529c2b6275946c6442cee626d',
-        creditsUrl: 'https://api.themoviedb.org/3/movie/' + this.$route.params.movieId + '/credits?api_key=136727d529c2b6275946c6442cee626d',
+      	tmdbMovieUrl: '',
+        tmdbMovieCreditsUrl: '',
         movie: {},
         credits: {},
         cast: {},
@@ -40,15 +42,19 @@ import axios from 'axios';
       }
     },
     methods: {
+    	setUrls(movieId) {
+    		this.tmdbMovieUrl = this.getTmdbMovieUrl(movieId);
+    		this.tmdbMovieCreditsUrl = this.getTmdbMovieCreditsUrl(movieId);
+    	},
     	apiCalls() {
 
-    		axios.get(this.apiUrl)
+    		axios.get(this.tmdbMovieUrl)
 			.then((response) => {
 				this.movie = response.data;
 				this.title = this.movie.title + ' - Vortex';
 			});
 
-	        axios.get(this.creditsUrl)
+	        axios.get(this.tmdbMovieCreditsUrl)
 	        .then((response) => {
 	        	this.credits = response.data;
 	          	this.cast = response.data.cast;
@@ -60,6 +66,7 @@ import axios from 'axios';
     watch: {
 		'$route' (to, from) {
 
+			this.setUrls(to.params.movieId);
 			this.apiCalls();
 
 		},
@@ -69,6 +76,7 @@ import axios from 'axios';
     },
     created() {
 
+    	this.setUrls(this.$route.params.movieId);
 		this.apiCalls();
 
 		document.title = this.title;

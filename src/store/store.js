@@ -13,6 +13,14 @@ export const store = new Vuex.Store({
 		topratedMoviesGrid: {
 			page: 1,
 			movies: []
+		},
+		upcomingMoviesGrid: {
+			page: 1,
+			movies: []
+		},
+		nowplayingMoviesGrid: {
+			page: 1,
+			movies: []
 		}
 	},
 	mutations: {

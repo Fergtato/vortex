@@ -14,6 +14,7 @@
         <div class="uk-container uk-text-center uk-padding">
 	    	<button @click="showMore" class="uk-button uk-button-primary">Show More</button>
 	    </div>
+
 </div>
 
 
@@ -29,7 +30,7 @@
 		props: ['type', 'cat'],
 		data() {
 			return {
-				apiUrl: ''
+				tmdbListUrl: ''
 			}
 		},
 		computed: {
@@ -40,15 +41,21 @@
 	    		else if (this.cat === 'top_rated') {
 	    			return this.$store.state.topratedMoviesGrid;
 	    		}
+	    		else if (this.cat === 'upcoming') {
+	    			return this.$store.state.upcomingMoviesGrid;
+	    		}
+	    		else if (this.cat === 'now_playing') {
+	    			return this.$store.state.upcomingMoviesGrid;
+	    		}
 	    		
 	    	}
 	    },
 	    methods: {
 	    	showMore() {
 	    		this.grid.page++;
-	    		this.apiUrl = this.createUrl(this.type, this.cat, this.grid.page);
+	    		this.tmdbListUrl = this.getTmdbListUrl(this.type, this.cat, this.grid.page);
 
-				axios.get(this.apiUrl)
+				axios.get(this.tmdbListUrl)
 					.then((response) => {
 
 					this.$store.commit('appendToGrid', {response: response, grid: this.grid});
@@ -60,9 +67,9 @@
 
 		    if (this.grid.page == 1 && this.grid.movies.length == 0) {
 
-			    this.apiUrl = this.createUrl(this.type, this.cat, this.grid.page);
+			    this.tmdbListUrl = this.getTmdbListUrl(this.type, this.cat, this.grid.page);
 
-			    axios.get(this.apiUrl)
+			    axios.get(this.tmdbListUrl)
 			    .then((response) => {
 
 			    	this.$store.commit('appendToGrid', {response: response, grid: this.grid});

@@ -6,7 +6,7 @@
 		<div class="fa-dash-content-wrapper uk-dark uk-preserve-color">
 
 			<div class="fa-movie-banner uk-background-cover" 
-				:style="`background-image: url(https://image.tmdb.org/t/p/original${movie.backdrop_path});`">
+				:style="`background-image: url(https://image.tmdb.org/t/p/w1280${movie.backdrop_path});`">
 				<div class="fa-banner-overlay"></div>
 			</div>
 
@@ -128,14 +128,16 @@
 <script>
 import firebase from 'firebase';
 import axios from 'axios';
+import tmdb from '../mixins/tmdb.js';
 
   export default {
+  	mixins: [tmdb],
     data() {
       return {
       	title: 'Movie - Vortex',
-        apiUrl: 'https://api.themoviedb.org/3/movie/' + this.$route.params.movieId + '?api_key=136727d529c2b6275946c6442cee626d',
-        videosUrl: 'https://api.themoviedb.org/3/movie/' + this.$route.params.movieId + '/videos?api_key=136727d529c2b6275946c6442cee626d',
-        creditsUrl: 'https://api.themoviedb.org/3/movie/' + this.$route.params.movieId + '/credits?api_key=136727d529c2b6275946c6442cee626d',
+        tmdbMovieUrl: '',
+        tmdbMovieVideosUrl: '',
+        tmdbMovieCreditsUrl: '',
         movie: {},
         genres: {},
         videos: {},
@@ -146,32 +148,35 @@ import axios from 'axios';
     },
     methods: {
     	apiCalls() {
-    		axios.get(this.apiUrl)
+    		axios.get(this.tmdbMovieUrl)
 			.then((response) => {
 				this.movie = response.data;
 				this.genres = this.movie.genres;
 				this.title = this.movie.title + ' - Vortex';
 			});
 
-			axios.get(this.videosUrl)
+			axios.get(this.tmdbMovieVideosUrl)
 	        .then((response) => {
 	          this.videos = response.data.results;
 	          this.trailerKey = this.videos[0].key;
 	        });
 
-	        axios.get(this.creditsUrl)
+	        axios.get(this.tmdbMovieCreditsUrl)
 	        .then((response) => {
 	          this.cast = response.data.cast;
 	          this.crew = response.data.crew;
 	        });
+    	},
+    	setUrls(movieId) {
+    		this.tmdbMovieUrl = this.getTmdbMovieUrl(movieId);
+    		this.tmdbMovieVideosUrl = this.getTmdbMovieVideosUrl(movieId);
+    		this.tmdbMovieCreditsUrl = this.getTmdbMovieCreditsUrl(movieId);
     	}
     },
     watch: {
 		'$route' (to, from) {
-			this.apiUrl = 'https://api.themoviedb.org/3/movie/' + to.params.movieId + '?api_key=136727d529c2b6275946c6442cee626d';
-			this.videosUrl = 'https://api.themoviedb.org/3/movie/' + to.params.movieId + '/videos?api_key=136727d529c2b6275946c6442cee626d';
-			this.creditsUrl = 'https://api.themoviedb.org/3/movie/' + to.params.movieId + '/credits?api_key=136727d529c2b6275946c6442cee626d';
-        
+
+			this.setUrls(to.params.movieId);
 
 			this.apiCalls();
 
@@ -181,6 +186,8 @@ import axios from 'axios';
 	    }
     },
     created() {
+
+    	this.setUrls(this.$route.params.movieId);
 
 		this.apiCalls();
 

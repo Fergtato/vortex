@@ -50,6 +50,8 @@
 
 <script>
 import firebase from 'firebase';
+var provider = new firebase.auth.GoogleAuthProvider();
+var fprovider = new firebase.auth.FacebookAuthProvider();
 
 export default {
 	data() {
