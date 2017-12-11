@@ -45,7 +45,7 @@
 	    			return this.$store.state.upcomingMoviesGrid;
 	    		}
 	    		else if (this.cat === 'now_playing') {
-	    			return this.$store.state.upcomingMoviesGrid;
+	    			return this.$store.state.nowplayingMoviesGrid;
 	    		}
 	    		
 	    	}

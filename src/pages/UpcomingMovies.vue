@@ -12,7 +12,7 @@
 	     	<div class="fa-dash-content">
 
 
-	        <h2>Popular Movies</h2>
+	        <h2>Upcoming Movies</h2>
 
 	        <grid :type='gridType' :cat='gridCat'></grid>
 
@@ -38,9 +38,9 @@ import tmdb from '../mixins/tmdb.js';
   	mixins: [tmdb],
     data() {
       return {
-      	title: 'Popular Movies - Vortex',
+      	title: 'Upcoming Movies - Vortex',
         gridType: 'movie',
-        gridCat: 'popular'
+        gridCat: 'upcoming'
         // showLoader: true
       }
     },
@@ -50,14 +50,7 @@ import tmdb from '../mixins/tmdb.js';
         }
     },
     created() {
-		  document.title = this.title;
-
-      axios.get("http://ipinfo.io")
-          .then((response) => {
-
-          console.log(response.data);
-
-        });
+		document.title = this.title;
     }
   }
 </script>

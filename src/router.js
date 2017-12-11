@@ -7,7 +7,11 @@ import User from './pages/User.vue';
 
 import Movie from './pages/Movie.vue';
 import MovieCast from './pages/MovieCast.vue';
+
 import PopularMovies from './pages/PopularMovies.vue';
+import TopratedMovies from './pages/TopratedMovies.vue';
+import UpcomingMovies from './pages/UpcomingMovies.vue';
+import NowplayingMovies from './pages/NowplayingMovies.vue';
 
 import Elements from './pages/Elements.vue';
 
@@ -19,6 +23,9 @@ const router = new VueRouter({
     { path: '/signup', component: Signup },
     { path: '/user', component: User },
     { path: '/movies/popular', component: PopularMovies },
+    { path: '/movies/toprated', component: TopratedMovies },
+    { path: '/movies/upcoming', component: UpcomingMovies },
+    { path: '/movies/nowplaying', component: NowplayingMovies },
     { path: '/movies/:movieId', component: Movie},
     { path: '/movies/:movieId/cast', component: MovieCast},
     { path: '/test', component: Elements }

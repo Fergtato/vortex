@@ -73,10 +73,10 @@
             <li class="uk-parent">
                 <a href="#">Movies</a>
                 <ul class="uk-nav-sub">
-                    <li><a href="#">Now Playing</a></li>
+                    <li><router-link to="/movies/nowplaying">Now Playing</router-link></li>
                     <li><router-link to="/movies/popular">Popular</router-link></li>
-                    <li><a href="#">Top Rated</a></li>
-                    <li><a href="#">Upcoming</a></li>
+                    <li><router-link to="/movies/toprated">Top Rated</router-link></li>
+                    <li><router-link to="/movies/upcoming">Upcoming</router-link></li>
                 </ul>
             </li>
 

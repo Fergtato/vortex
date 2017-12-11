@@ -44,10 +44,10 @@
 			              <div uk-drop="offset: 0, mode: click">
 			                  <div class="uk-card uk-card-body uk-card-secondary uk-padding-small">
 			                    <ul class="uk-nav uk-dropdown-nav">
-			                        <li><a href="#">Now Playing</a></li>
+			                        <li><router-link to="/movies/nowplaying">Now Playing</router-link></li>
 			                        <li><router-link to="/movies/popular">Popular</router-link></li>
-			                        <li><a href="#">Top Rated</a></li>
-			                        <li><a href="#">Upcoming</a></li>
+			                        <li><router-link to="/movies/toprated">Top Rated</router-link></li>
+			                        <li><router-link to="/movies/upcoming">Upcoming</router-link></li>
 			                    </ul>
 			                  </div>
 			              </div>
