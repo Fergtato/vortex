@@ -29,7 +29,14 @@ const router = new VueRouter({
     { path: '/movies/:movieId', component: Movie},
     { path: '/movies/:movieId/cast', component: MovieCast},
     { path: '/test', component: Elements }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
+    }
+  }
 });
 
 export default router;

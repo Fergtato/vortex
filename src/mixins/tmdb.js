@@ -20,6 +20,9 @@ export default {
 		},
 		getTmdbMovieCreditsUrl(id) {
 			return this.apiBase + 'movie/' + id + '/credits?api_key=' + this.apiKey;
+		},
+		getTmdbMovieRecomsUrl(id) {
+			return this.apiBase + 'movie/' + id + '/recommendations?api_key=' + this.apiKey;
 		}
 	},
  	created() {

@@ -88,7 +88,7 @@
 					    <div v-for="person in cast.slice(0,5)">
 					        <div class="uk-card uk-card-default uk-box-shadow-large">
 					            <div class="uk-card-media-top">
-					                <img class="fa-cast-image" :src="`https://image.tmdb.org/t/p/w342${person.profile_path}`" alt="">
+					                <img class="fa-cast-image" :src="`https://image.tmdb.org/t/p/w276_and_h350_bestv2${person.profile_path}`" alt="">
 					            </div>
 					            <div class="uk-card-body uk-padding-small">
 					                <p class="uk-text-bold uk-margin-small-bottom">{{person.name}}</p>
@@ -100,6 +100,21 @@
 					</div>
 					
 					<router-link :to="`/movies/${movie.id}/cast`" class="uk-button uk-button-link uk-margin-top">Full Cast & Crew</router-link>
+					
+					
+					<h3>Recommendations</h3>
+
+					<div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
+				
+			        	<div v-for="movie in recommendations.slice(0,5)">
+
+			        		<poster :type="posterType" :media="movie"></poster>
+
+			        	</div>
+
+			        </div>
+
+			        <router-link :to="`/movies/${movie.id}/cast`" class="uk-button uk-button-link uk-margin-top">View All Recommendations</router-link>
 
 
 			    </div>
@@ -138,12 +153,15 @@ import tmdb from '../mixins/tmdb.js';
         tmdbMovieUrl: '',
         tmdbMovieVideosUrl: '',
         tmdbMovieCreditsUrl: '',
+        tmdbMovieRecomsUrl: '',
         movie: {},
         genres: {},
         videos: {},
         cast: {},
         crew: {},
-        trailerKey: ''
+        recommendations: {},
+        trailerKey: '',
+        posterType: 'movie'
       }
     },
     methods: {
@@ -166,11 +184,17 @@ import tmdb from '../mixins/tmdb.js';
 	          this.cast = response.data.cast;
 	          this.crew = response.data.crew;
 	        });
+
+	        axios.get(this.tmdbMovieRecomsUrl)
+	        .then((response) => {
+	          this.recommendations = response.data.results;
+	        });
     	},
     	setUrls(movieId) {
     		this.tmdbMovieUrl = this.getTmdbMovieUrl(movieId);
     		this.tmdbMovieVideosUrl = this.getTmdbMovieVideosUrl(movieId);
     		this.tmdbMovieCreditsUrl = this.getTmdbMovieCreditsUrl(movieId);
+    		this.tmdbMovieRecomsUrl = this.getTmdbMovieRecomsUrl(movieId);
     	}
     },
     watch: {

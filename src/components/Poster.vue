@@ -9,14 +9,14 @@
 			<img v-else src="../assets/missingPoster.jpg" alt="">
 			<!-- <p>{{media.title}}</p> -->
 			</router-link>
-			<div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
+			<!-- <div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
 				<ul class="uk-iconnav">
-				    <!-- <li><a href="#" uk-icon="icon: plus"></a></li>
+				    <li><a href="#" uk-icon="icon: plus"></a></li>
 				    <li><a href="#" uk-icon="icon: heart"></a></li>
 				    <li><a href="#" uk-icon="icon: bookmark"></a></li>
-				    <li><a href="#" uk-icon="icon: bolt"></a></li> -->
+				    <li><a href="#" uk-icon="icon: bolt"></a></li>
 				</ul>
-			</div>
+			</div> -->
 		</div>
 
 </template>
