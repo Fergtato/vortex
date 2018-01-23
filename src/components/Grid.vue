@@ -35,7 +35,7 @@
 		data() {
 			return {
 				tmdbListUrl: '',
-				showLoader: false
+				showLoader: true
 			}
 		},
 		computed: {
@@ -80,9 +80,11 @@
 			    .then((response) => {
 
 			    	this.$store.commit('appendToGrid', {response: response, grid: this.grid});
-
+			    	this.showLoader = false;
 			    });
 
+			} else {
+				this.showLoader = false;
 			}
 
     	}
