@@ -91,8 +91,8 @@
 					                <img class="fa-cast-image" :src="`https://image.tmdb.org/t/p/w276_and_h350_bestv2${person.profile_path}`" alt="">
 					            </div>
 					            <div class="uk-card-body uk-padding-small">
-					                <p class="uk-text-bold uk-margin-small-bottom">{{person.name}}</p>
-					                <p class="uk-margin-remove-top">{{person.character}}</p>
+					                <p class="uk-text-bold uk-margin-remove-bottom">{{person.name}}</p>
+					                <p class="uk-margin-remove-top uk-text-small">{{person.character}}</p>
 					            </div>
 					        </div>
 					    </div>
@@ -114,7 +114,7 @@
 
 			        </div>
 
-			        <router-link :to="`/movies/${movie.id}/cast`" class="uk-button uk-button-link uk-margin-top">View All Recommendations</router-link>
+			        <router-link :to="`/movies/${movie.id}/recommendations`" class="uk-button uk-button-link uk-margin-top">View All Recommendations</router-link>
 
 
 			    </div>

@@ -7,6 +7,7 @@ import User from './pages/User.vue';
 
 import Movie from './pages/Movie.vue';
 import MovieCast from './pages/MovieCast.vue';
+import MovieRecoms from './pages/MovieRecoms.vue';
 
 import PopularMovies from './pages/PopularMovies.vue';
 import TopratedMovies from './pages/TopratedMovies.vue';
@@ -28,6 +29,7 @@ const router = new VueRouter({
     { path: '/movies/nowplaying', component: NowplayingMovies },
     { path: '/movies/:movieId', component: Movie},
     { path: '/movies/:movieId/cast', component: MovieCast},
+    { path: '/movies/:movieId/recommendations', component: MovieRecoms},
     { path: '/test', component: Elements }
   ],
   scrollBehavior (to, from, savedPosition) {

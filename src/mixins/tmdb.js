@@ -10,7 +10,7 @@ export default {
 	},
 	methods: {
 		getTmdbListUrl(type, cat, page) {
-			return this.apiBase + type + '/' + cat + '?api_key=' + this.apiKey + '&page=' + page + '&region=' + this.region;
+			return this.apiBase + type + '/' + cat + '?api_key=' + this.apiKey + '&page=' + page;
 		},
 		getTmdbMovieUrl(id) {
 			return this.apiBase + 'movie/' + id + '?api_key=' + this.apiKey;
