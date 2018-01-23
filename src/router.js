@@ -13,6 +13,10 @@ import TopratedMovies from './pages/TopratedMovies.vue';
 import UpcomingMovies from './pages/UpcomingMovies.vue';
 import NowplayingMovies from './pages/NowplayingMovies.vue';
 
+import TvShow from './pages/TvShow.vue';
+
+import AiringTv from './pages/AiringTv.vue'
+
 import Elements from './pages/Elements.vue';
 
 const router = new VueRouter({
@@ -28,6 +32,8 @@ const router = new VueRouter({
     { path: '/movies/nowplaying', component: NowplayingMovies },
     { path: '/movies/:movieId', component: Movie},
     { path: '/movies/:movieId/cast', component: MovieCast},
+    { path: '/tvshows/:tvshowId', component: TvShow},
+    { path: '/tvshows/airing', component: AiringTv },
     { path: '/test', component: Elements }
   ],
   scrollBehavior (to, from, savedPosition) {
