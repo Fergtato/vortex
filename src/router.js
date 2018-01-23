@@ -33,12 +33,9 @@ const router = new VueRouter({
     { path: '/movies/nowplaying', component: NowplayingMovies },
     { path: '/movies/:movieId', component: Movie},
     { path: '/movies/:movieId/cast', component: MovieCast},
-<<<<<<< HEAD
     { path: '/tvshows/:tvshowId', component: TvShow},
     { path: '/tvshows/airing', component: AiringTv },
-=======
     { path: '/movies/:movieId/recommendations', component: MovieRecoms},
->>>>>>> 5733fe4362e63925606aea203e5e5048da74c560
     { path: '/test', component: Elements }
   ],
   scrollBehavior (to, from, savedPosition) {
