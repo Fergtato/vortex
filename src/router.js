@@ -33,7 +33,7 @@ const router = new VueRouter({
     { path: '/movies/nowplaying', component: NowplayingMovies },
     { path: '/movies/:movieId', component: Movie},
     { path: '/movies/:movieId/cast', component: MovieCast},
-    { path: '/tvshows/:tvshowId', component: TvShow},
+    { path: '/tvshows/:tvShowId', component: TvShow},
     { path: '/tvshows/airing', component: AiringTv },
     { path: '/movies/:movieId/recommendations', component: MovieRecoms},
     { path: '/test', component: Elements }
