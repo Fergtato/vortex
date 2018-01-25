@@ -58,7 +58,7 @@
 			              <div uk-drop="offset: 0, mode: click">
 			                  <div class="uk-card uk-card-body uk-card-secondary uk-padding-small">
 			                    <ul class="uk-nav uk-dropdown-nav">
-			                      <li><a>Airing</a></li>
+			                      <li><router-link to="/tvshows/airing">Airing</router-link></li>
 			                      <li><a>On Air</a></li>
 			                      <li><a>Popular</a></li>
 			                      <li><a>Top Rated</a></li>
