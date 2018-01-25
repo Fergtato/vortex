@@ -3,7 +3,7 @@
 
   	<dash-nav></dash-nav>
 
-  	<h1> {{ tvShow.status }} </h1>
+  	<p> {{ tvShow.status }} </p>
     
   </div>
 </template>
@@ -55,7 +55,7 @@ export default {
   },
 
   created() {
-  	this.setUrls(this.$route.params.movieId);
+  	this.setUrls(this.$route.params.tvShowId);
 
 	this.apiCalls();
 
