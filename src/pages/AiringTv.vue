@@ -12,6 +12,7 @@
           <h2>Airing Tv Shows</h2>
 
           <grid :type='gridType' :cat='gridCat'></grid>
+        
 
 
         </div>
@@ -40,6 +41,7 @@ import tmdb from '../mixins/tmdb.js';
         }
     },
     created() {
+      console.log("Hyello");
     document.title = this.title;
     }
   }

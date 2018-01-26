@@ -41,7 +41,6 @@ import tmdb from '../mixins/tmdb.js';
       	title: 'Now Playing Movies - Vortex',
         gridType: 'movie',
         gridCat: 'now_playing'
-        // showLoader: true
       }
     },
     watch: {

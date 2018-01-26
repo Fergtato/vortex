@@ -10,6 +10,7 @@ export default {
 	},
 	methods: {
 		getTmdbListUrl(type, cat, page) {
+			console.log("cat:" + cat);
 			return this.apiBase + type + '/' + cat + '?api_key=' + this.apiKey + '&page=' + page;
 		},
 		getTmdbMovieUrl(id) {
