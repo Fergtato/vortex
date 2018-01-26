@@ -52,6 +52,9 @@
 	    		else if (this.cat === 'now_playing') {
 	    			return this.$store.state.nowplayingMoviesGrid;
 	    		}
+	    		else if (this.cat === 'airing_today') {
+	    			return this.$store.state.airingTodayTvGrid;
+	    		}
 	    		
 	    	}
 	    },
@@ -64,6 +67,7 @@
 				axios.get(this.tmdbListUrl)
 					.then((response) => {
 
+					console.log(response);
 					this.$store.commit('appendToGrid', {response: response, grid: this.grid});
 					this.showLoader = false;
 

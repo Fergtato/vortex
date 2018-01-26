@@ -29,9 +29,9 @@ import tmdb from '../mixins/tmdb.js';
     mixins: [tmdb],
     data() {
       return {
-        title: 'Airing - Vortex',
-        gridType: 'tvShow',
-        gridCat: 'airing'
+        title: 'Airing Today - Vortex',
+        gridType: 'tv',
+        gridCat: 'airing_today'
       }
     },
     watch: {
