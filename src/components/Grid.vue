@@ -55,6 +55,9 @@
 	    		else if (this.cat === 'airing_today') {
 	    			return this.$store.state.airingTodayTvGrid;
 	    		}
+	    		else if (this.cat === 'on_the_air') {
+	    			return this.$store.state.airingTodayTvGrid;
+	    		}
 	    		
 	    	}
 	    },

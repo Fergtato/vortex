@@ -17,6 +17,7 @@ import NowplayingMovies from './pages/NowplayingMovies.vue';
 import TvShow from './pages/TvShow.vue';
 
 import AiringTv from './pages/AiringTv.vue';
+import OnAirTv from './pages/OnAirTv.vue';
 
 import Elements from './pages/Elements.vue';
 
@@ -34,6 +35,7 @@ const router = new VueRouter({
     { path: '/movies/:movieId', component: Movie},
     { path: '/movies/:movieId/cast', component: MovieCast},
     { path: '/tvshows/airing_today', component: AiringTv },
+    { path: '/tvshows/on_the_air', component: OnAirTv },
     { path: '/tvshows/:tvShowId', component: TvShow},
     { path: '/movies/:movieId/recommendations', component: MovieRecoms},
     { path: '/test', component: Elements }

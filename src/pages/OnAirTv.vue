@@ -9,7 +9,7 @@
         <div class="fa-dash-content">
 
 
-          <h2>Tv Shows Airing Today</h2>
+          <h2>Tv Shows On Air</h2>
 
           <grid :type='gridType' :cat='gridCat'></grid>
         
@@ -30,9 +30,9 @@ import tmdb from '../mixins/tmdb.js';
     mixins: [tmdb],
     data() {
       return {
-        title: 'Airing Today - Vortex',
+        title: 'On Air Today - Vortex',
         gridType: 'tv',
-        gridCat: 'airing_today'
+        gridCat: 'on_the_air'
       }
     },
     watch: {
