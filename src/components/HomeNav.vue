@@ -60,7 +60,7 @@
 			                    <ul class="uk-nav uk-dropdown-nav">
 			                      <li><router-link to="/tvshows/airing_today">Airing</router-link></li>
 			                      <li><router-link to="/tvshows/on_the_air">On Air</router-link></li>
-			                      <li><a>Popular</a></li>
+			                      <li><router-link to="/tvshows/popular">Popular</router-link></li>
 			                      <li><a>Top Rated</a></li>
 			                    </ul>
 			                  </div>

@@ -85,7 +85,7 @@
                 <ul class="uk-nav-sub">
                     <li><router-link to="/tvshows/airing_today">Airing</router-link></li>
                     <li><router-link to="/tvshows/on_the_air">On Air</router-link></li>
-                    <li><a href="#">Popular</a></li>
+                    <li><router-link to="/tvshows/popular">Popular</router-link></li>
                     <li><a href="#">Top Rated</a></li>
                 </ul>
             </li>
