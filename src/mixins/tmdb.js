@@ -27,6 +27,18 @@ export default {
 		},
 		getTmdbTvUrl(id) {
 			return this.apiBase + 'tv/' + id + '?api_key=' + this.apiKey;
+		},
+		getTmdbTvVideosUrl(id) {
+			return this.apiBase + 'tv/' + id + '/videos?api_key=' + this.apiKey;
+		},
+		getTmdbTvCreditsUrl(id) {
+			return this.apiBase + 'tv/' + id + '/credits?api_key=' + this.apiKey;
+		},
+		getTmdbTvRecomsUrl(id) {
+			return this.apiBase + 'tv/' + id + '/recommendations?api_key=' + this.apiKey;
+		},
+		getTmdbLatestPeopleUrl(id) {
+			return this.apiBase + 'tv/' + id + '?api_key=' + this.apiKey;
 		}
 	},
  	created() {
