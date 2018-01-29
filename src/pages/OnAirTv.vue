@@ -9,7 +9,7 @@
         <div class="fa-dash-content">
 
 
-          <h2>Tv Shows On Air</h2>
+          <h2>On Air Tv Shows</h2>
 
           <grid :type='gridType' :cat='gridCat'></grid>
         
@@ -30,7 +30,7 @@ import tmdb from '../mixins/tmdb.js';
     mixins: [tmdb],
     data() {
       return {
-        title: 'On Air Today - Vortex',
+        title: 'On Air - Vortex',
         gridType: 'tv',
         gridCat: 'on_the_air'
       }
@@ -41,8 +41,7 @@ import tmdb from '../mixins/tmdb.js';
         }
     },
     created() {
-      console.log("Hyello");
-    document.title = this.title;
+      document.title = this.title;
     }
   }
 </script>

@@ -57,6 +57,7 @@
 	    		}
 	    		else if (this.cat === 'on_the_air') {
 	    			return this.$store.state.airingTodayTvGrid;
+	    			//return this.$store.state.onAirTvGrid;
 	    		}
 	    		else if (this.cat === 'popular') {
 	    			return this.$store.state.popularTvGrid;
