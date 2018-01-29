@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase';
+import firebase from 'firebase';
 
 const app = initializeApp({
     apiKey: "AIzaSyCSsc_TJvnmhMOiY6FBxzgo8hdl0EmC3e4",
@@ -9,6 +10,17 @@ const app = initializeApp({
     messagingSenderId: "474923680919"
   });
 
+  var user = '123';
+
+  firebase.auth().onAuthStateChanged((user) => {
+    if(user) {
+      user = firebase.auth().currentUser.uid;
+      console.log(user);
+    } else {
+      console.log('nope');
+    }
+  });
+  
+
   export const db = app.database();
-  export const namesRef = db.ref('names');
-  export const moviesRef = db.ref('movies');
+  export const moviesRef = db.ref('lists').child('favourites').child(user);

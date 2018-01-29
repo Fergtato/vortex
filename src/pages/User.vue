@@ -5,6 +5,10 @@
 
 		<button @click="logOut" class="uk-button uk-button-primary">Log Out</button>
 
+		<ul>
+			<li v-for="movie of movies">{{movie.title}}</li>
+		</ul>
+
 		<pre>{{ user }}</pre>
 
 	</div>
@@ -12,12 +16,16 @@
 
 <script>
 import firebase from 'firebase';
+import { moviesRef } from '../firebase';
 
 export default {
 	data() {
 		return {
 			user: {}
 		}
+	},
+	firebase: {
+		movies: moviesRef
 	},
 	methods: {
 		logOut() {

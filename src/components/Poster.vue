@@ -9,20 +9,28 @@
 			<img v-else src="../assets/missingPoster.jpg" alt="">
 			<!-- <p>{{media.title}}</p> -->
 			</router-link>
-			<!-- <div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
-				<ul class="uk-iconnav">
+			<div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
+				<button @click="test" >Add To Favs</button>
+				<!-- <ul class="uk-iconnav">
 				    <li><a href="#" uk-icon="icon: plus"></a></li>
 				    <li><a href="#" uk-icon="icon: heart"></a></li>
 				    <li><a href="#" uk-icon="icon: bookmark"></a></li>
 				    <li><a href="#" uk-icon="icon: bolt"></a></li>
-				</ul>
-			</div> -->
+				</ul> -->
+			</div>
 		</div>
 
 </template>
 
 <script>
+	import { moviesRef } from '../firebase';
+
 	export default {
-		props: ['media','type']
+		props: ['media','type'],
+		methods: {
+			test() {
+				moviesRef.push(this.media);
+			}
+		}
 	}
 </script>
