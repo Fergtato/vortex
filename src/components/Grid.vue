@@ -59,7 +59,10 @@
 	    			return this.$store.state.airingTodayTvGrid;
 	    		}
 	    		else if (this.cat === 'popular') {
-	    			return this.$store.state.airingTodayTvGrid;
+	    			return this.$store.state.popularTvGrid;
+	    		}
+	    		else if (this.cat === 'top_rated') {
+	    			return this.$store.state.topRatedTvGrid;
 	    		}
 	    		
 	    	}

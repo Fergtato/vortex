@@ -19,6 +19,7 @@ import TvShow from './pages/TvShow.vue';
 import AiringTv from './pages/AiringTv.vue';
 import OnAirTv from './pages/OnAirTv.vue';
 import PopularTv from './pages/PopularTv.vue';
+import TopRatedTv from './pages/TopRatedTv.vue';
 
 import Elements from './pages/Elements.vue';
 
@@ -38,6 +39,7 @@ const router = new VueRouter({
     { path: '/tvshows/airing_today', component: AiringTv },
     { path: '/tvshows/popular', component: PopularTv },
     { path: '/tvshows/on_the_air', component: OnAirTv },
+    { path: '/tvshows/top_rated', component: TopRatedTv },
     { path: '/tvshows/:tvShowId', component: TvShow},
     { path: '/movies/:movieId/recommendations', component: MovieRecoms},
     { path: '/test', component: Elements }

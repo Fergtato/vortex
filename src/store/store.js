@@ -40,6 +40,11 @@ export const store = new Vuex.Store({
 			page: 1,
 			total_pages: 0,
 			movies: []
+		},
+		TopRatedTvGrid: {
+			page: 1,
+			total_pages: 0,
+			movies: []
 		}
 	},
 	mutations: {
