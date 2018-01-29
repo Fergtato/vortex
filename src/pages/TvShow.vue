@@ -3,7 +3,7 @@
 
   	<dash-nav></dash-nav>
 
-  	<p> {{ tvShow.status }} </p>
+  	{{ tvShow.title }}
     
   </div>
 </template>
@@ -19,8 +19,16 @@ export default {
     return {
     	title: 'Tv Show - Vortex',
       	tmdbTvUrl: '',
+        tmdbTvVideosUrl: '',
+        tmdbTvCreditsUrl: '',
+        tmdbTvRecomsUrl: '',
       	tvShow: {},
       	genres: {},
+        videos: {},
+        cast: {},
+        crew: {},
+        recommendations: {},
+        trailerKey: '',
       	posterType: 'tvShow'
     }
   },
@@ -32,11 +40,31 @@ export default {
 				this.tvShow = response.data;
 				this.genres = this.tvShow.genres;
 				this.title = this.tvShow.title + ' - Vortex';
-		});
+		  });
+
+      axios.get(this.tmdbTvVideosUrl)
+      .then((response) => {
+        this.videos = response.data.results;
+        this.trailerKey = this.videos[0].key;
+      });
+
+      axios.get(this.tmdbTvCreditsUrl)
+      .then((response) => {
+        this.cast = response.data.cast;
+        this.crew = response.data.crew;
+      });
+
+      axios.get(this.tmdbTvRecomsUrl)
+      .then((response) => {
+        this.recommendations = response.data.results;
+      });
 	},
 
 	setUrls(tvShowId) {
 		this.tmdbTvUrl = this.getTmdbTvUrl(tvShowId);
+    this.tmdbTvVideosUrl = this.getTmdbTvVideosUrl(tvShowId);
+    this.tmdbTvCreditsUrl = this.getTmdbTvCreditsUrl(tvShowId);
+    this.tmdbTvRecomsUrl = this.getTmdbTvRecomsUrl(tvShowId);
 	}
 
   },
@@ -58,6 +86,7 @@ export default {
   	this.setUrls(this.$route.params.tvShowId);
 
 	this.apiCalls();
+
 
 	document.title = this.title;
   },
