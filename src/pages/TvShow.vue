@@ -3,7 +3,7 @@
 
   	<dash-nav></dash-nav>
 
-  	{{ tvShow.title }}
+  	{{ tvShow }}
     
   </div>
 </template>

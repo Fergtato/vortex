@@ -49,7 +49,7 @@
 	    		else if (this.cat === 'upcoming' && this.type === 'movie') {
 	    			return this.$store.state.upcomingMoviesGrid;
 	    		}
-	    		else if (this.cat === 'now_playing' && this.type === 'movie') {
+	    		else if (this.cat === 'now_playing' && this.type === 'movie'){
 	    			return this.$store.state.nowplayingMoviesGrid;
 	    		}
 	    		else if (this.cat === 'airing_today' && this.type === 'tv') {
@@ -64,6 +64,12 @@
 	    		}
 	    		else if (this.cat === 'top_rated' && this.type === 'tv') {
 	    			return this.$store.state.topRatedTvGrid;
+	    		}
+	    		else if (this.cat === 'latest' ) {
+	    			return this.$store.state.latestPeopleTvGrid;
+	    		}
+	    		else if (this.cat === 'popular' && this.type === 'person') {
+	    			return this.$store.state.popularPeopleTvGrid;
 	    		}
 	    		
 	    	}

@@ -8,7 +8,7 @@
 	     	<div class="fa-dash-content">
 
 
-	        <h2>Latest</h2>
+	        <h2>Popular</h2>
 
 	        <grid :type='gridType' :cat='gridCat'></grid>
 
@@ -27,9 +27,9 @@ import tmdb from '../mixins/tmdb.js';
   	mixins: [tmdb],
     data() {
       return {
-      	title: 'Latest People - Vortex',
+      	title: 'Popular People - Vortex',
         gridType: 'movie',
-        gridCat: 'latest'
+        gridCat: 'popular'
       }
     },
     watch: {

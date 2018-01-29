@@ -36,6 +36,9 @@ export default {
 		},
 		getTmdbTvRecomsUrl(id) {
 			return this.apiBase + 'tv/' + id + '/recommendations?api_key=' + this.apiKey;
+		},
+		getTmdbLatestPeopleUrl(id) {
+			return this.apiBase + 'tv/' + id + '?api_key=' + this.apiKey;
 		}
 	},
  	created() {
