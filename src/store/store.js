@@ -31,17 +31,17 @@ export const store = new Vuex.Store({
 			total_pages: 0,
 			movies: []
 		},
-		OnTheAirTvGrid: {
+		onTheAirTvGrid: {
 			page: 1,
 			total_pages: 0,
 			movies: []
 		},
-		PopularTvGrid: {
+		popularTvGrid: {
 			page: 1,
 			total_pages: 0,
 			movies: []
 		},
-		TopRatedTvGrid: {
+		topRatedTvGrid: {
 			page: 1,
 			total_pages: 0,
 			movies: []

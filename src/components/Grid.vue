@@ -40,29 +40,29 @@
 		},
 		computed: {
 	    	grid() {
-	    		if (this.cat === 'popular') {
+	    		if (this.cat === 'popular' && this.type === 'movie') {
 	    			return this.$store.state.popularMoviesGrid;
 	    		}
-	    		else if (this.cat === 'top_rated') {
+	    		else if (this.cat === 'top_rated' && this.type === 'movie') {
 	    			return this.$store.state.topratedMoviesGrid;
 	    		}
-	    		else if (this.cat === 'upcoming') {
+	    		else if (this.cat === 'upcoming' && this.type === 'movie') {
 	    			return this.$store.state.upcomingMoviesGrid;
 	    		}
-	    		else if (this.cat === 'now_playing') {
+	    		else if (this.cat === 'now_playing' && this.type === 'movie') {
 	    			return this.$store.state.nowplayingMoviesGrid;
 	    		}
-	    		else if (this.cat === 'airing_today') {
+	    		else if (this.cat === 'airing_today' && this.type === 'tv') {
 	    			return this.$store.state.airingTodayTvGrid;
 	    		}
-	    		else if (this.cat === 'on_the_air') {
-	    			return this.$store.state.airingTodayTvGrid;
-	    			//return this.$store.state.onAirTvGrid;
+	    		else if (this.cat === 'on_the_air' && this.type === 'tv') {
+	    			// return this.$store.state.airingTodayTvGrid;
+	    			return this.$store.state.onTheAirTvGrid;
 	    		}
-	    		else if (this.cat === 'popular') {
+	    		else if (this.cat === 'popular' && this.type === 'tv') {
 	    			return this.$store.state.popularTvGrid;
 	    		}
-	    		else if (this.cat === 'top_rated') {
+	    		else if (this.cat === 'top_rated' && this.type === 'tv') {
 	    			return this.$store.state.topRatedTvGrid;
 	    		}
 	    		
