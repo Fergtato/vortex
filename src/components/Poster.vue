@@ -3,10 +3,26 @@
 		<div class="fa-poster uk-inline-clip uk-transition-toggle">
 			<router-link :to="`/${type}s/${media.id}`">
 			<!-- <img v-if="media.poster_path" :src="`https://image.tmdb.org/t/p/w342${media.poster_path}`" alt=""> -->
-			<div v-if="media.poster_path" :style="`background-image: url(https://image.tmdb.org/t/p/w342${media.poster_path});background-size: cover;`">
-				<img class="fa-poster-filler" src="../assets/missingPoster.jpg" alt="">
+			<div <div v-if="type === 'movie' || type === 'tv'">
+				
+				<div v-if="media.poster_path" :style="`background-image: url(https://image.tmdb.org/t/p/w342${media.poster_path});background-size: cover;`">
+					<img class="fa-poster-filler" src="../assets/missingPoster.jpg" alt="">
+				</div>
+
+				<img v-else src="../assets/missingPoster.jpg" alt="">
+
 			</div>
-			<img v-else src="../assets/missingPoster.jpg" alt="">
+			<div v-else>
+
+				<div v-if="media.profile_path" :style="`background-image: url(https://image.tmdb.org/t/p/w342${media.profile_path});background-size: cover;`">
+					<img class="fa-poster-filler" src="../assets/missingPoster.jpg" alt="">
+				</div>
+
+				<img v-else src="../assets/missingPoster.jpg" alt="">
+				
+			</div>
+
+			
 			<!-- <p>{{media.title}}</p> -->
 			</router-link>
 			<div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">

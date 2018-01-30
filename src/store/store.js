@@ -46,12 +46,12 @@ export const store = new Vuex.Store({
 			total_pages: 0,
 			movies: []
 		},
-		latestPeopleTvGrid: {
+		latestPeopleGrid: {
 			page: 1,
 			total_pages: 0,
 			movies: []
 		},
-		popularPeopleTvGrid: {
+		popularPeopleGrid: {
 			page: 1,
 			total_pages: 0,
 			movies: []

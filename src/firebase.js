@@ -10,17 +10,18 @@ const app = initializeApp({
     messagingSenderId: "474923680919"
   });
 
-  var user = '123';
+  export const db = app.database();
+  export var moviesRef = null;
+  export var favsRef = db.ref('lists').child('favourites');
+  console.log("D");
 
   firebase.auth().onAuthStateChanged((user) => {
     if(user) {
-      user = firebase.auth().currentUser.uid;
-      console.log(user);
+      moviesRef = db.ref('lists').child('favourites').child(user.uid);
+      console.log("A: " + user.uid);
     } else {
       console.log('nope');
     }
   });
-  
 
-  export const db = app.database();
-  export const moviesRef = db.ref('lists').child('favourites').child(user);
+  

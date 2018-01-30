@@ -28,7 +28,7 @@ import tmdb from '../mixins/tmdb.js';
     data() {
       return {
       	title: 'Latest People - Vortex',
-        gridType: 'movie',
+        gridType: 'person',
         gridCat: 'latest'
       }
     },

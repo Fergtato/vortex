@@ -28,7 +28,7 @@ import tmdb from '../mixins/tmdb.js';
     data() {
       return {
       	title: 'Popular People - Vortex',
-        gridType: 'movie',
+        gridType: 'person',
         gridCat: 'popular'
       }
     },

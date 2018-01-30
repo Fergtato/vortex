@@ -65,11 +65,11 @@
 	    		else if (this.cat === 'top_rated' && this.type === 'tv') {
 	    			return this.$store.state.topRatedTvGrid;
 	    		}
-	    		else if (this.cat === 'latest' ) {
-	    			return this.$store.state.latestPeopleTvGrid;
+	    		else if (this.cat === 'latest' && this.type === 'person') {
+	    			return this.$store.state.latestPeopleGrid;
 	    		}
 	    		else if (this.cat === 'popular' && this.type === 'person') {
-	    			return this.$store.state.popularPeopleTvGrid;
+	    			return this.$store.state.popularPeopleGrid;
 	    		}
 	    		
 	    	}
