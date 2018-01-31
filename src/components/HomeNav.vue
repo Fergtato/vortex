@@ -96,7 +96,7 @@
 			              <div uk-drop="offset: 0, mode: click">
 			                  <div class="uk-card uk-card-body uk-card-secondary uk-padding-small">
 			                    <ul class="uk-nav uk-dropdown-nav">
-			                      <li><a>My Lists</a></li>
+			                      <li><router-link to="/mylists">My Lists</router-link></li>
 			                      <li><a>Featured</a></li>
 			                    </ul>
 			                  </div>

@@ -9,7 +9,7 @@
         <div class="fa-dash-content">
 
 
-          <h2>On Air Tv Shows</h2>
+          <h2>Popular Tv Shows</h2>
 
           <grid :type='gridType' :cat='gridCat'></grid>
         
@@ -24,15 +24,15 @@
 <script>
 import firebase from 'firebase';
 import axios from 'axios';
-import tmdb from '../mixins/tmdb.js';
+import tmdb from '../../mixins/tmdb.js';
 
   export default {
     mixins: [tmdb],
     data() {
       return {
-        title: 'On Air - Vortex',
+        title: 'Popular - Vortex',
         gridType: 'tv',
-        gridCat: 'on_the_air'
+        gridCat: 'popular'
       }
     },
     watch: {

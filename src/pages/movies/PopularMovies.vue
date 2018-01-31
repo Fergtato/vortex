@@ -12,7 +12,7 @@
 	     	<div class="fa-dash-content">
 
 
-	        <h2>Now Playing Movies</h2>
+	        <h2>Popular Movies</h2>
 
 	        <grid :type='gridType' :cat='gridCat'></grid>
 
@@ -32,15 +32,16 @@
 <script>
 import firebase from 'firebase';
 import axios from 'axios';
-import tmdb from '../mixins/tmdb.js';
+import tmdb from '../../mixins/tmdb.js';
 
   export default {
   	mixins: [tmdb],
     data() {
       return {
-      	title: 'Now Playing Movies - Vortex',
+      	title: 'Popular Movies - Vortex',
         gridType: 'movie',
-        gridCat: 'now_playing'
+        gridCat: 'popular'
+        // showLoader: true
       }
     },
     watch: {
@@ -49,7 +50,7 @@ import tmdb from '../mixins/tmdb.js';
         }
     },
     created() {
-		document.title = this.title;
+		  document.title = this.title;
     }
   }
 </script>

@@ -12,13 +12,11 @@ const app = initializeApp({
 
   export const db = app.database();
   export var moviesRef = null;
-  export var favsRef = db.ref('lists').child('favourites');
-  console.log("D");
+  export const favouritesRef = db.ref('lists').child('favourites');
 
   firebase.auth().onAuthStateChanged((user) => {
     if(user) {
       moviesRef = db.ref('lists').child('favourites').child(user.uid);
-      console.log("A: " + user.uid);
     } else {
       console.log('nope');
     }

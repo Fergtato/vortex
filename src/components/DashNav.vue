@@ -109,7 +109,7 @@
             <li class="uk-parent">
                 <a href="#">Lists</a>
                 <ul class="uk-nav-sub">
-                    <li><a href="#">My Lists</a></li>
+                    <li><router-link to="/mylists">My Lists</router-link></li>
                     <li><a href="#">Featured</a></li>
                 </ul>
             </li>
