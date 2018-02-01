@@ -23,7 +23,6 @@ import OnAirTv from './pages/tv/OnAirTv.vue';
 import PopularTv from './pages/tv/PopularTv.vue';
 import TopRatedTv from './pages/tv/TopRatedTv.vue';
 
-import LatestPeople from './pages/people/LatestPeople.vue';
 import PopularPeople from './pages/people/PopularPeople.vue';
 
 import Elements from './pages/Elements.vue';
@@ -48,7 +47,6 @@ const router = new VueRouter({
     { path: '/tvshows/on_the_air', component: OnAirTv },
     { path: '/tvshows/top_rated', component: TopRatedTv },
     { path: '/tvshows/:tvShowId', component: TvShow},
-    { path: '/person/latest', component: LatestPeople},
     { path: '/person/popular', component: PopularPeople},
     { path: '/test', component: Elements }
   ],

@@ -26,7 +26,8 @@
 			<!-- <p>{{media.title}}</p> -->
 			</router-link>
 			<div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
-				<button @click="test" >Add To Favs</button>
+				<button @click="addToFavourites">Add To Favs</button>
+				<button @click="addToWatchlist">Add To Watchlist</button>
 				<!-- <ul class="uk-iconnav">
 				    <li><a href="#" uk-icon="icon: plus"></a></li>
 				    <li><a href="#" uk-icon="icon: heart"></a></li>
@@ -39,13 +40,17 @@
 </template>
 
 <script>
-	import { moviesRef } from '../firebase';
+	import { userFavouritesRef } from '../firebase';
+	import { userWatchlistRef } from '../firebase';
 
 	export default {
 		props: ['media','type'],
 		methods: {
-			test() {
-				moviesRef.push(this.media);
+			addToFavourites() {
+				userFavouritesRef.push(this.media);
+			},
+			addToWatchlist() {
+				userWatchlistRef.push(this.media);
 			}
 		}
 	}
