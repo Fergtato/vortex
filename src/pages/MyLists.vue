@@ -53,11 +53,14 @@
 <script>
 import firebase from 'firebase';
 
-import { favouritesRef } from '../firebase';
-import { watchlistRef } from '../firebase';
+// import { favouritesRef } from '../firebase';
+// import { watchlistRef } from '../firebase';
+import { listsRef } from '../firebase';
 
-import { userFavouritesRef } from '../firebase';
-import { userWatchlistRef } from '../firebase';
+// import { userFavouritesRef } from '../firebase';
+// import { userWatchlistRef } from '../firebase';
+
+import { userListsRef } from '../firebase';
 
 export default {
 	data() {
@@ -69,18 +72,18 @@ export default {
 	},
 	methods: {
 		removeFromFavourites(item) {
-			userFavouritesRef.child(item['.key']).remove();
+			userListsRef.child('favourites').child(item['.key']).remove();
 		},
 		removeFromWatchlist(item) {
-			userWatchlistRef.child(item['.key']).remove();
+			userListsRef.child('watchlist').child(item['.key']).remove();
 		}
 	},
 	created() {
 		firebase.auth().onAuthStateChanged((user) => {
     		if(user) {
         		this.user = firebase.auth().currentUser;
-        		this.$bindAsArray('favourites', favouritesRef.child(this.user.uid))
-        		this.$bindAsArray('watchlist', watchlistRef.child(this.user.uid))
+        		this.$bindAsArray('favourites', listsRef.child(this.user.uid).child('favourites'))
+        		this.$bindAsArray('watchlist', listsRef.child(this.user.uid).child('watchlist'))
     		} else {
         		this.$router.push(this.$router.go(-1))
     		}

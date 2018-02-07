@@ -40,17 +40,18 @@
 </template>
 
 <script>
-	import { userFavouritesRef } from '../firebase';
-	import { userWatchlistRef } from '../firebase';
+	import { userListsRef } from '../firebase';
+	// import { userFavouritesRef } from '../firebase';
+	// import { userWatchlistRef } from '../firebase';
 
 	export default {
 		props: ['media','type'],
 		methods: {
 			addToFavourites() {
-				userFavouritesRef.push(this.media);
+				userListsRef.child('favourites').push(this.media);
 			},
 			addToWatchlist() {
-				userWatchlistRef.push(this.media);
+				userListsRef.child('watchlist').push(this.media);
 			}
 		}
 	}

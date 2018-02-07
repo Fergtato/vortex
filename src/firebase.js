@@ -11,17 +11,21 @@ const app = initializeApp({
   });
 
   export const db = app.database();
-  
-  export var userFavouritesRef = null;
-  export var userWatchlistRef = null;
 
-  export const favouritesRef = db.ref('lists').child('favourites');
-  export const watchlistRef = db.ref('lists').child('watchlist');
+  // export var userFavouritesRef = null;
+  // export var userWatchlistRef = null;
+
+  export var userListsRef = null;
+  export const listsRef = db.ref('lists');
+
+  // export const favouritesRef = db.ref('lists').child('favourites');
+  // export const watchlistRef = db.ref('lists').child('watchlist');
 
   firebase.auth().onAuthStateChanged((user) => {
     if(user) {
-      userFavouritesRef = db.ref('lists').child('favourites').child(user.uid);
-      userWatchlistRef = db.ref('lists').child('watchlist').child(user.uid);
+      userListsRef = db.ref('lists').child(user.uid);
+      // userFavouritesRef = db.ref('lists').child('favourites').child(user.uid);
+      // userWatchlistRef = db.ref('lists').child('watchlist').child(user.uid);
     } else {
       console.log('nope');
     }
