@@ -3,7 +3,7 @@
 		
 		<home-nav></home-nav>
 
-		<h2>Favourites</h2>
+		<!-- <h2>Favourites</h2>
 		
 		<div v-if="favourites.length > 0">
 			<ul>
@@ -21,9 +21,6 @@
 		</div>
 		<div v-else>
 			<p>Favourites is empty</p>
-		</div>
-
-		<!-- <pre>{{ userFavs }}</pre> -->
 
 		<h2>Watchlist</h2>
 		
@@ -43,9 +40,9 @@
 		</div>
 		<div v-else>
 			<p>Watchlist is empty</p>
-		</div>
+		</div> -->
 
-		<!-- <pre>{{ favourites }}</pre> -->
+		<pre>{{ userLists }}</pre>
 
 	</div>
 </template>
@@ -67,7 +64,8 @@ export default {
 		return {
 			user: {},
 			favourites: {},
-			watchlist: {}
+			watchlist: {},
+			userLists: {}
 		}
 	},
 	methods: {
@@ -84,6 +82,7 @@ export default {
         		this.user = firebase.auth().currentUser;
         		this.$bindAsArray('favourites', listsRef.child(this.user.uid).child('favourites'))
         		this.$bindAsArray('watchlist', listsRef.child(this.user.uid).child('watchlist'))
+        		this.$bindAsArray('userLists', listsRef.child(this.user.uid))
     		} else {
         		this.$router.push(this.$router.go(-1))
     		}
