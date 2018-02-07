@@ -13,6 +13,10 @@ export default {
 			console.log("cat:" + cat);
 			return this.apiBase + type + '/' + cat + '?api_key=' + this.apiKey + '&page=' + page;
 		},
+		getSearchUrl(query, page) {
+			console.log("query:" + query);
+			return this.apiBase + 'search/multi?api_key=' + this.apiKey + '&query=' + query + '&page=' + page;
+		},
 		getTmdbMovieUrl(id) {
 			return this.apiBase + 'movie/' + id + '?api_key=' + this.apiKey;
 		},

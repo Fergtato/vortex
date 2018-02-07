@@ -1,7 +1,7 @@
 <template>		
 					
 		<div class="fa-poster uk-inline-clip uk-transition-toggle">
-			<router-link :to="`/${type}s/${media.id}`">
+			<router-link :to="`/${type}/${media.id}`">
 			<!-- <img v-if="media.poster_path" :src="`https://image.tmdb.org/t/p/w342${media.poster_path}`" alt=""> -->
 			<div <div v-if="type === 'movie' || type === 'tv'">
 				

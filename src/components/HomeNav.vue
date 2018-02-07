@@ -10,8 +10,8 @@
 			    </div>
 			    <div class="uk-width-expand@m uk-text-center">
 					<form class="uk-search uk-search-default uk-width-1-1 fa-vertical-align">
-		                <router-link to="/search" class="uk-search-icon-flip" uk-search-icon></router-link>
-		                <input class="uk-search-input" type="search" placeholder="Search...">
+		                <a @click="search" class="uk-search-icon-flip" uk-search-icon></a>
+		                <input v-model="searchQuery" v-on:keydown.enter.prevent='search' class="uk-search-input" type="search" placeholder="Search...">
 		            </form>
 			    </div>
 			    <div class="uk-width-1-5@m">
@@ -44,10 +44,10 @@
 			              <div uk-drop="offset: 0, mode: click">
 			                  <div class="uk-card uk-card-body uk-card-secondary uk-padding-small">
 			                    <ul class="uk-nav uk-dropdown-nav">
-			                        <li><router-link to="/movies/nowplaying">Now Playing</router-link></li>
-			                        <li><router-link to="/movies/popular">Popular</router-link></li>
-			                        <li><router-link to="/movies/toprated">Top Rated</router-link></li>
-			                        <li><router-link to="/movies/upcoming">Upcoming</router-link></li>
+			                        <li><router-link to="/movie/nowplaying">Now Playing</router-link></li>
+			                        <li><router-link to="/movie/popular">Popular</router-link></li>
+			                        <li><router-link to="/movie/toprated">Top Rated</router-link></li>
+			                        <li><router-link to="/movie/upcoming">Upcoming</router-link></li>
 			                    </ul>
 			                  </div>
 			              </div>
@@ -58,10 +58,10 @@
 			              <div uk-drop="offset: 0, mode: click">
 			                  <div class="uk-card uk-card-body uk-card-secondary uk-padding-small">
 			                    <ul class="uk-nav uk-dropdown-nav">
-			                      <li><router-link to="/tvshows/airing_today">Airing</router-link></li>
-			                      <li><router-link to="/tvshows/on_the_air">On Air</router-link></li>
-			                      <li><router-link to="/tvshows/popular">Popular</router-link></li>
-			                      <li><router-link to="/tvshows/top_rated">Top Rated</router-link></li>
+			                      <li><router-link to="/tv/airing_today">Airing</router-link></li>
+			                      <li><router-link to="/tv/on_the_air">On Air</router-link></li>
+			                      <li><router-link to="/tv/popular">Popular</router-link></li>
+			                      <li><router-link to="/tv/top_rated">Top Rated</router-link></li>
 			                    </ul>
 			                  </div>
 			              </div>
@@ -121,7 +121,13 @@ export default {
   data() {
     return {
       user: {},
-      loggedIn: false
+      loggedIn: false,
+      searchQuery: ''
+    }
+  },
+  methods: {
+    search() {
+      this.$router.push({ path: `/search/${this.searchQuery}` })
     }
   },
   created() {

@@ -4,6 +4,7 @@ import Home from './pages/Home.vue';
 import Login from './pages/Login.vue';
 import Signup from './pages/Signup.vue';
 import User from './pages/User.vue';
+import SearchResults from './pages/SearchResults.vue';
 
 import MyLists from './pages/MyLists.vue';
 
@@ -35,18 +36,19 @@ const router = new VueRouter({
     { path: '/signup', component: Signup },
     { path: '/user', component: User },
     { path: '/mylists', component: MyLists },
-    { path: '/movies/popular', component: PopularMovies },
-    { path: '/movies/toprated', component: TopratedMovies },
-    { path: '/movies/upcoming', component: UpcomingMovies },
-    { path: '/movies/nowplaying', component: NowplayingMovies },
-    { path: '/movies/:movieId', component: Movie},
-    { path: '/movies/:movieId/cast', component: MovieCast},
-    { path: '/movies/:movieId/recommendations', component: MovieRecoms},
-    { path: '/tvshows/airing_today', component: AiringTv },
-    { path: '/tvshows/popular', component: PopularTv },
-    { path: '/tvshows/on_the_air', component: OnAirTv },
-    { path: '/tvshows/top_rated', component: TopRatedTv },
-    { path: '/tvshows/:tvShowId', component: TvShow},
+    { path: '/search/:query', component: SearchResults },
+    { path: '/movie/popular', component: PopularMovies },
+    { path: '/movie/toprated', component: TopratedMovies },
+    { path: '/movie/upcoming', component: UpcomingMovies },
+    { path: '/movie/nowplaying', component: NowplayingMovies },
+    { path: '/movie/:movieId', component: Movie},
+    { path: '/movie/:movieId/cast', component: MovieCast},
+    { path: '/movie/:movieId/recommendations', component: MovieRecoms},
+    { path: '/tv/airing_today', component: AiringTv },
+    { path: '/tv/popular', component: PopularTv },
+    { path: '/tv/on_the_air', component: OnAirTv },
+    { path: '/tv/top_rated', component: TopRatedTv },
+    { path: '/tv/:tvShowId', component: TvShow},
     { path: '/person/popular', component: PopularPeople},
     { path: '/test', component: Elements }
   ],
