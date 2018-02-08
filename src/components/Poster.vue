@@ -28,6 +28,7 @@
 			<div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
 				<button @click="addToFavourites">Add To Favs</button>
 				<button @click="addToWatchlist">Add To Watchlist</button>
+				<button @click="addToWatched">Add To Watched</button>
 				<!-- <ul class="uk-iconnav">
 				    <li><a href="#" uk-icon="icon: plus"></a></li>
 				    <li><a href="#" uk-icon="icon: heart"></a></li>
@@ -41,6 +42,7 @@
 
 <script>
 	import { userListsRef } from '../firebase';
+	import UIkit from 'uikit';
 	// import { userFavouritesRef } from '../firebase';
 	// import { userWatchlistRef } from '../firebase';
 
@@ -49,9 +51,18 @@
 		methods: {
 			addToFavourites() {
 				userListsRef.child('favourites').push(this.media);
+
+				UIkit.notification({
+					message: "<span uk-icon='icon: check'></span> Added to favourites",
+					pos: 'bottom-right',
+					timeout: 1000
+				})
 			},
 			addToWatchlist() {
 				userListsRef.child('watchlist').push(this.media);
+			},
+			addToWatched() {
+				userListsRef.child('watched').push(this.media);
 			}
 		}
 	}

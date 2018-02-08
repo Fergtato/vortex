@@ -42,7 +42,30 @@
 			<p>Watchlist is empty</p>
 		</div> -->
 
-		<pre>{{ userLists }}</pre>
+		
+		
+		<div v-for="list of userLists">
+
+			<h2>{{list['.key'] | capitalize }}</h2>
+
+			<div v-for="(item, key) of list">
+
+				<div v-if="item.title">
+					{{item.id}} - {{item.title}}
+					<button @click="removeFromList(key, list)">Remove</button>
+				</div>
+				<div v-if="item.name">
+					{{item.id}} - {{item.name}}
+					<button @click="removeFromList(key, list)">Remove</button>
+				</div>
+
+			</div>
+
+			<hr>
+
+		</div>
+
+		<!-- <pre>{{ userLists }}</pre> -->
 
 	</div>
 </template>
@@ -69,11 +92,11 @@ export default {
 		}
 	},
 	methods: {
-		removeFromFavourites(item) {
-			userListsRef.child('favourites').child(item['.key']).remove();
-		},
-		removeFromWatchlist(item) {
-			userListsRef.child('watchlist').child(item['.key']).remove();
+		removeFromList(key, list) {
+			userListsRef.child(list['.key']).child(key).remove();
+			// console.log(list['.key']);
+			// console.log(key);
+
 		}
 	},
 	created() {
@@ -89,6 +112,13 @@ export default {
     	});
 
     	
+	},
+	filters: {
+	  capitalize: function (value) {
+	    if (!value) return ''
+	    value = value.toString()
+	    return value.charAt(0).toUpperCase() + value.slice(1)
+	  }
 	}
 }
 </script>
