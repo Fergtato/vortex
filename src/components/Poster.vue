@@ -26,7 +26,7 @@
 			<!-- <p>{{media.title}}</p> -->
 			</router-link>
 			<div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
-				<button @click="addToFavourites">Add To Favs</button>
+				<button @click="addToFavourites">Add To Favourites</button>
 				<button @click="addToWatchlist">Add To Watchlist</button>
 				<button @click="addToWatched">Add To Watched</button>
 				<!-- <ul class="uk-iconnav">
@@ -52,17 +52,26 @@
 			addToFavourites() {
 				userListsRef.child('favourites').push(this.media);
 
-				UIkit.notification({
-					message: "<span uk-icon='icon: check'></span> Added to favourites",
-					pos: 'bottom-right',
-					timeout: 1000
-				})
+				this.notification('favourites');
 			},
 			addToWatchlist() {
 				userListsRef.child('watchlist').push(this.media);
+
+				this.notification('watchlist');
 			},
 			addToWatched() {
 				userListsRef.child('watched').push(this.media);
+
+				this.notification('watched');
+			},
+			notification(listName) {
+
+				UIkit.notification({
+					message: "<span uk-icon='icon: check'></span> Added to " + listName,
+					pos: 'bottom-right',
+					timeout: 1000
+				});
+
 			}
 		}
 	}
