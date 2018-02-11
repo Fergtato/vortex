@@ -24,7 +24,7 @@
 <script>
 import firebase from 'firebase';
 import axios from 'axios';
-import tmdb from '../mixins/tmdb.js';
+import tmdb from '../../mixins/tmdb.js';
 
   export default {
     mixins: [tmdb],

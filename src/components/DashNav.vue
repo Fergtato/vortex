@@ -42,8 +42,8 @@
 			    </div>
 			    <div class="uk-width-expand@m uk-text-center">
 					<form class="uk-search uk-search-default uk-width-1-1 fa-vertical-align-dash">
-		                <router-link to="/search" class="uk-search-icon-flip" uk-search-icon></router-link>
-		                <input class="uk-search-input" type="search" placeholder="Search...">
+		                <a @click="search" class="uk-search-icon-flip" uk-search-icon></a>
+		                <input v-model="searchQuery" v-on:keydown.enter.prevent='search' class="uk-search-input" type="search" placeholder="Search...">
 		            </form>
 			    </div>
 			    <div class="uk-width-1-5@m">
@@ -73,20 +73,20 @@
             <li class="uk-parent">
                 <a href="#">Movies</a>
                 <ul class="uk-nav-sub">
-                    <li><router-link to="/movies/nowplaying">Now Playing</router-link></li>
-                    <li><router-link to="/movies/popular">Popular</router-link></li>
-                    <li><router-link to="/movies/toprated">Top Rated</router-link></li>
-                    <li><router-link to="/movies/upcoming">Upcoming</router-link></li>
+                    <li><router-link to="/movie/nowplaying">Now Playing</router-link></li>
+                    <li><router-link to="/movie/popular">Popular</router-link></li>
+                    <li><router-link to="/movie/toprated">Top Rated</router-link></li>
+                    <li><router-link to="/movie/upcoming">Upcoming</router-link></li>
                 </ul>
             </li>
 
             <li class="uk-parent">
                 <a href="#">TV Shows</a>
                 <ul class="uk-nav-sub">
-                    <li><router-link to="/tvshows/airing_today">Airing</router-link></li>
-                    <li><router-link to="/tvshows/on_the_air">On Air</router-link></li>
-                    <li><router-link to="/tvshows/popular">Popular</router-link></li>
-                    <li><router-link to="/tvshows/top_rated">Top Rated</router-link></li>
+                    <li><router-link to="/tv/airing_today">Airing</router-link></li>
+                    <li><router-link to="/tv/on_the_air">On Air</router-link></li>
+                    <li><router-link to="/tv/popular">Popular</router-link></li>
+                    <li><router-link to="/tv/top_rated">Top Rated</router-link></li>
                 </ul>
             </li>
 
@@ -109,7 +109,7 @@
             <li class="uk-parent">
                 <a href="#">Lists</a>
                 <ul class="uk-nav-sub">
-                    <li><a href="#">My Lists</a></li>
+                    <li><router-link to="/mylists">My Lists</router-link></li>
                     <li><a href="#">Featured</a></li>
                 </ul>
             </li>
@@ -132,7 +132,13 @@ export default {
   data() {
     return {
       user: {},
-      loggedIn: false
+      loggedIn: false,
+      searchQuery: ''
+    }
+  },
+  methods: {
+    search() {
+      this.$router.push({ path: `/search/${this.searchQuery}` })
     }
   },
   created() {

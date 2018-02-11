@@ -6,6 +6,11 @@ Vue.use(Vuex);
 export const store = new Vuex.Store({
 	state: {
 		siteTitle: 'Vortex Movie & TV Database',
+		searchResultsGrid: {
+			page: 1,
+			total_pages: 0,
+			movies: []
+		},
 		popularMoviesGrid: {
 			page: 1,
 			total_pages: 0,
@@ -66,6 +71,9 @@ export const store = new Vuex.Store({
 			payload.grid.total_pages = payload.response.data.total_pages;
 			console.log(payload.response.data);
 
+		},
+		clearSearch(state) {
+			state.searchResultsGrid.movies = [];
 		}
 	}
 });

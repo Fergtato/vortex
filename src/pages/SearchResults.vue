@@ -12,9 +12,9 @@
 	     	<div class="fa-dash-content">
 
 
-	        <h2>Upcoming Movies</h2>
+	        <pre>Searched: {{query}}</pre>
 
-	        <grid :type='gridType' :cat='gridCat'></grid>
+	        <grid :type='gridType' :cat='gridCat' :query='query'></grid>
 
 
 
@@ -38,19 +38,27 @@ import tmdb from '../mixins/tmdb.js';
   	mixins: [tmdb],
     data() {
       return {
-      	title: 'Upcoming Movies - Vortex',
+      	title: 'Search - Vortex',
         gridType: 'movie',
-        gridCat: 'upcoming'
-        // showLoader: true
+        gridCat: 'search',
+        query: {}
       }
     },
     watch: {
-        title() {
-            document.title = this.title;
-        }
+      '$route' (to, from) {
+
+        this.query = this.$route.params.query;
+
+      },
+      title() {
+        document.title = this.title;
+      }
     },
     created() {
-		document.title = this.title;
+		  document.title = this.title;
+
+      this.query = this.$route.params.query;
+      this.$store.commit('clearSearch');
     }
   }
 </script>

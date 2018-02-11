@@ -9,8 +9,10 @@
 
 	     	<div class="fa-dash-content">
 
-				<h3>{{movie.title}} Recommendations</h3>
-				<pre>{{recommendations}}</pre>
+				<h3>{{movie.title}} Cast</h3>
+				<pre>{{cast}}</pre>
+				<h3>Crew</h3>
+				<pre>{{crew}}</pre>
 
 
 	     	</div>
@@ -24,23 +26,25 @@
 <script>
 import firebase from 'firebase';
 import axios from 'axios';
-import tmdb from '../mixins/tmdb.js';
+import tmdb from '../../mixins/tmdb.js';
 
   export default {
   	mixins: [tmdb],
     data() {
       return {
-      	title: 'Recommendations - Vortex',
+      	title: 'Cast - Vortex',
       	tmdbMovieUrl: '',
-        tmdbMovieRecomsUrl: '',
+        tmdbMovieCreditsUrl: '',
         movie: {},
-        recommendations: {}
+        credits: {},
+        cast: {},
+        crew: {}
       }
     },
     methods: {
     	setUrls(movieId) {
     		this.tmdbMovieUrl = this.getTmdbMovieUrl(movieId);
-    		this.tmdbMovieRecomsUrl = this.getTmdbMovieRecomsUrl(movieId);
+    		this.tmdbMovieCreditsUrl = this.getTmdbMovieCreditsUrl(movieId);
     	},
     	apiCalls() {
 
@@ -50,9 +54,11 @@ import tmdb from '../mixins/tmdb.js';
 				this.title = this.movie.title + ' - Vortex';
 			});
 
-	        axios.get(this.tmdbMovieRecomsUrl)
+	        axios.get(this.tmdbMovieCreditsUrl)
 	        .then((response) => {
-	        	this.recommendations = response.data.results;
+	        	this.credits = response.data;
+	          	this.cast = response.data.cast;
+	          	this.crew = response.data.crew;
 	        });
 
     	}

@@ -4,25 +4,27 @@ import Home from './pages/Home.vue';
 import Login from './pages/Login.vue';
 import Signup from './pages/Signup.vue';
 import User from './pages/User.vue';
+import SearchResults from './pages/SearchResults.vue';
 
-import Movie from './pages/Movie.vue';
-import MovieCast from './pages/MovieCast.vue';
-import MovieRecoms from './pages/MovieRecoms.vue';
+import MyLists from './pages/MyLists.vue';
 
-import PopularMovies from './pages/PopularMovies.vue';
-import TopratedMovies from './pages/TopratedMovies.vue';
-import UpcomingMovies from './pages/UpcomingMovies.vue';
-import NowplayingMovies from './pages/NowplayingMovies.vue';
+import Movie from './pages/movies/Movie.vue';
+import MovieCast from './pages/movies/MovieCast.vue';
+import MovieRecoms from './pages/movies/MovieRecoms.vue';
 
-import TvShow from './pages/TvShow.vue';
+import PopularMovies from './pages/movies/PopularMovies.vue';
+import TopratedMovies from './pages/movies/TopratedMovies.vue';
+import UpcomingMovies from './pages/movies/UpcomingMovies.vue';
+import NowplayingMovies from './pages/movies/NowplayingMovies.vue';
 
-import AiringTv from './pages/AiringTv.vue';
-import OnAirTv from './pages/OnAirTv.vue';
-import PopularTv from './pages/PopularTv.vue';
-import TopRatedTv from './pages/TopRatedTv.vue';
+import TvShow from './pages/tv/TvShow.vue';
 
-import LatestPeople from './pages/LatestPeople.vue';
-import PopularPeople from './pages/PopularPeople.vue';
+import AiringTv from './pages/tv/AiringTv.vue';
+import OnAirTv from './pages/tv/OnAirTv.vue';
+import PopularTv from './pages/tv/PopularTv.vue';
+import TopRatedTv from './pages/tv/TopRatedTv.vue';
+
+import PopularPeople from './pages/people/PopularPeople.vue';
 
 import Elements from './pages/Elements.vue';
 
@@ -33,6 +35,7 @@ const router = new VueRouter({
     { path: '/login', component: Login },
     { path: '/signup', component: Signup },
     { path: '/user', component: User },
+<<<<<<< HEAD
     { path: '/movies/popular', component: PopularMovies },
     { path: '/movies/toprated', component: TopratedMovies },
     { path: '/movies/upcoming', component: UpcomingMovies },
@@ -46,6 +49,22 @@ const router = new VueRouter({
     { path: '/tvshows/top_rated', component: TopRatedTv },
     { path: '/tvs/:tvShowId', component: TvShow},
     { path: '/person/latest', component: LatestPeople},
+=======
+    { path: '/mylists', component: MyLists },
+    { path: '/search/:query', component: SearchResults },
+    { path: '/movie/popular', component: PopularMovies },
+    { path: '/movie/toprated', component: TopratedMovies },
+    { path: '/movie/upcoming', component: UpcomingMovies },
+    { path: '/movie/nowplaying', component: NowplayingMovies },
+    { path: '/movie/:movieId', component: Movie},
+    { path: '/movie/:movieId/cast', component: MovieCast},
+    { path: '/movie/:movieId/recommendations', component: MovieRecoms},
+    { path: '/tv/airing_today', component: AiringTv },
+    { path: '/tv/popular', component: PopularTv },
+    { path: '/tv/on_the_air', component: OnAirTv },
+    { path: '/tv/top_rated', component: TopRatedTv },
+    { path: '/tv/:tvShowId', component: TvShow},
+>>>>>>> de67946d49bdd2d0c881ae1d7b56d4c2036ca2ab
     { path: '/person/popular', component: PopularPeople},
     { path: '/test', component: Elements }
   ],

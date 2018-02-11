@@ -21,7 +21,7 @@
 		        <div class="uk-margin">
 		            <label class="uk-form-label" for="form-stacked-pass">Password</label>
 		            <div class="uk-form-controls uk-width-1-2@s">
-		                <input v-model="pass" class="uk-input" id="form-stacked-pass" type="password" placeholder="Password...">
+		                <input v-on:keydown.enter.prevent='logIn' v-model="pass" class="uk-input" id="form-stacked-pass" type="password" placeholder="Password...">
 		            </div>
 		        </div>
 

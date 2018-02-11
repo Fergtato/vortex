@@ -99,7 +99,7 @@
 					    
 					</div>
 					
-					<router-link :to="`/movies/${movie.id}/cast`" class="uk-button uk-button-link uk-margin-top">Full Cast & Crew</router-link>
+					<router-link :to="`/movie/${movie.id}/cast`" class="uk-button uk-button-link uk-margin-top">Full Cast & Crew</router-link>
 					
 					
 					<h3>Recommendations</h3>
@@ -114,7 +114,7 @@
 
 			        </div>
 
-			        <router-link :to="`/movies/${movie.id}/recommendations`" class="uk-button uk-button-link uk-margin-top">View All Recommendations</router-link>
+			        <router-link :to="`/movie/${movie.id}/recommendations`" class="uk-button uk-button-link uk-margin-top">View All Recommendations</router-link>
 
 
 			    </div>
@@ -143,7 +143,7 @@
 <script>
 import firebase from 'firebase';
 import axios from 'axios';
-import tmdb from '../mixins/tmdb.js';
+import tmdb from '../../mixins/tmdb.js';
 
   export default {
   	mixins: [tmdb],

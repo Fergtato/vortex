@@ -12,7 +12,7 @@
 	     	<div class="fa-dash-content">
 
 
-	        <h2>Popular Movies</h2>
+	        <h2>Top Rated Movies</h2>
 
 	        <grid :type='gridType' :cat='gridCat'></grid>
 
@@ -32,15 +32,15 @@
 <script>
 import firebase from 'firebase';
 import axios from 'axios';
-import tmdb from '../mixins/tmdb.js';
+import tmdb from '../../mixins/tmdb.js';
 
   export default {
   	mixins: [tmdb],
     data() {
       return {
-      	title: 'Popular Movies - Vortex',
+      	title: 'Top Rated Movies - Vortex',
         gridType: 'movie',
-        gridCat: 'popular'
+        gridCat: 'top_rated'
         // showLoader: true
       }
     },
@@ -50,7 +50,7 @@ import tmdb from '../mixins/tmdb.js';
         }
     },
     created() {
-		  document.title = this.title;
+		document.title = this.title;
     }
   }
 </script>

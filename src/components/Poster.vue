@@ -1,7 +1,7 @@
 <template>		
 					
 		<div class="fa-poster uk-inline-clip uk-transition-toggle">
-			<router-link :to="`/${type}s/${media.id}`">
+			<router-link :to="`/${type}/${media.id}`">
 			<!-- <img v-if="media.poster_path" :src="`https://image.tmdb.org/t/p/w342${media.poster_path}`" alt=""> -->
 			<div <div v-if="type === 'movie' || type === 'tv'">
 				
@@ -26,7 +26,9 @@
 			<!-- <p>{{media.title}}</p> -->
 			</router-link>
 			<div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
-				<button @click="test" >Add To Favs</button>
+				<button @click="addToFavourites">Add To Favourites</button>
+				<button @click="addToWatchlist">Add To Watchlist</button>
+				<button @click="addToWatched">Add To Watched</button>
 				<!-- <ul class="uk-iconnav">
 				    <li><a href="#" uk-icon="icon: plus"></a></li>
 				    <li><a href="#" uk-icon="icon: heart"></a></li>
@@ -39,13 +41,37 @@
 </template>
 
 <script>
-	import { moviesRef } from '../firebase';
+	import { userListsRef } from '../firebase';
+	import UIkit from 'uikit';
+	// import { userFavouritesRef } from '../firebase';
+	// import { userWatchlistRef } from '../firebase';
 
 	export default {
 		props: ['media','type'],
 		methods: {
-			test() {
-				moviesRef.push(this.media);
+			addToFavourites() {
+				userListsRef.child('favourites').push(this.media);
+
+				this.notification('favourites');
+			},
+			addToWatchlist() {
+				userListsRef.child('watchlist').push(this.media);
+
+				this.notification('watchlist');
+			},
+			addToWatched() {
+				userListsRef.child('watched').push(this.media);
+
+				this.notification('watched');
+			},
+			notification(listName) {
+
+				UIkit.notification({
+					message: "<span uk-icon='icon: check'></span> Added to " + listName,
+					pos: 'bottom-right',
+					timeout: 1000
+				});
+
 			}
 		}
 	}

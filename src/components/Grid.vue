@@ -1,23 +1,37 @@
 <template>	
 <div>	
-					
-		<div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
+
+		
 				
-        	<div v-for="movie in grid.movies">
+	<div v-if="cat == 'search'">
+		<div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
+			<div v-for="item in grid.movies">
 
-        		<poster :type="type" :media="movie"></poster>
+				<poster :type="item.media_type" :media="item"></poster>
 
-        	</div>
+			</div>
+    	</div>
+	</div>
+	<div v-else>
+		<div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
+			<div v-for="item in grid.movies">
 
-        </div>
+				<poster :type="type" :media="item"></poster>
 
-        <div class="uk-container uk-text-center uk-padding">
-        	<div v-if="showLoader" class="uk-margin-bottom">
-        		<div uk-spinner></div>
-        	</div>
-        	<br>
-	    	<button @click="showMore" class="uk-button uk-button-primary">Show More</button>
-	    </div>
+			</div>
+    	</div>
+	</div>
+    	
+
+    
+
+    <div class="uk-container uk-text-center uk-padding">
+    	<div v-if="showLoader" class="uk-margin-bottom">
+    		<div uk-spinner></div>
+    	</div>
+    	<br>
+    	<button @click="showMore" class="uk-button uk-button-primary">Show More</button>
+    </div>
 
 </div>
 
@@ -31,7 +45,7 @@
 
 	export default {
 		mixins: [tmdb],
-		props: ['type', 'cat'],
+		props: ['type', 'cat', 'query'],
 		data() {
 			return {
 				tmdbListUrl: '',
@@ -56,7 +70,6 @@
 	    			return this.$store.state.airingTodayTvGrid;
 	    		}
 	    		else if (this.cat === 'on_the_air' && this.type === 'tv') {
-	    			// return this.$store.state.airingTodayTvGrid;
 	    			return this.$store.state.onTheAirTvGrid;
 	    		}
 	    		else if (this.cat === 'popular' && this.type === 'tv') {
@@ -70,6 +83,9 @@
 	    		}
 	    		else if (this.cat === 'popular' && this.type === 'person') {
 	    			return this.$store.state.popularPeopleGrid;
+	    		}
+	    		else if (this.cat === 'search' && this.type === 'movie') {
+	    			return this.$store.state.searchResultsGrid;
 	    		}
 	    		
 	    	}
@@ -88,13 +104,15 @@
 					this.showLoader = false;
 
 				});
-	    	}
-    	},
-	    created() {
+	    	},
+	    	initialAppend() {
 
-		    if (this.grid.page == 1 && this.grid.movies.length == 0) {
-
-			    this.tmdbListUrl = this.getTmdbListUrl(this.type, this.cat, this.grid.page);
+	    		if (this.cat === 'search') {
+		    		this.tmdbListUrl = this.getSearchUrl(this.query, this.grid.page);
+		    		this.$store.commit('clearSearch');
+		    	} else {
+			    	this.tmdbListUrl = this.getTmdbListUrl(this.type, this.cat, this.grid.page);
+			    }
 
 			    axios.get(this.tmdbListUrl)
 			    .then((response) => {
@@ -103,10 +121,25 @@
 			    	this.showLoader = false;
 			    });
 
+	    	}
+    	},
+	    created() {
+
+		    if (this.grid.page == 1 && this.grid.movies.length == 0) {
+
+		    	this.initialAppend();
+
 			} else {
 				this.showLoader = false;
 			}
 
-    	}
+    	},
+    	watch: {
+	      '$route' (to, from) {
+
+	       	this.initialAppend();
+
+	      }
+	    }
 	}
 </script>
