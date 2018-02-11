@@ -3,7 +3,70 @@
 
   	<dash-nav></dash-nav>
 
-  	{{ tvShow }}
+  	<!-- {{ tvShow }} -->
+
+        <div class="fa-dash-content-wrapper uk-dark uk-preserve-color">
+      
+      <!-- <div class="fa-movie-banner uk-background-cover" 
+        :style="`background-image: url(https://image.tmdb.org/t/p/w1280${tvShow.backdrop_path});`">
+        <div class="fa-banner-overlay"></div>
+      </div> -->
+
+      <div class="fa-dash-content">
+
+        <div class="uk-grid-medium" uk-grid>
+
+          <div class="uk-width-1-4">
+              
+            <img class="fa-poster fa-poster-pull" :src="`https://image.tmdb.org/t/p/w342${tvShow.poster_path}`" alt="">
+
+            <div class="fa-poster-pull uk-padding uk-padding-remove-horizontal">
+
+                <p>
+                  <span class="uk-text-bold">Status</span>
+                  <br>
+                  {{ tvShow.status }}
+                </p>
+                <p>
+                  <span class="uk-text-bold">Release Date</span>
+                  <br>
+                  {{ tvShow.release_date }}
+                </p>
+                <p>
+                  <span class="uk-text-bold">Original Language</span>
+                  <br>
+                  {{ tvShow.original_language }}
+                </p>
+                <p>
+                  <span class="uk-text-bold">Runtime</span>
+                  <br>
+                  {{ tvShow.runtime }} mins
+                </p>
+                <p>
+                  <span class="uk-text-bold">Budget</span>
+                  <br>
+                  ${{ tvShow.budget | priceFormat }}
+                </p>
+                <p>
+                  <span class="uk-text-bold">Revenue</span>
+                  <br>
+                  ${{ tvShow.revenue | priceFormat }}
+                </p>
+                <p class="uk-text-truncate">
+                  <span class="uk-text-bold">Homepage</span>
+                  <br>
+                  <a :href="`${movie.homepage}`" target="_blank">{{ tvShow.homepage }}</a>
+                </p>
+
+            </div> <!-- closing padding div -->
+
+          </div> <!-- closing uk width 1 4 -->
+
+        </div> <!-- closing the grid -->
+
+      </div> <!-- closing content -->
+
+    </div> <!-- closing wrapper -->
     
   </div>
 </template>

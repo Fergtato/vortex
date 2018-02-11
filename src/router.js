@@ -44,7 +44,7 @@ const router = new VueRouter({
     { path: '/tvshows/popular', component: PopularTv },
     { path: '/tvshows/on_the_air', component: OnAirTv },
     { path: '/tvshows/top_rated', component: TopRatedTv },
-    { path: '/tvshows/:tvShowId', component: TvShow},
+    { path: '/tvs/:tvShowId', component: TvShow},
     { path: '/person/latest', component: LatestPeople},
     { path: '/person/popular', component: PopularPeople},
     { path: '/test', component: Elements }
