@@ -35,21 +35,6 @@ const router = new VueRouter({
     { path: '/login', component: Login },
     { path: '/signup', component: Signup },
     { path: '/user', component: User },
-<<<<<<< HEAD
-    { path: '/movies/popular', component: PopularMovies },
-    { path: '/movies/toprated', component: TopratedMovies },
-    { path: '/movies/upcoming', component: UpcomingMovies },
-    { path: '/movies/nowplaying', component: NowplayingMovies },
-    { path: '/movies/:movieId', component: Movie},
-    { path: '/movies/:movieId/cast', component: MovieCast},
-    { path: '/movies/:movieId/recommendations', component: MovieRecoms},
-    { path: '/tvshows/airing_today', component: AiringTv },
-    { path: '/tvshows/popular', component: PopularTv },
-    { path: '/tvshows/on_the_air', component: OnAirTv },
-    { path: '/tvshows/top_rated', component: TopRatedTv },
-    { path: '/tvs/:tvShowId', component: TvShow},
-    { path: '/person/latest', component: LatestPeople},
-=======
     { path: '/mylists', component: MyLists },
     { path: '/search/:query', component: SearchResults },
     { path: '/movie/popular', component: PopularMovies },
@@ -64,7 +49,6 @@ const router = new VueRouter({
     { path: '/tv/on_the_air', component: OnAirTv },
     { path: '/tv/top_rated', component: TopRatedTv },
     { path: '/tv/:tvShowId', component: TvShow},
->>>>>>> de67946d49bdd2d0c881ae1d7b56d4c2036ca2ab
     { path: '/person/popular', component: PopularPeople},
     { path: '/test', component: Elements }
   ],
