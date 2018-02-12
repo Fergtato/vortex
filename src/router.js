@@ -24,6 +24,7 @@ import OnAirTv from './pages/tv/OnAirTv.vue';
 import PopularTv from './pages/tv/PopularTv.vue';
 import TopRatedTv from './pages/tv/TopRatedTv.vue';
 
+import Person from './pages/people/Person.vue';
 import PopularPeople from './pages/people/PopularPeople.vue';
 
 import Elements from './pages/Elements.vue';
@@ -50,6 +51,7 @@ const router = new VueRouter({
     { path: '/tv/top_rated', component: TopRatedTv },
     { path: '/tv/:tvShowId', component: TvShow},
     { path: '/person/popular', component: PopularPeople},
+    { path: '/person/:personId', component: TvShow},
     { path: '/test', component: Elements }
   ],
   scrollBehavior (to, from, savedPosition) {

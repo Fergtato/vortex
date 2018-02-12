@@ -51,11 +51,11 @@ export const store = new Vuex.Store({
 			total_pages: 0,
 			movies: []
 		},
-		latestPeopleGrid: {
-			page: 1,
-			total_pages: 0,
-			movies: []
-		},
+		// latestPeopleGrid: {
+		// 	page: 1,
+		// 	total_pages: 0,
+		// 	movies: []
+		// },
 		popularPeopleGrid: {
 			page: 1,
 			total_pages: 0,

@@ -72,7 +72,6 @@
 			              <div uk-drop="offset: 0, mode: click">
 			                  <div class="uk-card uk-card-body uk-card-secondary uk-padding-small">
 			                    <ul class="uk-nav uk-dropdown-nav">
-			                      <li><router-link to="/person/latest">Latest</router-link></li>
 			                      <li><router-link to="/person/popular">Popular</router-link></li>
 			                    </ul>
 			                  </div>
