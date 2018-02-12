@@ -3,14 +3,12 @@
 
   	<dash-nav></dash-nav>
 
-  	<!-- {{ tvShow }} -->
-
         <div class="fa-dash-content-wrapper uk-dark uk-preserve-color">
       
-      <!-- <div class="fa-movie-banner uk-background-cover" 
+      <div class="fa-movie-banner uk-background-cover" 
         :style="`background-image: url(https://image.tmdb.org/t/p/w1280${tvShow.backdrop_path});`">
         <div class="fa-banner-overlay"></div>
-      </div> -->
+      </div>
 
       <div class="fa-dash-content">
 
@@ -22,15 +20,17 @@
 
             <div class="fa-poster-pull uk-padding uk-padding-remove-horizontal">
 
+              <!-- <pre> {{ tvShow }} </pre> -->
+
                 <p>
                   <span class="uk-text-bold">Status</span>
                   <br>
                   {{ tvShow.status }}
                 </p>
                 <p>
-                  <span class="uk-text-bold">Release Date</span>
+                  <span class="uk-text-bold">First Air Date</span>
                   <br>
-                  {{ tvShow.release_date }}
+                  {{ tvShow.first_air_date }}
                 </p>
                 <p>
                   <span class="uk-text-bold">Original Language</span>
@@ -40,34 +40,99 @@
                 <p>
                   <span class="uk-text-bold">Runtime</span>
                   <br>
-                  {{ tvShow.runtime }} mins
+                  {{ tvShow.episode_run_time }} mins
                 </p>
                 <p>
-                  <span class="uk-text-bold">Budget</span>
+                  <span class="uk-text-bold">Number Of Episodes</span>
                   <br>
-                  ${{ tvShow.budget | priceFormat }}
+                  {{ tvShow.number_of_episodes }} 
                 </p>
                 <p>
-                  <span class="uk-text-bold">Revenue</span>
+                  <span class="uk-text-bold">Number Of Seasons</span>
                   <br>
-                  ${{ tvShow.revenue | priceFormat }}
+                  {{ tvShow.number_of_seasons }} 
                 </p>
-                <p class="uk-text-truncate">
+
+               <!--  <p class="uk-text-truncate">
                   <span class="uk-text-bold">Homepage</span>
                   <br>
                   <a :href="`${movie.homepage}`" target="_blank">{{ tvShow.homepage }}</a>
-                </p>
+                </p> -->
 
             </div> <!-- closing padding div -->
 
           </div> <!-- closing uk width 1 4 -->
 
-        </div> <!-- closing the grid -->
+          <div class="uk-width-3-4">
 
-      </div> <!-- closing content -->
+            <h2 class="uk-margin-small-bottom">{{tvShow.original_name}}</h2>
 
-    </div> <!-- closing wrapper -->
-    
+            <!-- <span class="uk-margin-right">{{ tvShow.air_date | truncate('4') }}</span> -->
+
+            <span v-for="genre in genres" class="uk-badge uk-margin-small-right">{{genre.name}}</span>
+
+            <p>{{tvShow.overview}}</p>
+
+            <button class="uk-button uk-button-primary uk-button" href="#trailer-modal" uk-toggle> 
+            <span uk-icon="icon: play"></span> Play Trailer
+            </button>
+
+            <h3>Cast</h3>
+
+            <div class="uk-grid-match uk-grid-small uk-child-width-1-5@m" uk-grid>
+
+              <div v-for="person in cast.slice(0,5)">
+
+                <div class="uk-card uk-card-default uk-box-shadow-large">
+
+                  <div class="uk-card-media-top">
+                    <img class="fa-cast-image" :src="`https://image.tmdb.org/t/p/w276_and_h350_bestv2${person.profile_path}`" alt="">
+                  </div>
+
+                  <div class="uk-card-body uk-padding-small">
+                    <p class="uk-text-bold uk-margin-remove-bottom">{{person.name}}</p>
+                    <p class="uk-margin-remove-top uk-text-small">{{person.character}}</p>
+                  </div>
+
+                </div> <!-- closing uk card default -->
+
+              </div> <!-- closing person in cast slice -->
+                
+            </div> <!-- closing uk grid small cast & crew -->
+
+            <router-link :to="`/tvShow/${tvShow.id}/cast`" class="uk-button uk-button-link uk-margin-top">Full Cast & Crew</router-link>
+
+            <h3>Recommendations</h3>
+
+            <div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
+        
+              <div v-for="movie in recommendations.slice(0,5)">
+
+                <poster :type="posterType" :media="tvShow"></poster>
+
+              </div>
+
+            </div> <!-- closing uk grid small recommendations -->
+
+            <router-link :to="`/tvShow/${tvShow .id}/recommendations`" class="uk-button uk-button-link uk-margin-top">View All Recommendations</router-link>
+
+          </div> <!-- closing uk width 3 4 -->
+
+        </div> <!-- closing the grid  -->
+
+        <div id="trailer-modal" class="uk-flex-top" uk-modal>
+
+          <div class="uk-modal-dialog uk-width-auto uk-margin-auto-vertical">
+            <button class="uk-modal-close-outside" type="button" uk-close></button>
+            <iframe :src="`//www.youtube.com/embed/${trailerKey}`" width="1120" height="630" frameborder="0" uk-video></iframe>
+          </div>
+
+        </div> <!-- closing trailer  -->
+
+      </div> <!-- closing content  -->
+
+    </div> <!-- closing wrapper  -->   
+
   </div>
 </template>
 
@@ -121,14 +186,14 @@ export default {
       .then((response) => {
         this.recommendations = response.data.results;
       });
-	},
+	 },
 
-	setUrls(tvShowId) {
-		this.tmdbTvUrl = this.getTmdbTvUrl(tvShowId);
-    this.tmdbTvVideosUrl = this.getTmdbTvVideosUrl(tvShowId);
-    this.tmdbTvCreditsUrl = this.getTmdbTvCreditsUrl(tvShowId);
-    this.tmdbTvRecomsUrl = this.getTmdbTvRecomsUrl(tvShowId);
-	}
+  	setUrls(tvShowId) {
+  		this.tmdbTvUrl = this.getTmdbTvUrl(tvShowId);
+      this.tmdbTvVideosUrl = this.getTmdbTvVideosUrl(tvShowId);
+      this.tmdbTvCreditsUrl = this.getTmdbTvCreditsUrl(tvShowId);
+      this.tmdbTvRecomsUrl = this.getTmdbTvRecomsUrl(tvShowId);
+  	}
 
   },
 
