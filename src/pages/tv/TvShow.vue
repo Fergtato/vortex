@@ -106,7 +106,7 @@
 
             <div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
         
-              <div v-for="movie in recommendations.slice(0,5)">
+              <div v-for="tvShow in recommendations.slice(0,5)">
 
                 <poster :type="posterType" :media="tvShow"></poster>
 
