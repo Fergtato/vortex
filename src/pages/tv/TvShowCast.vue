@@ -43,8 +43,8 @@ import tmdb from '../../mixins/tmdb.js';
     },
     methods: {
     	setUrls(tvShowId) {
-    		this.tmdbTvUrl = this.tmdbTvUrl(tvShowId);
-    		this.tmdbTvCreditsUrl = this.tmdbTvCreditsUrl(tvShowId);
+    		this.tmdbTvUrl = this.getTmdbTvUrl(tvShowId);
+    		this.tmdbTvCreditsUrl = this.getTmdbTvCreditsUrl(tvShowId);
     	},
     	apiCalls() {
 
