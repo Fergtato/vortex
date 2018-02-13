@@ -53,12 +53,6 @@
                   {{ tvShow.number_of_seasons }} 
                 </p>
 
-               <!--  <p class="uk-text-truncate">
-                  <span class="uk-text-bold">Homepage</span>
-                  <br>
-                  <a :href="`${movie.homepage}`" target="_blank">{{ tvShow.homepage }}</a>
-                </p> -->
-
             </div> <!-- closing padding div -->
 
           </div> <!-- closing uk width 1 4 -->
