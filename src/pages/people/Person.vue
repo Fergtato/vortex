@@ -20,6 +20,8 @@ export default {
   data () {
     return {
     	title: 'Person - Vortex',
+      person: {},
+      tmdbPersonUrl: ''
       	
     }
   },
@@ -28,10 +30,10 @@ export default {
   	apiCalls() {
   		axios.get(this.tmdbPersonUrl)
 			.then((response) => {
-				this.Person = response.data;
-				this.title = this.Person.name + ' - Vortex';
+				this.person = response.data;
+				this.title = this.person.name + ' - Vortex';
 		  });
-	 },
+	   },
 
   	setUrls(personId) {
   		this.tmdbPersonUrl = this.getTmdbPersonUrl(personId);
@@ -42,29 +44,30 @@ export default {
   watch: {
   	'$route' (to, from) {
 
-		this.setUrls(to.params.personId);
+  		this.setUrls(to.params.personId);
 
-		this.apiCalls();
+  		this.apiCalls();
 
-	},
-	title() {
-		document.title = this.title;
-	}
+  	},
+  	title() {
+  		document.title = this.title;
+  	}
   },
 
   created() {
-  	this.setUrls(this.$route.params.personId);
+    this.setUrls(this.$route.params.personId);
 
-	this.apiCalls();
+    this.apiCalls();
 
+    document.title = this.title;
 
-	document.title = this.title;
+    console.log('yellow');
   },
 
   filters: {
   	truncate: function(string, value) {
-		return string.substring(0, value);
-	},
+  		return string.substring(0, value);
+  	}
    	
   }
 }

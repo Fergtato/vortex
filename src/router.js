@@ -55,7 +55,7 @@ const router = new VueRouter({
     { path: '/tv/:tvShowId/cast', component: TvShowCast},
     { path: '/tv/:tvShowId/recommendations', component: TvShowRecoms},
     { path: '/person/popular', component: PopularPeople},
-    { path: '/person/:personId', component: TvShow},
+    { path: '/person/:personId', component: Person},
     { path: '/test', component: Elements }
   ],
   scrollBehavior (to, from, savedPosition) {

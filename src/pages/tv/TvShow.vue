@@ -157,7 +157,7 @@ export default {
         crew: {},
         recommendations: {},
         trailerKey: '',
-      	posterType: 'tvShow'
+      	posterType: 'tv'
     }
   },
 
@@ -167,7 +167,7 @@ export default {
 			.then((response) => {
 				this.tvShow = response.data;
 				this.genres = this.tvShow.genres;
-				this.title = this.tvShow.title + ' - Vortex';
+				this.title = this.tvShow.name + ' - Vortex';
 		  });
 
       axios.get(this.tmdbTvVideosUrl)
