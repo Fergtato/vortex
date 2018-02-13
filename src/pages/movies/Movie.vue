@@ -223,7 +223,11 @@ import tmdb from '../../mixins/tmdb.js';
     		return string.substring(0, value);
     	},
     	priceFormat: function(value) {
-    		return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    		if (typeof value == 'undefined') {
+    			return '';
+    		} else {
+    			return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    		}
     	}
     }
   }

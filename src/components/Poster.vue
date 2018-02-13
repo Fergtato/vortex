@@ -26,7 +26,7 @@
 			<!-- <p>{{media.title}}</p> -->
 			</router-link>
 			<div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
-				<button v-if="checkList('favourites')" @click="addToList('favourites')">
+				<button v-if="favouritesBtn" @click="addToList('favourites')">
 					Add To Favourites
 				</button>
 				<button v-else disabled>
@@ -69,7 +69,11 @@
 		data() {
 			return {
 				user: {},
-				userLists: {}
+				userLists: {},
+				favourites: {},
+				favouritesBtn: true,
+				watchlistBtn: true,
+				watchedBtn: true
 			}
 		},
 		methods: {
@@ -88,11 +92,19 @@
 
 			},
 			checkList(listName) {
-				if (listName == 'watchlist') {
-					return false;
-				} else {
-					return true;
+				var notInArray = true;
+
+				for (var i = 0; i < Object.keys(this.favourites).length; i++) {
+
+					if (this.favourites[i].id == this.media.id) {
+						notInArray = false;
+					} else {
+						notInArray = true;
+					}
+					
 				}
+
+				return notInArray;
 			}
 		},
 		created() {
@@ -101,6 +113,7 @@
 	    		if(user) {
 	        		this.user = firebase.auth().currentUser;
 	        		this.$bindAsArray('userLists', userListsRef);
+	        		this.$bindAsArray('favourites', userListsRef.child('favourites'));
 	    		} else {
 	        		console.log('user not found - Poster.vue');
 	    		}
