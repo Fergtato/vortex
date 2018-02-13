@@ -27,7 +27,7 @@ const app = initializeApp({
       // userFavouritesRef = db.ref('lists').child('favourites').child(user.uid);
       // userWatchlistRef = db.ref('lists').child('watchlist').child(user.uid);
     } else {
-      console.log('nope');
+      console.log('Could not get users list - firebase.js');
     }
   });
 

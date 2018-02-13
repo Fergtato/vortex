@@ -75,7 +75,7 @@ import firebase from 'firebase';
 
 // import { favouritesRef } from '../firebase';
 // import { watchlistRef } from '../firebase';
-import { listsRef } from '../firebase';
+// import { listsRef } from '../firebase';
 
 // import { userFavouritesRef } from '../firebase';
 // import { userWatchlistRef } from '../firebase';
@@ -86,32 +86,25 @@ export default {
 	data() {
 		return {
 			user: {},
-			favourites: {},
-			watchlist: {},
 			userLists: {}
 		}
 	},
 	methods: {
 		removeFromList(key, list) {
 			userListsRef.child(list['.key']).child(key).remove();
-			// console.log(list['.key']);
-			// console.log(key);
-
 		}
 	},
 	created() {
+		
 		firebase.auth().onAuthStateChanged((user) => {
     		if(user) {
         		this.user = firebase.auth().currentUser;
-        		this.$bindAsArray('favourites', listsRef.child(this.user.uid).child('favourites'))
-        		this.$bindAsArray('watchlist', listsRef.child(this.user.uid).child('watchlist'))
-        		this.$bindAsArray('userLists', listsRef.child(this.user.uid))
+        		this.$bindAsArray('userLists', userListsRef)
     		} else {
         		this.$router.push(this.$router.go(-1))
     		}
     	});
 
-    	
 	},
 	filters: {
 	  capitalize: function (value) {
