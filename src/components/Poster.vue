@@ -26,9 +26,26 @@
 			<!-- <p>{{media.title}}</p> -->
 			</router-link>
 			<div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
-				<button @click="addToList('favourites')">Add To Favourites</button>
-				<button @click="addToList('watchlist')">Add To Watchlist</button>
-				<button @click="addToList('watched')">Add To Watched</button>
+				<button v-if="checkList('favourites')" @click="addToList('favourites')">
+					Add To Favourites
+				</button>
+				<button v-else disabled>
+					Remove From Favourites
+				</button>
+
+				<button v-if="checkList('watchlist')" @click="addToList('watchlist')">
+					Add To Watchlist
+				</button>
+				<button v-else disabled>
+					Remove From Watchlist
+				</button>
+
+				<button v-if="checkList('watched')" @click="addToList('watched')">
+					Add To Watched
+				</button>
+				<button v-else disabled>
+					Remove From Watched
+				</button>
 				<!-- <ul class="uk-iconnav">
 				    <li><a href="#" uk-icon="icon: plus"></a></li>
 				    <li><a href="#" uk-icon="icon: heart"></a></li>
@@ -69,6 +86,13 @@
 					timeout: 1000
 				});
 
+			},
+			checkList(listName) {
+				if (listName == 'watchlist') {
+					return false;
+				} else {
+					return true;
+				}
 			}
 		},
 		created() {

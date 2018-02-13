@@ -100,7 +100,7 @@
                 
             </div> <!-- closing uk grid small cast & crew -->
 
-            <router-link :to="`/tvShow/${tvShow.id}/cast`" class="uk-button uk-button-link uk-margin-top">Full Cast & Crew</router-link>
+            <router-link :to="`/tv/${tvShow.id}/cast`" class="uk-button uk-button-link uk-margin-top">Full Cast & Crew</router-link>
 
             <h3>Recommendations</h3>
 
@@ -114,7 +114,7 @@
 
             </div> <!-- closing uk grid small recommendations -->
 
-            <router-link :to="`/tvShow/${tvShow .id}/recommendations`" class="uk-button uk-button-link uk-margin-top">View All Recommendations</router-link>
+            <router-link :to="`/tv/${tvShow .id}/recommendations`" class="uk-button uk-button-link uk-margin-top">View All Recommendations</router-link>
 
           </div> <!-- closing uk width 3 4 -->
 
