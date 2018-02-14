@@ -26,24 +26,24 @@
 			<!-- <p>{{media.title}}</p> -->
 			</router-link>
 			<div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
-				<button v-if="favouritesBtn" @click="addToList('favourites')">
+				<button v-if="checkLists()" @click="addToList('favourites')">
 					Add To Favourites
 				</button>
-				<button v-else disabled>
+				<button v-else>
 					Remove From Favourites
 				</button>
 
-				<button v-if="checkList('watchlist')" @click="addToList('watchlist')">
+				<button v-if="watchlistBtn" @click="addToList('watchlist')">
 					Add To Watchlist
 				</button>
-				<button v-else disabled>
+				<button v-else>
 					Remove From Watchlist
 				</button>
 
-				<button v-if="checkList('watched')" @click="addToList('watched')">
+				<button v-if="watchedBtn" @click="addToList('watched')">
 					Add To Watched
 				</button>
-				<button v-else disabled>
+				<button v-else>
 					Remove From Watched
 				</button>
 				<!-- <ul class="uk-iconnav">
@@ -91,29 +91,31 @@
 				});
 
 			},
-			checkList(listName) {
-				var notInArray = true;
-
+			checkLists() {
+				var found = false;
 				for (var i = 0; i < Object.keys(this.favourites).length; i++) {
 
 					if (this.favourites[i].id == this.media.id) {
-						notInArray = false;
-					} else {
-						notInArray = true;
+						found = true;
+						return false;
 					}
 					
 				}
-
-				return notInArray;
+				if (!found) {
+					return true;
+				}
 			}
 		},
 		created() {
+			
 		
 			firebase.auth().onAuthStateChanged((user) => {
 	    		if(user) {
 	        		this.user = firebase.auth().currentUser;
 	        		this.$bindAsArray('userLists', userListsRef);
 	        		this.$bindAsArray('favourites', userListsRef.child('favourites'));
+	        		this.checkLists();
+	        		
 	    		} else {
 	        		console.log('user not found - Poster.vue');
 	    		}
