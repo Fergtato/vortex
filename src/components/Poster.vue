@@ -50,14 +50,56 @@
 				    <!-- <li><a href="#" uk-icon="icon: heart"></a></li>
 				    <li><a href="#" uk-icon="icon: bookmark"></a></li>
 				    <li><a href="#" uk-icon="icon: plus"></a></li> -->
-				    <img class="fa-poster-icon" v-if="checkList('favourites')" @click="addToList('favourites')" src="../assets/heart.png" alt="">
-				    <img class="fa-poster-icon-filled" v-else @click="removeFromList('favourites')" src="../assets/heart-filled.png" alt="">
+				    <img 
+				    	uk-tooltip="title: Add To Favourites" 
+				    	class="fa-poster-icon" 
+				    	v-if="checkList('favourites')" 
+				    	@click="addToList('favourites')" 
+				    	src="../assets/heart.png" 
+				    	alt="">
+				    <img 
+				    	uk-tooltip="title: Remove From Favourites" 
+				    	class="fa-poster-icon-filled" 
+				    	v-else 
+				    	@click="removeFromList('favourites')" 
+				    	src="../assets/heart-filled.png" 
+				    	alt="">
 
-				    <img class="fa-poster-icon" v-if="checkList('watchlist')" @click="addToList('watchlist')" src="../assets/bookmark.png" alt="">
-				    <img class="fa-poster-icon-filled" v-else @click="removeFromList('watchlist')" src="../assets/bookmark-filled.png" alt="">
+				    <img 
+				    	uk-tooltip="title: Add To Watchlist" 
+				    	class="fa-poster-icon" 
+				    	v-if="checkList('watchlist')" 
+				    	@click="addToList('watchlist')" 
+				    	src="../assets/bookmark.png" 
+				    	alt="">
+				    <img 
+				    	uk-tooltip="title: Remove From Watchlist" 
+				    	class="fa-poster-icon-filled" 
+				    	v-else 
+				    	@click="removeFromList('watchlist')" 
+				    	src="../assets/bookmark-filled.png" 
+				    	alt="">
 
-				    <img class="fa-poster-icon" v-if="checkList('watched')" @click="addToList('watched')" src="../assets/plus-circle.png" alt="">
-				    <img class="fa-poster-icon-filled" v-else @click="removeFromList('watched')" src="../assets/plus-circle-filled.png" alt="">
+				    <img 
+				    	uk-tooltip="title: Add To Watched" 
+				    	class="fa-poster-icon" 
+				    	v-if="checkList('watched')" 
+				    	@click="addToList('watched')" 
+				    	src="../assets/plus-circle.png" 
+				    	alt="">
+				    <img 
+				    	uk-tooltip="title: Remove From Watched" 
+				    	class="fa-poster-icon-filled" 
+				    	v-else 
+				    	@click="removeFromList('watched')" 
+				    	src="../assets/plus-circle-filled.png" 
+				    	alt="">
+
+				    <img 
+				    	uk-tooltip="title: Info" 
+				    	class="fa-poster-icon" 
+				    	src="../assets/info.png" 
+				    	alt="">
 				</ul>
 			</div>
 		</div>
@@ -100,7 +142,7 @@
 			notification(message) {
 
 				UIkit.notification({
-					message: "<span uk-icon='icon: check'></span>" + message,
+					message: "<span uk-icon='icon: check'></span>  " + message,
 					pos: 'bottom-right',
 					timeout: 1000
 				});
