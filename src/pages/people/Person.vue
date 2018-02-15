@@ -63,14 +63,18 @@
             <p>{{person.biography}}</p>
 
             <h3>Known For</h3>
+            <!-- <pre>{{cast}}</pre> -->
 
             <div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
         
-              <div v-for="person in movie_credits.slice(0,5)">
+              <div v-for="movie in cast.slice(0,5)">
 
                 <poster :type="posterType" :media="movie"></poster>
+                <!-- <p>{{movie.original_title}}</p> -->
+                <!-- <p>yellow</p> -->
 
               </div>
+
 
             </div> <!-- closing uk grid small recommendations -->
 
@@ -162,7 +166,7 @@ export default {
 
     document.title = this.title;
 
-    console.log('yellow');
+    console.log(this.tmdbPersonMovieCreditsUrl);
   },
 
   filters: {

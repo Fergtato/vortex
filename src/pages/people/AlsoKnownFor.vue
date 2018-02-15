@@ -14,17 +14,6 @@
 				<h4>Tv Shows</h4>
 				<pre>{{ cast }}</pre>
 
-				<!-- <h4>Tv</h4>
-				<p v-if="media == tv">
-					<pre>{{ cast }}</pre>
-				</p>
-
-				<h4>Movies</h4>
-				<p v-else="media == movie">
-					<pre>{{ cast }}</pre>
-				</p> -->
-
-
 	     	</div>
 	    </div>
 
