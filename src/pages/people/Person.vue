@@ -19,8 +19,9 @@
 
             <p>
               <span class="uk-text-bold">Also Known As</span>
-              <br>
-              <pre>{{ person.also_known_as }}</pre>
+              <li v-for='person in person.also_known_as'>
+                {{ person }}
+              </li>
             </p>
 
             <p>
@@ -67,11 +68,9 @@
 
             <div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
         
-              <div v-for="movie in cast.slice(0,5)">
+              <div v-for="movie in cast.slice(0,10)">
 
                 <poster :type="posterType" :media="movie"></poster>
-                <!-- <p>{{movie.original_title}}</p> -->
-                <!-- <p>yellow</p> -->
 
               </div>
 
@@ -108,9 +107,10 @@ export default {
       tmdbPersonUrl: '',
       tmdbPersonMovieCreditsUrl: '',
       tmdbPersonTvCreditsUrl: '',
-      movie_credits: '',
-      cast: '',
-      crew: '',
+      movie_credits: {},
+      //also_known_as: {},
+      cast: {},
+      crew: {},
       posterType: 'movie'	
     }
   },

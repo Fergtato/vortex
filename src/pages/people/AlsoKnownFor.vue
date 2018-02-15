@@ -11,8 +11,15 @@
 
 				<h3>{{ person.name }} - Also Known For</h3>
 				
-				<h4>Tv Shows</h4>
-				<pre>{{ cast }}</pre>
+				<h4>Movies</h4>
+				
+				<ul>
+					<li v-for="movie in cast">
+		                {{ movie.title }}
+		            </li>
+				</ul>
+
+	            <!-- <pre>{{ cast }}</pre> -->
 
 	     	</div>
 	    </div>
@@ -36,6 +43,7 @@ import tmdb from '../../mixins/tmdb.js';
         tmdbPersonMovieCreditsUrl: '',
         tmdbPersonTvCreditsUrl: '',
         person: {},
+        movie: {},
         movie_credits: {},
         tv_credits: {},
         cast: {},
