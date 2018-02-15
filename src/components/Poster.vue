@@ -26,24 +26,24 @@
 			<!-- <p>{{media.title}}</p> -->
 			</router-link>
 			<div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
-				<button v-if="checkLists()" @click="addToList('favourites')">
+				<button v-if="checkList('favourites')" @click="addToList('favourites')">
 					Add To Favourites
 				</button>
-				<button v-else>
+				<button v-else @click="removeFromList('favourites')">
 					Remove From Favourites
 				</button>
 
-				<button v-if="watchlistBtn" @click="addToList('watchlist')">
+				<button v-if="checkList('watchlist')" @click="addToList('watchlist')">
 					Add To Watchlist
 				</button>
-				<button v-else>
+				<button v-else @click="removeFromList('watchlist')">
 					Remove From Watchlist
 				</button>
 
-				<button v-if="watchedBtn" @click="addToList('watched')">
+				<button v-if="checkList('watched')" @click="addToList('watched')">
 					Add To Watched
 				</button>
-				<button v-else>
+				<button v-else @click="removeFromList('watched')">
 					Remove From Watched
 				</button>
 				<!-- <ul class="uk-iconnav">
@@ -71,50 +71,85 @@
 				user: {},
 				userLists: {},
 				favourites: {},
-				favouritesBtn: true,
-				watchlistBtn: true,
-				watchedBtn: true
+				watchlist: {},
+				watched: {},
+				listItemKey: ''
 			}
 		},
 		methods: {
 			addToList(listName) {
 				userListsRef.child(listName).push(this.media);
 
-				this.notification(listName);
+				this.notification("Added to " + listName);
 			},
-			notification(listName) {
+			removeFromList(listName) {
+				this.checkList(listName);
+				userListsRef.child(listName).child(this.listItemKey).remove();
+				console.log("Removing " + this.listItemKey + " from " + listName);
+
+
+				this.notification("Removed from " + listName);
+			},
+			notification(message) {
 
 				UIkit.notification({
-					message: "<span uk-icon='icon: check'></span> Added to " + listName,
+					message: "<span uk-icon='icon: check'></span>" + message,
 					pos: 'bottom-right',
 					timeout: 1000
 				});
 
 			},
-			checkLists() {
+			checkList(listName) {
 				var found = false;
-				for (var i = 0; i < Object.keys(this.favourites).length; i++) {
 
-					if (this.favourites[i].id == this.media.id) {
-						found = true;
-						return false;
+				if (listName === 'favourites') {
+					for (var i = 0; i < Object.keys(this.favourites).length; i++) {
+
+						if (this.favourites[i].id == this.media.id) {
+							found = true;
+							this.listItemKey = this.favourites[i]['.key'];
+							return false;
+						}
+						
 					}
-					
 				}
+				else if (listName === 'watchlist') {
+					for (var i = 0; i < Object.keys(this.watchlist).length; i++) {
+
+						if (this.watchlist[i].id == this.media.id) {
+							found = true;
+							this.listItemKey = this.watchlist[i]['.key'];
+							return false;
+						}
+						
+					}
+				}
+				else if (listName === 'watched') {
+					for (var i = 0; i < Object.keys(this.watched).length; i++) {
+
+						if (this.watched[i].id == this.media.id) {
+							found = true;
+							this.listItemKey = this.watched[i]['.key'];
+							return false;
+						}
+						
+					}
+				}
+
 				if (!found) {
 					return true;
 				}
 			}
 		},
 		created() {
-			
 		
 			firebase.auth().onAuthStateChanged((user) => {
 	    		if(user) {
 	        		this.user = firebase.auth().currentUser;
 	        		this.$bindAsArray('userLists', userListsRef);
 	        		this.$bindAsArray('favourites', userListsRef.child('favourites'));
-	        		this.checkLists();
+	        		this.$bindAsArray('watchlist', userListsRef.child('watchlist'));
+	        		this.$bindAsArray('watched', userListsRef.child('watched'));
 	        		
 	    		} else {
 	        		console.log('user not found - Poster.vue');

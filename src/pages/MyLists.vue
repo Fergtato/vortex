@@ -95,7 +95,7 @@ export default {
 		}
 	},
 	created() {
-		
+
 		firebase.auth().onAuthStateChanged((user) => {
     		if(user) {
         		this.user = firebase.auth().currentUser;

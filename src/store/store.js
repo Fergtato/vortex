@@ -51,11 +51,6 @@ export const store = new Vuex.Store({
 			total_pages: 0,
 			movies: []
 		},
-		// latestPeopleGrid: {
-		// 	page: 1,
-		// 	total_pages: 0,
-		// 	movies: []
-		// },
 		popularPeopleGrid: {
 			page: 1,
 			total_pages: 0,
@@ -69,7 +64,6 @@ export const store = new Vuex.Store({
 				payload.grid.movies.push(payload.response.data.results[i]);
 			}
 			payload.grid.total_pages = payload.response.data.total_pages;
-			console.log(payload.response.data);
 
 		},
 		clearSearch(state) {

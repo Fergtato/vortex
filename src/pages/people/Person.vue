@@ -15,7 +15,7 @@
 
           <div class="uk-width-1-4">
 
-            <img class="fa-poster fa-poster-pull" :src="`https://image.tmdb.org/t/p/w342${person.profile_path}`" alt="">
+            <img class="fa-poster" :src="`https://image.tmdb.org/t/p/w342${person.profile_path}`" alt="">
 
             <p>
               <span class="uk-text-bold">Also Known As</span>
