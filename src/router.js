@@ -28,6 +28,7 @@ import TopRatedTv from './pages/tv/TopRatedTv.vue';
 
 import Person from './pages/people/Person.vue';
 import PopularPeople from './pages/people/PopularPeople.vue';
+import AlsoKnownForPerson from './pages/people/AlsoKnownFor.vue'
 
 import Elements from './pages/Elements.vue';
 
@@ -56,6 +57,7 @@ const router = new VueRouter({
     { path: '/tv/:tvShowId/recommendations', component: TvShowRecoms},
     { path: '/person/popular', component: PopularPeople},
     { path: '/person/:personId', component: Person},
+    { path: '/person/:personId/alsoknownfor', component: AlsoKnownForPerson},
     { path: '/test', component: Elements }
   ],
   scrollBehavior (to, from, savedPosition) {

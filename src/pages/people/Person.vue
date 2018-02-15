@@ -20,7 +20,7 @@
             <p>
               <span class="uk-text-bold">Also Known As</span>
               <br>
-              {{ person.also_known_as }}
+              <pre>{{ person.also_known_as }}</pre>
             </p>
 
             <p>
@@ -29,11 +29,24 @@
               {{ person.birthday }}
             </p>
 
-            <p>
+            <p v-if="person.gender == 0">
               <span class="uk-text-bold">Gender</span>
               <br>
-              {{ person.gender }}
+              Gender Not Set
             </p>
+
+            <p v-if="person.gender == 1">
+              <span class="uk-text-bold">Gender</span>
+              <br>
+              Female
+            </p>
+
+            <p v-else="person.gender == 2">
+              <span class="uk-text-bold">Gender</span>
+              <br>
+              Male
+            </p>
+
 
             <p>
               <span class="uk-text-bold">Place of Birth</span>
@@ -49,7 +62,7 @@
 
             <p>{{person.biography}}</p>
 
-            <!-- <h3>Known For</h3>
+            <h3>Known For</h3>
 
             <div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
         
@@ -59,9 +72,9 @@
 
               </div>
 
-            </div> --> <!-- closing uk grid small recommendations -->
+            </div> <!-- closing uk grid small recommendations -->
 
-            <!-- <router-link :to="`/tv/${tvShow .id}/recommendations`" class="uk-button uk-button-link uk-margin-top">View All Recommendations</router-link> -->
+            <router-link :to="`/person/${person.id}/alsoknownfor`" class="uk-button uk-button-link uk-margin-top">View All Movies </router-link>
 
 
           </div> <!-- closing uk width 3 4 -->
@@ -89,9 +102,12 @@ export default {
     	title: 'Person - Vortex',
       person: {},
       tmdbPersonUrl: '',
+      tmdbPersonMovieCreditsUrl: '',
+      tmdbPersonTvCreditsUrl: '',
       movie_credits: '',
-      posterType: 'person'
-      	
+      cast: '',
+      crew: '',
+      posterType: 'movie'	
     }
   },
 
@@ -102,10 +118,26 @@ export default {
 				this.person = response.data;
 				this.title = this.person.name + ' - Vortex';
 		  });
+
+      axios.get(this.tmdbPersonMovieCreditsUrl)
+      .then((response) => {
+        this.movie_credits = response.data.results;
+        this.cast = response.data.cast;
+        this.crew = response.data.crew;
+      });
+
+      // axios.get(this.tmdbPersonTvCreditsUrl)
+      // .then((response) => {
+      //   this.cast = response.data.cast;
+      //   this.crew = response.data.crew;
+      // });
+
 	   },
 
   	setUrls(personId) {
   		this.tmdbPersonUrl = this.getTmdbPersonUrl(personId);
+      this.tmdbPersonMovieCreditsUrl = this.getTmdbPersonMovieCreditsUrl(personId);
+      this.tmdbPersonTvCreditsUrl = this.getTmdbPersonTvCreditsUrl(personId);
   	}
 
   },

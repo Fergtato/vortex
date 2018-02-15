@@ -43,6 +43,12 @@ export default {
 		},
 		getTmdbPersonUrl(id) {
 			return this.apiBase + 'person/' + id + '?api_key=' + this.apiKey;
+		},
+		getTmdbPersonMovieCreditsUrl(id) {
+			return this.apiBase + 'person/' + id + '/movie_credits?api_key=' + this.apiKey;
+		},
+		getTmdbPersonTvCreditsUrl(id) {
+			return this.apiBase + 'person/' + id + '/tv_credits?api_key=' + this.apiKey;
 		}
 	},
  	created() {
