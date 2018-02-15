@@ -26,7 +26,7 @@
 			<!-- <p>{{media.title}}</p> -->
 			</router-link>
 			<div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
-				<button v-if="checkList('favourites')" @click="addToList('favourites')">
+				<!-- <button v-if="checkList('favourites')" @click="addToList('favourites')">
 					Add To Favourites
 				</button>
 				<button v-else @click="removeFromList('favourites')">
@@ -45,13 +45,20 @@
 				</button>
 				<button v-else @click="removeFromList('watched')">
 					Remove From Watched
-				</button>
-				<!-- <ul class="uk-iconnav">
-				    <li><a href="#" uk-icon="icon: plus"></a></li>
-				    <li><a href="#" uk-icon="icon: heart"></a></li>
+				</button> -->
+				<ul class="uk-iconnav">
+				    <!-- <li><a href="#" uk-icon="icon: heart"></a></li>
 				    <li><a href="#" uk-icon="icon: bookmark"></a></li>
-				    <li><a href="#" uk-icon="icon: bolt"></a></li>
-				</ul> -->
+				    <li><a href="#" uk-icon="icon: plus"></a></li> -->
+				    <img class="fa-poster-icon" v-if="checkList('favourites')" @click="addToList('favourites')" src="../assets/heart.png" alt="">
+				    <img class="fa-poster-icon-filled" v-else @click="removeFromList('favourites')" src="../assets/heart-filled.png" alt="">
+
+				    <img class="fa-poster-icon" v-if="checkList('watchlist')" @click="addToList('watchlist')" src="../assets/bookmark.png" alt="">
+				    <img class="fa-poster-icon-filled" v-else @click="removeFromList('watchlist')" src="../assets/bookmark-filled.png" alt="">
+
+				    <img class="fa-poster-icon" v-if="checkList('watched')" @click="addToList('watched')" src="../assets/plus-circle.png" alt="">
+				    <img class="fa-poster-icon-filled" v-else @click="removeFromList('watched')" src="../assets/plus-circle-filled.png" alt="">
+				</ul>
 			</div>
 		</div>
 
