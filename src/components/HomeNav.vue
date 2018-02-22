@@ -79,18 +79,6 @@
 			            </li>
 
 			            <li>
-			              <a>TRACKER</a>
-			              <div uk-drop="offset: 0, mode: click">
-			                  <div class="uk-card uk-card-body uk-card-secondary uk-padding-small">
-			                    <ul class="uk-nav uk-dropdown-nav">
-			                      <li><a>Calendar</a></li>
-			                      <li><a>Watchlist</a></li>
-			                    </ul>
-			                  </div>
-			              </div>
-			            </li>
-
-			            <li>
 			              <a>LISTS</a>
 			              <div uk-drop="offset: 0, mode: click">
 			                  <div class="uk-card uk-card-body uk-card-secondary uk-padding-small">

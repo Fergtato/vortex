@@ -9,59 +9,59 @@ export const store = new Vuex.Store({
 		searchResultsGrid: {
 			page: 1,
 			total_pages: 0,
-			movies: []
+			items: []
 		},
 		popularMoviesGrid: {
 			page: 1,
 			total_pages: 0,
-			movies: []
+			items: []
 		},
 		topratedMoviesGrid: {
 			page: 1,
 			total_pages: 0,
-			movies: []
+			items: []
 		},
 		upcomingMoviesGrid: {
 			page: 1,
 			total_pages: 0,
-			movies: []
+			items: []
 		},
 		nowplayingMoviesGrid: {
 			page: 1,
 			total_pages: 0,
-			movies: []
+			items: []
 		},
 		airingTodayTvGrid: {
 			page: 1,
 			total_pages: 0,
-			movies: []
+			items: []
 		},
 		onTheAirTvGrid: {
 			page: 1,
 			total_pages: 0,
-			movies: []
+			items: []
 		},
 		popularTvGrid: {
 			page: 1,
 			total_pages: 0,
-			movies: []
+			items: []
 		},
 		topRatedTvGrid: {
 			page: 1,
 			total_pages: 0,
-			movies: []
+			items: []
 		},
 		popularPeopleGrid: {
 			page: 1,
 			total_pages: 0,
-			movies: []
+			items: []
 		}
 	},
 	mutations: {
 		appendToGrid(state, payload) {
 
 			for (var i = 0; i < payload.response.data.results.length; i++) {
-				payload.grid.movies.push(payload.response.data.results[i]);
+				payload.grid.items.push(payload.response.data.results[i]);
 			}
 			payload.grid.total_pages = payload.response.data.total_pages;
 

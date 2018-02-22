@@ -99,14 +99,6 @@
             </li>
 
             <li class="uk-parent">
-                <a href="#">Tracker</a>
-                <ul class="uk-nav-sub">
-                    <li><a href="#">Calendar</a></li>
-                    <li><a href="#">Watchlist</a></li>
-                </ul>
-            </li>
-
-            <li class="uk-parent">
                 <a href="#">Lists</a>
                 <ul class="uk-nav-sub">
                     <li><router-link to="/mylists">My Lists</router-link></li>

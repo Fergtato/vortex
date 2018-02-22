@@ -5,7 +5,7 @@
 				
 	<div v-if="cat == 'search'">
 		<div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
-			<div v-for="item in grid.movies">
+			<div v-for="item in grid.items">
 
 				<poster :type="item.media_type" :media="item"></poster>
 
@@ -14,7 +14,7 @@
 	</div>
 	<div v-else>
 		<div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
-			<div v-for="item in grid.movies">
+			<div v-for="item in grid.items">
 
 				<poster :type="type" :media="item"></poster>
 
@@ -125,7 +125,7 @@
     	},
 	    created() {
 
-		    if (this.grid.page == 1 && this.grid.movies.length == 0) {
+		    if (this.grid.page == 1 && this.grid.items.length == 0) {
 
 		    	this.initialAppend();
 

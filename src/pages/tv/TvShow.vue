@@ -96,6 +96,26 @@
 
             <router-link :to="`/tv/${tvShow.id}/cast`" class="uk-button uk-button-link uk-margin-top">Full Cast & Crew</router-link>
 
+
+            <h3>Latest Season</h3>
+
+            <!-- <pre>{{tvShow.seasons}}</pre> -->
+
+            <div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
+        
+              <div v-for="season in tvShow.seasons.slice(0,5)">
+
+                <poster :type="posterType" :media="season"></poster>
+
+              </div>
+
+            </div>
+
+            <router-link :to="`/tv/${tvShow .id}/recommendations`" class="uk-button uk-button-link uk-margin-top">View All Seasons</router-link>
+
+
+
+
             <h3>Recommendations</h3>
 
             <div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
