@@ -116,6 +116,21 @@
 
 			        <router-link :to="`/movie/${movie.id}/recommendations`" class="uk-button uk-button-link uk-margin-top">View All Recommendations</router-link>
 
+			        <h3>Reviews</h3>
+					
+					<!-- <pre>{{reviews}}</pre> -->
+
+				
+			        	<div v-for="review in reviews.slice(0,5)">
+
+			        		<h4> {{ review.author }}</h4>
+
+			        		<p> {{ review.content }} </p>
+
+			        	</div>
+
+
+
 
 			    </div>
 
@@ -154,11 +169,13 @@ import tmdb from '../../mixins/tmdb.js';
         tmdbMovieVideosUrl: '',
         tmdbMovieCreditsUrl: '',
         tmdbMovieRecomsUrl: '',
+        tmdbMovieReviewsUrl: '',
         movie: {},
         genres: {},
         videos: {},
         cast: {},
         crew: {},
+        reviews: {},
         recommendations: {},
         trailerKey: '',
         posterType: 'movie'
@@ -189,12 +206,18 @@ import tmdb from '../../mixins/tmdb.js';
 	        .then((response) => {
 	          this.recommendations = response.data.results;
 	        });
+
+	        axios.get(this.tmdbMovieReviewsUrl)
+	        .then((response) => {
+	          this.reviews = response.data.results;
+	        });
     	},
     	setUrls(movieId) {
     		this.tmdbMovieUrl = this.getTmdbMovieUrl(movieId);
     		this.tmdbMovieVideosUrl = this.getTmdbMovieVideosUrl(movieId);
     		this.tmdbMovieCreditsUrl = this.getTmdbMovieCreditsUrl(movieId);
     		this.tmdbMovieRecomsUrl = this.getTmdbMovieRecomsUrl(movieId);
+    		this.tmdbMovieReviewsUrl = this.getTmdbMovieReviewsUrl(movieId);
     	}
     },
     watch: {

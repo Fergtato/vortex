@@ -29,6 +29,9 @@ export default {
 		getTmdbMovieRecomsUrl(id) {
 			return this.apiBase + 'movie/' + id + '/recommendations?api_key=' + this.apiKey;
 		},
+		getTmdbMovieReviewsUrl(id) {
+			return this.apiBase + 'movie/' + id + '/reviews?api_key=' + this.apiKey;
+		},
 		getTmdbTvUrl(id) {
 			return this.apiBase + 'tv/' + id + '?api_key=' + this.apiKey;
 		},
