@@ -9,11 +9,30 @@
 
 	     	<div class="fa-dash-content">
 
-				<h3>{{movie.title}} Cast</h3>
-				<pre>{{cast}}</pre>
-				<h3>Crew</h3>
-				<pre>{{crew}}</pre>
+	     		<h3>{{movie.title}}</h3>
+	     		<h4>Cast</h4>
+	     		
+	     		<div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
 
+		     		<div v-for="person in cast">
+
+	                	<poster :type="posterType" :media="person"></poster>
+
+	             	</div>
+
+            	</div>
+
+            	<br>
+
+            	<div v-if="crew.length > 0">
+					<h4>Crew</h4>
+					
+					<ul>
+						<li v-for="person in crew">
+			                {{ person.name }} - {{ person.department }} - {{ person.job }}
+			            </li>
+					</ul>
+				</div>
 
 	     	</div>
 	    </div>
@@ -38,7 +57,8 @@ import tmdb from '../../mixins/tmdb.js';
         movie: {},
         credits: {},
         cast: {},
-        crew: {}
+        crew: {},
+        posterType: 'person'
       }
     },
     methods: {

@@ -9,13 +9,36 @@
 
 	     	<div class="fa-dash-content">
 
-				<h3>{{tvShow.title}} Cast</h3>
-				<pre>{{cast}}</pre>
-				<h3>Crew</h3>
-				<pre>{{crew}}</pre>
+	     		<h3>{{tvShow.name}}</h3>
+	     		<h4>Cast</h4>
+	     		
+	     		<div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
 
+		     		<div v-for="person in cast">
+
+	                	<poster :type="posterType" :media="person"></poster>
+
+	             	</div>
+
+            	</div>
+
+            	<br>
+
+            	<br>
+
+            	<div v-if="crew.length > 0">
+					<h4>Crew</h4>
+					
+					<ul>
+						<li v-for="person in crew">
+			                {{ person.name }} - {{ person.department }} - {{ person.job }}
+			            </li>
+					</ul>
+				</div>
+				
 
 	     	</div>
+
 	    </div>
 
 	</div>
@@ -38,7 +61,8 @@ import tmdb from '../../mixins/tmdb.js';
         tvShow: {},
         credits: {},
         cast: {},
-        crew: {}
+        crew: {},
+        posterType: 'person'
       }
     },
     methods: {
@@ -51,7 +75,7 @@ import tmdb from '../../mixins/tmdb.js';
     		axios.get(this.tmdbTvUrl)
 			.then((response) => {
 				this.tvShow = response.data;
-				this.title = this.tvShow.title + ' - Vortex';
+				this.title = this.tvShow.name + ' - Vortex';
 			});
 
 	        axios.get(this.tmdbTvCreditsUrl)

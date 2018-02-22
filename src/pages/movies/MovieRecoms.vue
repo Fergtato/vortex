@@ -9,8 +9,17 @@
 
 	     	<div class="fa-dash-content">
 
-				<h3>{{movie.title}} Recommendations</h3>
-				<pre>{{recommendations}}</pre>
+				<h3>{{movie.title}} - Recommendations</h3>
+	     		
+	     		<div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
+
+		     		<div v-for="movie in recommendations">
+
+	                	<poster :type="posterType" :media="movie"></poster>
+
+	             	</div>
+
+            	</div>
 
 
 	     	</div>
@@ -34,7 +43,8 @@ import tmdb from '../../mixins/tmdb.js';
       	tmdbMovieUrl: '',
         tmdbMovieRecomsUrl: '',
         movie: {},
-        recommendations: {}
+        recommendations: {},
+        posterType: 'movie'
       }
     },
     methods: {

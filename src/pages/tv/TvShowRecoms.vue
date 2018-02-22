@@ -9,8 +9,20 @@
 
 	     	<div class="fa-dash-content">
 
-				<h3>{{tvShow.title}} Recommendations</h3>
-				<pre>{{recommendations}}</pre>
+	     		<h3>{{tvShow.name}} - Recommendations</h3>
+	     		
+	     		<div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
+
+		     		<div v-for="tvShow in recommendations">
+
+	                	<poster :type="posterType" :media="tvShow"></poster>
+
+	             	</div>
+
+            	</div>
+
+				<!-- <h3>{{tvShow.name}} - Recommendations</h3>
+				<pre>{{recommendations}}</pre> -->
 
 
 	     	</div>
@@ -34,7 +46,8 @@ import tmdb from '../../mixins/tmdb.js';
       	tmdbTvUrl: '',
         tmdbTvRecomsUrl: '',
         tvShow: {},
-        recommendations: {}
+        recommendations: {},
+        posterType: 'tv'
       }
     },
     methods: {
@@ -47,7 +60,7 @@ import tmdb from '../../mixins/tmdb.js';
     		axios.get(this.tmdbTvUrl)
 			.then((response) => {
 				this.tvShow = response.data;
-				this.title = this.tvShow.title + ' - Vortex';
+				this.title = this.tvShow.name + ' - Vortex';
 			});
 
 	        axios.get(this.tmdbTvRecomsUrl)

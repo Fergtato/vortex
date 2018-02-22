@@ -17,12 +17,11 @@
 
             <img class="fa-poster" :src="`https://image.tmdb.org/t/p/w342${person.profile_path}`" alt="">
 
-            <p>
+            <br><br>
               <span class="uk-text-bold">Also Known As</span>
               <li v-for='person in person.also_known_as'>
                 {{ person }}
               </li>
-            </p>
 
             <p>
               <span class="uk-text-bold">Birthday</span>
