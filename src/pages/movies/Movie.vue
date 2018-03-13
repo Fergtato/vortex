@@ -134,6 +134,8 @@
 								<div class="uk-width-expand">
 									<h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">{{ review.author }}</a></h4>
 								</div>
+							</header>
+
 							<div class="uk-comment-body">
 								<p>{{ review.content }}</p>
 								<!-- <p>{{ review.id }}</p> -->
