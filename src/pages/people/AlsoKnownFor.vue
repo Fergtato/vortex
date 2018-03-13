@@ -10,48 +10,129 @@
 	     	<div class="fa-dash-content">
 
 				<h3>{{ person.name }} - Also Known For</h3>
+
+				<hr>				
 				
 				<div v-if="movie_credits.cast.length > 0">
 					<h4>Movies as cast</h4>
-					
-					<ul>
-						<li v-for="movie in movie_credits.cast">
-			                {{ movie.release_date.slice(0,4)}} - {{ movie.title }}
-			            </li>
-					</ul>
-				</div>
-	
+					<table class="uk-table uk-table-small uk-table-divider">
+						<thead>
+							<tr>
+								<td>Year</td>
+								<td>Title</td>
+								<td>Character</td>
+							</tr>
+						</thead>
+						
+						<tbody v-for="movie in movie_credits.cast">
+							<td>{{ movie.release_date.slice(0,4)}}</td>
+							<td>{{ movie.title }}</td>
+							<td>{{ movie.character }}</td>
+						</tbody>
+					</table>
+				</div>	
+
+
+				
 				<div v-if="movie_credits.crew.length > 0">
 					<h4>Movies as crew</h4>
+					<table class="uk-table uk-table-small uk-table-divider">
+
+						<thead>
+							<tr>
+								<td>Title</td>
+								<td>Department</td>
+								<td>Job</td>
+							</tr>
+						</thead>
+						
+						<tbody v-for="movie in movie_credits.crew">
+							<td>{{ movie.title }}</td>
+							<td>{{ movie.department }}</td>
+							<td>{{ movie.job }}</td>
+						</tbody>				
+					</table>
+				</div>	
+
+
+				
+				<div v-if="tv_credits.cast.length > 0">
+					<h4>TV Shows as cast</h4>
+					<table class="uk-table uk-table-small uk-table-divider">
+						<thead>
+							<tr>
+								<td>Year</td>
+								<td>Name</td>
+								<td>Episodes</td>
+								<td>Character</td>
+							</tr>
+						</thead>
+						
+						<tbody v-for="tvShow in tv_credits.cast">
+							<tr>
+								<td>{{ tvShow.first_air_date.slice(0,4) }}</td>
+								<td>{{ tvShow.name }}</td>
+								<td>{{ tvShow.episode_count }}</td>
+								<td>{{ tvShow.character }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>	
+
+
+				
+				<div v-if="tv_credits.cast.length > 0">
+					<h4>TV Shows as crew</h4>
+					<table class="uk-table uk-table-small uk-table-divider">
+						<thead>
+							<tr>
+								<td>Name</td>
+								<td>Department</td>
+								<td>Jobs</td>
+							</tr>
+						</thead>
+						
+						<tbody v-for="tvShow in tv_credits.cast">
+							<tr>
+								<td>{{ tvShow.name }}</td>
+								<td>{{ tvShow.department }}</td>
+								<td>{{ tvShow.job }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>	
+
+
+
+				<!-- <div v-if="movie_credits.crew.length > 0">
+					<h4>Movies as crew</h4>
 					
-					<ul>
+					<ul class="uk-list uk-list-divider">
 						<li v-for="movie in movie_credits.crew">
 			                {{ movie.title }} - {{ movie.department }} - {{ movie.job }}
 			            </li>
 					</ul>
-				</div>
+				</div> -->
 				
-				<div v-if="tv_credits.cast.length > 0">
+				<!-- <div v-if="tv_credits.cast.length > 0">
 					<h4>TV Shows as cast</h4>
 					
-					<ul>
+					<ul class="uk-list uk-list-divider">
 						<li v-for="tvShow in tv_credits.cast">
 			                {{ tvShow.first_air_date.slice(0,4) }} - {{ tvShow.name }} : {{ tvShow.episode_count }}
 			            </li>
 					</ul>
-				</div>
+				</div> -->
 				
-				<div v-if="tv_credits.crew.length > 0">
+				<!-- <div v-if="tv_credits.crew.length > 0">
 					<h4>TV Shows as crew</h4>
 					
-					<ul>
+					<ul class="uk-list uk-list-divider">
 						<li v-for="tvShow in tv_credits.crew">
 			                {{ tvShow.name }} - {{ tvShow.department }} - {{ tvShow.job }}
 			            </li>
 					</ul>
-				</div>
-
-	            <!-- <pre>{{ movie_credits.cast }}</pre> -->
+				</div> -->
 
 	     	</div>
 	    </div>
