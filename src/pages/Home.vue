@@ -77,7 +77,7 @@
 
 		</div>
 
-		<div class="uk-padding-large uk-background-secondary uk-light uk-margin-remove" uk-grid>
+		<div class="uk-padding-large uk-margin-remove" uk-grid>
 			
 			<div class="uk-width-expand@m">
 				<h4>TV On the Air</h4>
