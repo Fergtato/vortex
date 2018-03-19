@@ -15,8 +15,9 @@
 	<div v-else>
 		<div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
 			<div v-for="item in grid.items">
-
-				<poster :type="type" :media="item"></poster>
+				
+				<poster v-if="type === 'person'" :type="type" :media="item" :showIcons="showPeoplePosterIcons"></poster>
+				<poster v-else :type="type" :media="item" :showIcons="showPosterIcons"></poster>
 
 			</div>
     	</div>
@@ -49,7 +50,9 @@
 		data() {
 			return {
 				tmdbListUrl: '',
-				showLoader: true
+				showLoader: true,
+				showPosterIcons: true,
+				showPeoplePosterIcons: false
 			}
 		},
 		computed: {

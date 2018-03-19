@@ -70,6 +70,53 @@
 			        
 					<h2 class="uk-margin-small-bottom">{{movie.title}}</h2>
 
+					<ul class="uk-iconnav uk-margin-small-bottom">
+					    <img 
+					    	uk-tooltip="title: Add To Favourites" 
+					    	class="fa-poster-icon" 
+					    	v-if="checkList('favourites')" 
+					    	@click="addToList('favourites')" 
+					    	src="../../assets/heart-dark.png" 
+					    	alt="">
+					    <img 
+					    	uk-tooltip="title: Remove From Favourites" 
+					    	class="fa-poster-icon-filled" 
+					    	v-else 
+					    	@click="removeFromList('favourites')" 
+					    	src="../../assets/heart-filled.png" 
+					    	alt="">
+
+					    <img 
+					    	uk-tooltip="title: Add To Watchlist" 
+					    	class="fa-poster-icon" 
+					    	v-if="checkList('watchlist')" 
+					    	@click="addToList('watchlist')" 
+					    	src="../../assets/bookmark-dark.png" 
+					    	alt="">
+					    <img 
+					    	uk-tooltip="title: Remove From Watchlist" 
+					    	class="fa-poster-icon-filled" 
+					    	v-else 
+					    	@click="removeFromList('watchlist')" 
+					    	src="../../assets/bookmark-filled.png" 
+					    	alt="">
+
+					    <img 
+					    	uk-tooltip="title: Add To Watched" 
+					    	class="fa-poster-icon" 
+					    	v-if="checkList('watched')" 
+					    	@click="addToList('watched')" 
+					    	src="../../assets/plus-circle-dark.png" 
+					    	alt="">
+					    <img 
+					    	uk-tooltip="title: Remove From Watched" 
+					    	class="fa-poster-icon-filled" 
+					    	v-else 
+					    	@click="removeFromList('watched')" 
+					    	src="../../assets/plus-circle-filled.png" 
+					    	alt="">
+					</ul>
+
 					<span class="uk-margin-right">{{ movie.release_date | truncate('4') }}</span>
 
 					<span v-for="genre in genres" class="uk-badge uk-margin-small-right">{{genre.name}}</span>
@@ -88,10 +135,14 @@
 					    <div v-for="person in cast.slice(0,5)">
 					        <div class="uk-card uk-card-default uk-box-shadow-large">
 					            <div class="uk-card-media-top">
-					                <img class="fa-cast-image" :src="`https://image.tmdb.org/t/p/w276_and_h350_bestv2${person.profile_path}`" alt="">
+					            	<router-link :to="`/person/${person.id}`">
+					                	<img class="fa-cast-image" :src="`https://image.tmdb.org/t/p/w276_and_h350_bestv2${person.profile_path}`" alt="">
+					            	</router-link>
 					            </div>
 					            <div class="uk-card-body uk-padding-small">
-					                <p class="uk-text-bold uk-margin-remove-bottom">{{person.name}}</p>
+					            	<router-link :to="`/person/${person.id}`">
+					                	<p class="uk-text-bold uk-margin-remove-bottom">{{person.name}}</p>
+					            	</router-link>
 					                <p class="uk-margin-remove-top uk-text-small">{{person.character}}</p>
 					            </div>
 					        </div>
@@ -108,7 +159,7 @@
 				
 			        	<div v-for="movie in recommendations.slice(0,5)">
 
-			        		<poster :type="posterType" :media="movie"></poster>
+			        		<poster :type="posterType" :media="movie" :showIcons="showPosterIcons"></poster>
 
 			        	</div>
 
@@ -177,6 +228,9 @@ import firebase from 'firebase';
 import axios from 'axios';
 import tmdb from '../../mixins/tmdb.js';
 
+import { userListsRef } from '../../firebase';
+import UIkit from 'uikit';
+
   export default {
   	mixins: [tmdb],
     data() {
@@ -195,7 +249,14 @@ import tmdb from '../../mixins/tmdb.js';
         reviews: {},
         recommendations: {},
         trailerKey: '',
-        posterType: 'movie'
+        posterType: 'movie',
+        user: {},
+		userLists: {},
+		favourites: {},
+		watchlist: {},
+		watched: {},
+		listItemKey: '',
+		showPosterIcons: false
       }
     },
     methods: {
@@ -235,7 +296,70 @@ import tmdb from '../../mixins/tmdb.js';
     		this.tmdbMovieCreditsUrl = this.getTmdbMovieCreditsUrl(movieId);
     		this.tmdbMovieRecomsUrl = this.getTmdbMovieRecomsUrl(movieId);
     		this.tmdbMovieReviewsUrl = this.getTmdbMovieReviewsUrl(movieId);
-    	}
+    	},
+    	addToList(listName) {
+			userListsRef.child(listName).push(this.movie);
+
+			this.notification("Added to " + listName);
+		},
+		removeFromList(listName) {
+			this.checkList(listName);
+			userListsRef.child(listName).child(this.listItemKey).remove();
+			console.log("Removing " + this.listItemKey + " from " + listName);
+
+
+			this.notification("Removed from " + listName);
+		},
+		notification(message) {
+
+			UIkit.notification({
+				message: "<span uk-icon='icon: check'></span>  " + message,
+				pos: 'bottom-right',
+				timeout: 1000
+			});
+
+		},
+		checkList(listName) {
+			var found = false;
+
+			if (listName === 'favourites') {
+				for (var i = 0; i < Object.keys(this.favourites).length; i++) {
+
+					if (this.favourites[i].id == this.movie.id) {
+						found = true;
+						this.listItemKey = this.favourites[i]['.key'];
+						return false;
+					}
+					
+				}
+			}
+			else if (listName === 'watchlist') {
+				for (var i = 0; i < Object.keys(this.watchlist).length; i++) {
+
+					if (this.watchlist[i].id == this.movie.id) {
+						found = true;
+						this.listItemKey = this.watchlist[i]['.key'];
+						return false;
+					}
+					
+				}
+			}
+			else if (listName === 'watched') {
+				for (var i = 0; i < Object.keys(this.watched).length; i++) {
+
+					if (this.watched[i].id == this.movie.id) {
+						found = true;
+						this.listItemKey = this.watched[i]['.key'];
+						return false;
+					}
+					
+				}
+			}
+
+			if (!found) {
+				return true;
+			}
+		}
     },
     watch: {
 		'$route' (to, from) {
@@ -256,6 +380,19 @@ import tmdb from '../../mixins/tmdb.js';
 		this.apiCalls();
 
 		document.title = this.title;
+
+		firebase.auth().onAuthStateChanged((user) => {
+    		if(user) {
+        		this.user = firebase.auth().currentUser;
+        		this.$bindAsArray('userLists', userListsRef);
+        		this.$bindAsArray('favourites', userListsRef.child('favourites'));
+        		this.$bindAsArray('watchlist', userListsRef.child('watchlist'));
+        		this.$bindAsArray('watched', userListsRef.child('watched'));
+        		
+    		} else {
+        		console.log('user not found - Poster.vue');
+    		}
+    	});
 
     },
     filters: {

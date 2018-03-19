@@ -9,7 +9,11 @@
 
 	     	<div class="fa-dash-content">
 
-	     		<h3>{{tvShow.name}} - Recommendations</h3>
+	     		<router-link :to="`/tv/${tvShow.id}`">
+					<span uk-icon="arrow-left"></span> {{tvShow.name}}
+				</router-link>
+
+	     		<h3 class="uk-margin-small-top">{{tvShow.name}} - Recommendations</h3>
 	     		
 	     		<div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
 

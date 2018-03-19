@@ -25,31 +25,14 @@
 			
 			<!-- <p>{{media.title}}</p> -->
 			</router-link>
-			<div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
-				<!-- <button v-if="checkList('favourites')" @click="addToList('favourites')">
-					Add To Favourites
-				</button>
-				<button v-else @click="removeFromList('favourites')">
-					Remove From Favourites
-				</button>
 
-				<button v-if="checkList('watchlist')" @click="addToList('watchlist')">
-					Add To Watchlist
-				</button>
-				<button v-else @click="removeFromList('watchlist')">
-					Remove From Watchlist
-				</button>
+			<div v-if="type === 'person'" class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
+				<p>{{media.name}}</p>
+			</div>
 
-				<button v-if="checkList('watched')" @click="addToList('watched')">
-					Add To Watched
-				</button>
-				<button v-else @click="removeFromList('watched')">
-					Remove From Watched
-				</button> -->
+			<div v-if="showIcons" class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
+
 				<ul class="uk-iconnav">
-				    <!-- <li><a href="#" uk-icon="icon: heart"></a></li>
-				    <li><a href="#" uk-icon="icon: bookmark"></a></li>
-				    <li><a href="#" uk-icon="icon: plus"></a></li> -->
 				    <img 
 				    	uk-tooltip="title: Add To Favourites" 
 				    	class="fa-poster-icon" 
@@ -114,7 +97,7 @@
 	// import { userWatchlistRef } from '../firebase';
 
 	export default {
-		props: ['media','type'],
+		props: ['media','type','showIcons'],
 		data() {
 			return {
 				user: {},
@@ -122,7 +105,8 @@
 				favourites: {},
 				watchlist: {},
 				watched: {},
-				listItemKey: ''
+				listItemKey: '',
+				test: true
 			}
 		},
 		methods: {
@@ -130,6 +114,7 @@
 				userListsRef.child(listName).push(this.media);
 
 				this.notification("Added to " + listName);
+				console.log(this.showIcons);
 			},
 			removeFromList(listName) {
 				this.checkList(listName);

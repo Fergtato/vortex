@@ -20,6 +20,7 @@ import NowplayingMovies from './pages/movies/NowplayingMovies.vue';
 import TvShow from './pages/tv/TvShow.vue';
 import TvShowCast from './pages/tv/TvShowCast.vue';
 import TvShowRecoms from './pages/tv/TvShowRecoms.vue';
+import TvShowSeason from './pages/tv/TvShowSeason.vue';
 
 import AiringTv from './pages/tv/AiringTv.vue';
 import OnAirTv from './pages/tv/OnAirTv.vue';
@@ -55,6 +56,7 @@ const router = new VueRouter({
     { path: '/tv/:tvShowId', component: TvShow},
     { path: '/tv/:tvShowId/cast', component: TvShowCast},
     { path: '/tv/:tvShowId/recommendations', component: TvShowRecoms},
+    { path: '/tv/:tvShowId/season/:seasonNum', component: TvShowSeason},
     { path: '/person/popular', component: PopularPeople},
     { path: '/person/:personId', component: Person},
     { path: '/person/:personId/alsoknownfor', component: AlsoKnownForPerson},

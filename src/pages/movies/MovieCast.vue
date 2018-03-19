@@ -9,7 +9,11 @@
 
 	     	<div class="fa-dash-content">
 
-	     		<h3>{{movie.title}}</h3>
+	     		<router-link :to="`/movie/${movie.id}`">
+					<span uk-icon="arrow-left"></span> {{movie.title}}
+				</router-link>
+
+	     		<h3 class="uk-margin-small-top">{{movie.title}}</h3>
 	     		<h4>Cast</h4>
 	     		
 	     		<div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>

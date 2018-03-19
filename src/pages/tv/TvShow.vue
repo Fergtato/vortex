@@ -61,6 +61,53 @@
 
             <h2 class="uk-margin-small-bottom">{{tvShow.original_name}}</h2>
 
+            <ul class="uk-iconnav uk-margin-small-bottom">
+              <img 
+                uk-tooltip="title: Add To Favourites" 
+                class="fa-poster-icon" 
+                v-if="checkList('favourites')" 
+                @click="addToList('favourites')" 
+                src="../../assets/heart-dark.png" 
+                alt="">
+              <img 
+                uk-tooltip="title: Remove From Favourites" 
+                class="fa-poster-icon-filled" 
+                v-else 
+                @click="removeFromList('favourites')" 
+                src="../../assets/heart-filled.png" 
+                alt="">
+
+              <img 
+                uk-tooltip="title: Add To Watchlist" 
+                class="fa-poster-icon" 
+                v-if="checkList('watchlist')" 
+                @click="addToList('watchlist')" 
+                src="../../assets/bookmark-dark.png" 
+                alt="">
+              <img 
+                uk-tooltip="title: Remove From Watchlist" 
+                class="fa-poster-icon-filled" 
+                v-else 
+                @click="removeFromList('watchlist')" 
+                src="../../assets/bookmark-filled.png" 
+                alt="">
+
+              <img 
+                uk-tooltip="title: Add To Watched" 
+                class="fa-poster-icon" 
+                v-if="checkList('watched')" 
+                @click="addToList('watched')" 
+                src="../../assets/plus-circle-dark.png" 
+                alt="">
+              <img 
+                uk-tooltip="title: Remove From Watched" 
+                class="fa-poster-icon-filled" 
+                v-else 
+                @click="removeFromList('watched')" 
+                src="../../assets/plus-circle-filled.png" 
+                alt="">
+            </ul>
+
             <!-- <span class="uk-margin-right">{{ tvShow.air_date | truncate('4') }}</span> -->
 
             <span v-for="genre in genres" class="uk-badge uk-margin-small-right">{{genre.name}}</span>
@@ -104,8 +151,16 @@
             <div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
         
               <div v-for="season in tvShow.seasons.slice(0,5)">
+                
+                <router-link :to="`/tv/${tvShow.id}/season/${season.season_number}`">
+                <div class="fa-poster uk-inline-clip uk-transition-toggle">
+                  <div v-if="season.poster_path" :style="`background-image: url(https://image.tmdb.org/t/p/w342${season.poster_path});background-size: cover;`">
+                    <img class="fa-poster-filler" src="../../assets/missingPoster.jpg" alt="">
+                  </div>
 
-                <poster :type="posterType" :media="season"></poster>
+                  <img v-else src="../../assets/missingPoster.jpg" alt="">
+                </div>
+                </router-link>
 
               </div>
 
@@ -122,7 +177,7 @@
         
               <div v-for="tvShow in recommendations.slice(0,5)">
 
-                <poster :type="posterType" :media="tvShow"></poster>
+                <poster :type="posterType" :media="tvShow" :showIcons="showPosterIcons"></poster>
 
               </div>
 
@@ -155,6 +210,9 @@ import firebase from 'firebase';
 import axios from 'axios';
 import tmdb from '../../mixins/tmdb.js';
 
+import { userListsRef } from '../../firebase';
+import UIkit from 'uikit';
+
 export default {
   mixins: [tmdb],
   data () {
@@ -171,7 +229,14 @@ export default {
         crew: {},
         recommendations: {},
         trailerKey: '',
-      	posterType: 'tv'
+      	posterType: 'tv',
+        user: {},
+        userLists: {},
+        favourites: {},
+        watchlist: {},
+        watched: {},
+        listItemKey: '',
+        showPosterIcons: false
     }
   },
 
@@ -207,30 +272,106 @@ export default {
       this.tmdbTvVideosUrl = this.getTmdbTvVideosUrl(tvShowId);
       this.tmdbTvCreditsUrl = this.getTmdbTvCreditsUrl(tvShowId);
       this.tmdbTvRecomsUrl = this.getTmdbTvRecomsUrl(tvShowId);
-  	}
+  	},
+    addToList(listName) {
+      userListsRef.child(listName).push(this.tvShow);
+
+      this.notification("Added to " + listName);
+    },
+    removeFromList(listName) {
+      this.checkList(listName);
+      userListsRef.child(listName).child(this.listItemKey).remove();
+      console.log("Removing " + this.listItemKey + " from " + listName);
+
+
+      this.notification("Removed from " + listName);
+    },
+    notification(message) {
+
+      UIkit.notification({
+        message: "<span uk-icon='icon: check'></span>  " + message,
+        pos: 'bottom-right',
+        timeout: 1000
+      });
+
+    },
+    checkList(listName) {
+      var found = false;
+
+      if (listName === 'favourites') {
+        for (var i = 0; i < Object.keys(this.favourites).length; i++) {
+
+          if (this.favourites[i].id == this.tvShow.id) {
+            found = true;
+            this.listItemKey = this.favourites[i]['.key'];
+            return false;
+          }
+          
+        }
+      }
+      else if (listName === 'watchlist') {
+        for (var i = 0; i < Object.keys(this.watchlist).length; i++) {
+
+          if (this.watchlist[i].id == this.tvShow.id) {
+            found = true;
+            this.listItemKey = this.watchlist[i]['.key'];
+            return false;
+          }
+          
+        }
+      }
+      else if (listName === 'watched') {
+        for (var i = 0; i < Object.keys(this.watched).length; i++) {
+
+          if (this.watched[i].id == this.tvShow.id) {
+            found = true;
+            this.listItemKey = this.watched[i]['.key'];
+            return false;
+          }
+          
+        }
+      }
+
+      if (!found) {
+        return true;
+      }
+    }
 
   },
 
   watch: {
   	'$route' (to, from) {
 
-		this.setUrls(to.params.tvShowId);
+  		this.setUrls(to.params.tvShowId);
 
-		this.apiCalls();
+  		this.apiCalls();
 
-	},
-	title() {
-		document.title = this.title;
-	}
+  	},
+  	title() {
+  		document.title = this.title;
+  	}
   },
 
   created() {
   	this.setUrls(this.$route.params.tvShowId);
 
-	this.apiCalls();
+  	this.apiCalls();
 
 
-	document.title = this.title;
+  	document.title = this.title;
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user) {
+          this.user = firebase.auth().currentUser;
+          this.$bindAsArray('userLists', userListsRef);
+          this.$bindAsArray('favourites', userListsRef.child('favourites'));
+          this.$bindAsArray('watchlist', userListsRef.child('watchlist'));
+          this.$bindAsArray('watched', userListsRef.child('watched'));
+          
+      } else {
+          console.log('user not found - Poster.vue');
+      }
+    });
   },
 
   filters: {
