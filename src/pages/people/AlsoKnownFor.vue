@@ -18,9 +18,9 @@
 					<table class="uk-table uk-table-small uk-table-divider">
 						<thead>
 							<tr>
-								<td>Year</td>
-								<td>Title</td>
-								<td>Character</td>
+								<td><em>Year</em></td>
+								<td><em>Title</em></td>
+								<td><em>Character</em></td>
 							</tr>
 						</thead>
 						
@@ -40,9 +40,9 @@
 
 						<thead>
 							<tr>
-								<td>Title</td>
-								<td>Department</td>
-								<td>Job</td>
+								<td><em>Title</em></td>
+								<td><em>Department</em></td>
+								<td><em>Job</em></td>
 							</tr>
 						</thead>
 						
@@ -61,10 +61,10 @@
 					<table class="uk-table uk-table-small uk-table-divider">
 						<thead>
 							<tr>
-								<td>Year</td>
-								<td>Name</td>
-								<td>Episodes</td>
-								<td>Character</td>
+								<td><em>Year</em></td>
+								<td><em>Name</em></td>
+								<td><em>Episodes</em></td>
+								<td><em>Character</em></td>
 							</tr>
 						</thead>
 						
@@ -86,9 +86,9 @@
 					<table class="uk-table uk-table-small uk-table-divider">
 						<thead>
 							<tr>
-								<td>Name</td>
-								<td>Department</td>
-								<td>Jobs</td>
+								<td><em>Name</em></td>
+								<td><em>Department</em></td>
+								<td><em>Job</em></td>
 							</tr>
 						</thead>
 						
