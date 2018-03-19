@@ -7,7 +7,7 @@
 		<div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
 			<div v-for="item in grid.items">
 
-				<poster :type="item.media_type" :media="item"></poster>
+				<poster :type="item.media_type" :media="item" :showIcons="showPosterIcons"></poster>
 
 			</div>
     	</div>

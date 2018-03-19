@@ -127,11 +127,15 @@
                 <div class="uk-card uk-card-default uk-box-shadow-large">
 
                   <div class="uk-card-media-top">
-                    <img class="fa-cast-image" :src="`https://image.tmdb.org/t/p/w276_and_h350_bestv2${person.profile_path}`" alt="">
+                    <router-link :to="`/person/${person.id}`">
+                      <img class="fa-cast-image" :src="`https://image.tmdb.org/t/p/w276_and_h350_bestv2${person.profile_path}`" alt="">
+                    </router-link>
                   </div>
 
                   <div class="uk-card-body uk-padding-small">
-                    <p class="uk-text-bold uk-margin-remove-bottom">{{person.name}}</p>
+                    <router-link :to="`/person/${person.id}`">
+                      <p class="uk-text-bold uk-margin-remove-bottom">{{person.name}}</p>
+                    </router-link>
                     <p class="uk-margin-remove-top uk-text-small">{{person.character}}</p>
                   </div>
 

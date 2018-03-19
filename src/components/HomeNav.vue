@@ -28,7 +28,7 @@
 		</div>
 	</div>
 
-	<nav class="uk-navbar-container uk-margin uk-margin-remove-top">
+	<nav class="uk-navbar-container uk-margin uk-margin-remove-top uk-margin-remove-bottom">
         <div class="uk-container">
             <div class="uk-navbar">
                 <div class="uk-navbar-left">

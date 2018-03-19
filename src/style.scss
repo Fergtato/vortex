@@ -75,6 +75,8 @@ $badge-padding-horizontal: 8px;
 $inverse-global-primary-background: $theme-color;
 $inverse-global-inverse-color: #fff;
 
+$inverse-text-primary-color: $global-primary-background;
+
 // 2. Import default variables and available mixins.
 @import "../node_modules/uikit/src/scss/variables.scss";
 @import "../node_modules/uikit/src/scss/mixins.scss";

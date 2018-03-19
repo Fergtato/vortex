@@ -24,10 +24,12 @@
 							</tr>
 						</thead>
 						
-						<tbody v-for="movie in movie_credits.cast">
-							<td>{{ movie.release_date.slice(0,4)}}</td>
-							<td>{{ movie.title }}</td>
-							<td>{{ movie.character }}</td>
+						<tbody>
+							<tr v-for="movie in movie_credits.cast">
+								<td>{{ movie.release_date.slice(0,4)}}</td>
+								<td>{{ movie.title }}</td>
+								<td>{{ movie.character }}</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>	
@@ -46,10 +48,12 @@
 							</tr>
 						</thead>
 						
-						<tbody v-for="movie in movie_credits.crew">
-							<td>{{ movie.title }}</td>
-							<td>{{ movie.department }}</td>
-							<td>{{ movie.job }}</td>
+						<tbody>
+							<tr v-for="movie in movie_credits.crew">
+								<td>{{ movie.title }}</td>
+								<td>{{ movie.department }}</td>
+								<td>{{ movie.job }}</td>
+							</tr>
 						</tbody>				
 					</table>
 				</div>	
@@ -68,8 +72,8 @@
 							</tr>
 						</thead>
 						
-						<tbody v-for="tvShow in tv_credits.cast">
-							<tr>
+						<tbody>
+							<tr v-for="tvShow in tv_credits.cast">
 								<td>{{ tvShow.first_air_date.slice(0,4) }}</td>
 								<td>{{ tvShow.name }}</td>
 								<td>{{ tvShow.episode_count }}</td>
@@ -92,8 +96,8 @@
 							</tr>
 						</thead>
 						
-						<tbody v-for="tvShow in tv_credits.cast">
-							<tr>
+						<tbody>
+							<tr v-for="tvShow in tv_credits.cast">
 								<td>{{ tvShow.name }}</td>
 								<td>{{ tvShow.department }}</td>
 								<td>{{ tvShow.job }}</td>
