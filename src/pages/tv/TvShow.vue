@@ -145,7 +145,7 @@
                 
             </div> <!-- closing uk grid small cast & crew -->
 
-            <router-link :to="`/tv/${tvShow.id}/cast`" class="uk-button uk-button-link uk-margin-top">Full Cast & Crew</router-link>
+            <router-link :to="`/tv/${tvShow.id}/cast`" class="uk-button uk-button-link uk-margin-top">Full Cast & Crew <span uk-icon="arrow-right"></span></router-link>
 
 
             <h3>Latest Season</h3>
@@ -170,7 +170,7 @@
 
             </div>
 
-            <router-link :to="`/tv/${tvShow .id}/recommendations`" class="uk-button uk-button-link uk-margin-top">View All Seasons</router-link>
+            <router-link :to="`/tv/${tvShow .id}/recommendations`" class="uk-button uk-button-link uk-margin-top">View All Seasons <span uk-icon="arrow-right"></span></router-link>
 
 
 
@@ -187,7 +187,7 @@
 
             </div> <!-- closing uk grid small recommendations -->
 
-            <router-link :to="`/tv/${tvShow .id}/recommendations`" class="uk-button uk-button-link uk-margin-top">View All Recommendations</router-link>
+            <router-link :to="`/tv/${tvShow .id}/recommendations`" class="uk-button uk-button-link uk-margin-top">View All Recommendations <span uk-icon="arrow-right"></span></router-link>
 
           </div> <!-- closing uk width 3 4 -->
 

@@ -150,7 +150,7 @@
 					    
 					</div>
 					
-					<router-link :to="`/movie/${movie.id}/cast`" class="uk-button uk-button-link uk-margin-top">Full Cast & Crew</router-link>
+					<router-link :to="`/movie/${movie.id}/cast`" class="uk-button uk-button-link uk-margin-top">Full Cast & Crew <span uk-icon="arrow-right"></span></router-link>
 					
 					
 					<h3>Recommendations</h3>
@@ -165,7 +165,7 @@
 
 			        </div>
 
-			        <router-link :to="`/movie/${movie.id}/recommendations`" class="uk-button uk-button-link uk-margin-top">View All Recommendations</router-link>
+			        <router-link :to="`/movie/${movie.id}/recommendations`" class="uk-button uk-button-link uk-margin-top">View All Recommendations <span uk-icon="arrow-right"></span></router-link>
 
 			        <h3>Reviews</h3>
 				

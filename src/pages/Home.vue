@@ -95,6 +95,25 @@
 
 		    <div class="uk-width-1-4@m">
 				<h4>Trending Celebrities</h4>
+
+				<div uk-grid>
+					<div v-for="person in popularPeople.slice(0,5)" class="uk-width-1-1@m uk-margin-remove-top uk-margin-small-bottom">
+						<div uk-grid>
+							<div class="uk-width-1-3@m">
+								<img :src="`https://image.tmdb.org/t/p/w342${person.profile_path}`" alt="">
+							</div>
+							<div class="uk-width-2-3@m uk-padding-small">
+								<p>
+									{{person.name}}
+								</p>
+								<p>
+									Popularity: <span class="uk-text-primary">{{Math.floor(person.popularity)}}</span>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				
 		    </div>
 
 		</div>
@@ -117,6 +136,8 @@ import tmdb from '../mixins/tmdb.js';
       	popularMovies: {},
       	tvOnAirUrl: '',
       	tvOnAir: {},
+      	popularPeopleUrl: '',
+      	popularPeople: {},
       	moviePosterType: 'movie',
       	tvPosterType: 'tv',
       	showPosterIcons: false
@@ -126,6 +147,7 @@ import tmdb from '../mixins/tmdb.js';
     	setUrls() {
     		this.popularMoviesUrl = this.getTmdbListUrl('movie', 'popular', 1);
     		this.tvOnAirUrl = this.getTmdbListUrl('tv', 'on_the_air', 1);
+    		this.popularPeopleUrl = this.getTmdbListUrl('person', 'popular', 1);
     	},
     	apiCalls() {
 
@@ -137,6 +159,11 @@ import tmdb from '../mixins/tmdb.js';
 	        axios.get(this.tvOnAirUrl)
 	        .then((response) => {
 	        	this.tvOnAir = response.data.results;
+	        });
+
+	        axios.get(this.popularPeopleUrl)
+	        .then((response) => {
+	        	this.popularPeople = response.data.results;
 	        });
 
     	}

@@ -76,7 +76,7 @@
 
             </div> <!-- closing uk grid small recommendations -->
 
-            <router-link :to="`/person/${person.id}/alsoknownfor`" class="uk-button uk-button-link uk-margin-top">View All Movies </router-link>
+            <router-link :to="`/person/${person.id}/alsoknownfor`" class="uk-button uk-button-link uk-margin-top">View All Media <span uk-icon="arrow-right"></span></router-link>
 
 
           </div> <!-- closing uk width 3 4 -->
