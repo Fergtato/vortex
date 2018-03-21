@@ -170,7 +170,7 @@
 
             </div>
 
-            <router-link :to="`/tv/${tvShow .id}/recommendations`" class="uk-button uk-button-link uk-margin-top">View All Seasons <span uk-icon="arrow-right"></span></router-link>
+            <router-link :to="`/tv/${tvShow .id}/viewallseasons`" class="uk-button uk-button-link uk-margin-top">View All Seasons <span uk-icon="arrow-right"></span></router-link>
 
 
 
