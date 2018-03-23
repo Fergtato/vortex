@@ -13,7 +13,7 @@
 
 					<div class="uk-align-center">
 
-						<center><img class="uk-border-circle uk-margin-medium-top"  :src="`${ user.photoURL }`" style="width:100px; height:100px;"></center>
+						<center><img class="fa-user-icon uk-border-circle uk-margin-medium-top"  :src="`${ user.photoURL }`"></center>
 
 						<br>
 
