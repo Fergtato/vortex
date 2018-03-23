@@ -14,16 +14,18 @@
 				</router-link>
 
 	     		<h3 class="uk-margin-small-top">{{tvShow.name}} - Seasons</h3>
-	     		
-	     		<div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
 
-		     		<div v-for="tvShow in seasons">
+	     		<pre>{{ season }}</pre>
+	     		
+	     		<!-- <div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
+
+		     		<div v-for="season in tvShow">
 
 	                	<poster :type="posterType" :media="tvShow"></poster>
 
 	             	</div>
 
-            	</div>
+            	</div> -->
 
 
 	     	</div>
@@ -47,8 +49,8 @@ import tmdb from '../../mixins/tmdb.js';
       	tmdbTvUrl: '',
         tmdbTvViewAllSeasonsUrl: '',
         tvShow: {},
-        seasons: {},
-        posterType: 'seasons'
+        season: {},
+        posterType: 'tvShow'
       }
     },
     methods: {
@@ -66,7 +68,7 @@ import tmdb from '../../mixins/tmdb.js';
 
 	        axios.get(this.tmdbTvViewAllSeasonsUrl)
 	        .then((response) => {
-	        	this.seasons = response.data.results;
+	        	this.season = response.data.results;
 	        });
 
     	}
