@@ -168,34 +168,15 @@
 			        <router-link :to="`/movie/${movie.id}/recommendations`" class="uk-button uk-button-link uk-margin-top">View All Recommendations <span uk-icon="arrow-right"></span></router-link>
 
 			        <h3>Reviews</h3>
-				
-			        	<!-- <div v-for="review in reviews.slice(0,5)">
-
-			        		<h4> {{ review.author }}</h4>
-
-			        		<p> {{ review.content }} </p>
-
-			        	</div> -->
-
-						<article class="uk-comment uk-comment-primary" v-for="review in reviews.slice(0,5)">
-							<header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
-								<!-- <div class="uk-width-auto">
-									<img class="uk-comment-avatar" src="../../assets/missingPoster.jpg" width="80" height="80" alt="">
-								</div> -->
-								<div class="uk-width-expand">
-									<h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">{{ review.author }}</a></h4>
-								</div>
-							</header>
-
-							<div class="uk-comment-body">
-								<p>{{ review.content }}</p>
-								<!-- <p>{{ review.id }}</p> -->
-							</div>
-
-							<br />
-
-							<hr>
-						</article>
+			        
+			        <ul uk-accordion v-for="review in reviews">
+					    <li>
+					        <a class="uk-accordion-title uk-text-muted" href="#">{{ review.author }} <span uk-icon="chevron-down"></span></a>
+					        <div class="uk-accordion-content">
+					            <p>{{ review.content }}</p>
+					        </div>
+					    </li>
+					</ul>
 
 
 
