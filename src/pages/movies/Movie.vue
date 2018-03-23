@@ -199,6 +199,21 @@
 	     	</div>
 	    </div>
 
+
+	    <div id="login-modal" uk-modal>
+		    <div class="uk-modal-dialog uk-modal-body">
+		        <p class="uk-text-large">Log in or Sign up to add to a list!</p>
+		        <p class="uk-text-right">
+		        	<router-link to="/login">
+			            <button class="uk-button uk-button-default uk-modal-close" type="button">Log In</button>
+			        </router-link>
+			        <router-link to="/signup">
+			            <button class="uk-button uk-button-primary" type="button">Sign Up</button>
+			        </router-link>
+		        </p>
+		    </div>
+		</div>
+
 	</div>
 </template>
 
@@ -237,7 +252,8 @@ import UIkit from 'uikit';
 		watchlist: {},
 		watched: {},
 		listItemKey: '',
-		showPosterIcons: false
+		showPosterIcons: false,
+		userLoggedIn: false
       }
     },
     methods: {
@@ -279,9 +295,13 @@ import UIkit from 'uikit';
     		this.tmdbMovieReviewsUrl = this.getTmdbMovieReviewsUrl(movieId);
     	},
     	addToList(listName) {
-			userListsRef.child(listName).push(this.movie);
+    		if (this.userLoggedIn) {
+				userListsRef.child(listName).push(this.movie);
 
-			this.notification("Added to " + listName);
+				this.notification("Added to " + listName);
+			} else {
+				UIkit.modal('#login-modal').show();
+			}
 		},
 		removeFromList(listName) {
 			this.checkList(listName);
@@ -369,7 +389,7 @@ import UIkit from 'uikit';
         		this.$bindAsArray('favourites', userListsRef.child('favourites'));
         		this.$bindAsArray('watchlist', userListsRef.child('watchlist'));
         		this.$bindAsArray('watched', userListsRef.child('watched'));
-        		
+        		this.userLoggedIn = true;
     		} else {
         		console.log('user not found - Poster.vue');
     		}
