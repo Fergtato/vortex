@@ -7,29 +7,37 @@
 
 		<div class="fa-dash-content">
 
-			<div class="uk-grid-medium" uk-grid>
+			<div class="uk-container">
 
-				<div class="uk-align-center">
+				<div class="uk-grid-medium" uk-grid>
 
-					<center><img class="uk-border-circle" :src="`${ user.photoURL }`" style="width:100px; height:100px;"></center>
+					<div class="uk-align-center">
 
-					<br>
+						<center><img class="uk-border-circle uk-margin-medium-top"  :src="`${ user.photoURL }`" style="width:100px; height:100px;"></center>
 
-					<center><h3>{{ user.displayName }}</h3> <router-link to="/mylists">My Lists</router-link>
-					<h4>{{ user.email }}</h4></center>
+						<br>
 
-					<br>
+						<center>
+				
+							<h3>{{ user.displayName }}</h3> 
+							<h4>{{ user.email }}</h4>
+							
+							<router-link to="/mylists">
+								My Lists
+							</router-link>
 
-					
-					
-					
+						</center>
 
-					<center><button @click="logOut" class="uk-button uk-button-primary">Log Out</button></center>
-					
+						<br>
 
-				</div> <!-- closing width 1-4 -->
+						<center><button @click="logOut" class="uk-button uk-button-primary">Log Out</button></center>
 
-			</div> <!-- closing grid medium -->
+
+					</div> <!-- closing center -->
+
+				</div> <!-- closing grid medium -->
+
+			</div> <!-- closing container -->
 			
 		</div> <!-- closing content -->
 

@@ -4,10 +4,6 @@
   	<dash-nav></dash-nav>
 
    <div class="fa-dash-content-wrapper uk-dark uk-preserve-color">
-      
-      <div>
-        <div></div>
-      </div>
 
       <div class="fa-dash-content">
 
@@ -59,6 +55,18 @@
           <div class="uk-width-3-4">
 
             <h2 class="uk-margin-small-bottom">{{person.name}}</h2>
+
+            <ul class="uk-iconnav">
+                <li>
+                    <a href="" uk-icon="icon: facebook"></a>
+                </li>
+                <li>
+                    <a href="#" uk-icon="icon: twitter"></a>
+                </li>
+                <li>
+                    <a href="#" uk-icon="icon: instagram"></a>
+                </li>
+            </ul>
 
             <p>{{person.biography}}</p>
 

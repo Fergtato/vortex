@@ -3,40 +3,48 @@
 		
 		<home-nav></home-nav>
 		
-		<div class="uk-container">
+		<div class="fa-dash-content">
 
-		<h2>Log In</h2>
+			<div class="uk-align-center uk-width-2-5@m uk-margin-medium-top">
 
-		    <form class="uk-form-stacked">
+				<h2>Log In</h2>
 
-		        <p>{{errorMessage}}</p>
+		    		<form class="uk-form-stacked">
 
-		        <div class="uk-margin">
-		            <label class="uk-form-label" for="form-stacked-email">Email</label>
-		            <div class="uk-form-controls uk-width-1-2@s">
-		                <input v-model="email" class="uk-input" id="form-stacked-email" type="text" placeholder="Email...">
-		            </div>
-		        </div>
+				        <p>{{errorMessage}}</p>
 
-		        <div class="uk-margin">
-		            <label class="uk-form-label" for="form-stacked-pass">Password</label>
-		            <div class="uk-form-controls uk-width-1-2@s">
-		                <input v-on:keydown.enter.prevent='logIn' v-model="pass" class="uk-input" id="form-stacked-pass" type="password" placeholder="Password...">
-		            </div>
-		        </div>
+				        <div class="uk-margin">
+				            <label class="uk-form-label" for="form-stacked-email">Email</label>
+				            <div class="uk-form-controls">
+				                <input v-model="email" class="uk-input" id="form-stacked-email" type="text" placeholder="Email...">
+				            </div>
+				        </div>
 
-		    </form>
+				        <div class="uk-margin">
+				            <label class="uk-form-label" for="form-stacked-pass">Password</label>
+				            <div class="uk-form-controls">
+				                <input v-on:keydown.enter.prevent='logIn' v-model="pass" class="uk-input" id="form-stacked-pass" type="password" placeholder="Password...">
+				            </div>
+				        </div>
 
-		    <div class="uk-margin">
-	        	<button @click="logIn" class="uk-button uk-button-primary">Log In</button>
-	        </div>
+				    </form> <!-- closing form -->
 
-	        <div class="uk-margin">
-	        	<button @click="googleLogin" class="uk-button uk-button-secondary">Google</button>
-	        	<button @click="facebookLogin" class="uk-button uk-button-secondary">Facebook</button>
-	        </div>
+				    <div class="uk-margin">
+			        	<button @click="logIn" class="uk-button uk-button-primary">Log In</button>
+			        </div>
 
-	    </div>
+			        <div class="uk-margin">
+			        	<button @click="googleLogin" class="uk-button uk-button-secondary">
+			        		<span uk-icon="google"></span> Google
+			        	</button>
+			        	<button @click="facebookLogin" class="uk-button uk-button-secondary">
+			        		<span uk-icon="facebook"></span> Facebook
+			        	</button>
+			        </div>
+
+			</div> <!-- closing center -->
+
+		</div> <!-- closing content -->
 
 	</div>
 </template>
@@ -75,12 +83,10 @@ export default {
 	},
 	watch: {
       '$route' (to, from) {
-        console.log("hey");
         
       }
     },
 	created() {
-		console.log("hey");
 		firebase.auth().onAuthStateChanged((user) => {
 	     	if(user) {
 	    		this.$router.push(this.$router.go(-1))
