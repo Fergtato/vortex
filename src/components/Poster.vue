@@ -3,7 +3,7 @@
 		<div class="fa-poster uk-inline-clip uk-transition-toggle">
 			<router-link :to="`/${type}/${media.id}`">
 			<!-- <img v-if="media.poster_path" :src="`https://image.tmdb.org/t/p/w342${media.poster_path}`" alt=""> -->
-			<div <div v-if="type === 'movie' || type === 'tv'">
+			<div v-if="type === 'movie' || type === 'tv'">
 				
 				<div v-if="media.poster_path" :style="`background-image: url(https://image.tmdb.org/t/p/w342${media.poster_path});background-size: cover;`">
 					<img class="fa-poster-filler" src="../assets/missingPoster.jpg" alt="">
@@ -79,12 +79,34 @@
 				    	alt="">
 
 				    <img 
+				    	:uk-toggle="`target: #modal${media.id}`" 
 				    	uk-tooltip="title: Info" 
 				    	class="fa-poster-icon" 
 				    	src="../assets/info.png" 
 				    	alt="">
 				</ul>
 			</div>
+
+			<div :id="`modal${media.id}`" uk-modal>
+			    <div class="uk-modal-dialog uk-margin-auto-vertical uk-modal-body">
+
+			        <h2 v-if="type === 'movie'" class="uk-modal-title">{{media.title}}</h2>
+			        <h2 v-if="type === 'tv'" class="uk-modal-title">{{media.name}}</h2>
+
+			        <span v-if="type === 'movie'" class="uk-margin-right">{{media.release_date}}</span>
+			        <span v-if="type === 'tv'" class="uk-margin-right">{{media.first_air_date}}</span>
+			        
+			        <span class="uk-text-primary">Rating: {{media.vote_average}}</span>
+			        <p>{{media.overview}}</p>
+			        <p class="uk-text-right">
+			        	<router-link :to="`/${type}/${media.id}`">
+				            <button class="uk-button uk-button-primary" type="button">View <span uk-icon="icon: arrow-right"></span></button>
+				        </router-link>
+			        </p>
+			        <button class="uk-modal-close-default" type="button" uk-close></button>
+			    </div>
+			</div>
+
 		</div>
 
 </template>

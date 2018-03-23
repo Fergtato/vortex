@@ -67,7 +67,7 @@ export const store = new Vuex.Store({
 
 		},
 		clearSearch(state) {
-			state.searchResultsGrid.movies = [];
+			state.searchResultsGrid.items = [];
 		}
 	}
 });

@@ -43,6 +43,7 @@
 	import firebase from 'firebase';
 	import axios from 'axios';
 	import tmdb from '../mixins/tmdb.js';
+	import UIkit from 'uikit';
 
 	export default {
 		mixins: [tmdb],

@@ -15,17 +15,25 @@
 
 	     		<h3 class="uk-margin-small-top">{{tvShow.name}} - Seasons</h3>
 
-	     		<pre>{{ season }}</pre>
+	     		<!-- <pre>{{ tvShow.seasons }}</pre> -->
 	     		
-	     		<!-- <div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
+	     		<div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
 
-		     		<div v-for="season in tvShow">
+		     		<div v-for="season in tvShow.seasons">
+                
+		                <router-link :to="`/tv/${tvShow.id}/season/${season.season_number}`">
+			                <div class="fa-poster uk-inline-clip uk-transition-toggle">
+			                  <div v-if="season.poster_path" :style="`background-image: url(https://image.tmdb.org/t/p/w342${season.poster_path});background-size: cover;`">
+			                    <img class="fa-poster-filler" src="../../assets/missingPoster.jpg" alt="">
+			                  </div>
 
-	                	<poster :type="posterType" :media="tvShow"></poster>
+			                  <img v-else src="../../assets/missingPoster.jpg" alt="">
+			                </div>
+		                </router-link>
 
-	             	</div>
+		            </div>
 
-            	</div> -->
+            	</div>
 
 
 	     	</div>
@@ -47,16 +55,13 @@ import tmdb from '../../mixins/tmdb.js';
       return {
       	title: 'Seasons - Vortex',
       	tmdbTvUrl: '',
-        tmdbTvViewAllSeasonsUrl: '',
         tvShow: {},
-        season: {},
         posterType: 'tvShow'
       }
     },
     methods: {
     	setUrls(tvShowId) {
     		this.tmdbTvUrl = this.getTmdbTvUrl(tvShowId);
-    		this.tmdbTvViewAllSeasonsUrl = this.getTmdbTvViewAllSeasonsUrl(tvShowId);
     	},
     	apiCalls() {
 
@@ -65,11 +70,6 @@ import tmdb from '../../mixins/tmdb.js';
 				this.tvShow = response.data;
 				this.title = this.tvShow.name + ' - Vortex';
 			});
-
-	        axios.get(this.tmdbTvViewAllSeasonsUrl)
-	        .then((response) => {
-	        	this.season = response.data.results;
-	        });
 
     	}
     },

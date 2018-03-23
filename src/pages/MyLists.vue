@@ -42,26 +42,102 @@
 			<p>Watchlist is empty</p>
 		</div> -->
 
+		<div class="uk-container uk-margin-medium-top">
 		
-		
-		<div v-for="list of userLists">
+			<div v-for="list of userLists">
 
-			<h2>{{list['.key'] | capitalize }}</h2>
+				<h2>{{list['.key'] | capitalize }}</h2>
 
-			<div v-for="(item, key) of list">
+				<!-- <div v-for="(item, key) of list">
 
-				<div v-if="item.title">
-					{{item.id}} - {{item.title}}
-					<button @click="removeFromList(key, list)">Remove</button>
+					<div v-if="item.title">
+						{{item.id}} - {{item.title}}
+						<button @click="removeFromList(key, list)">Remove</button>
+					</div>
+					<div v-if="item.name">
+						{{item.id}} - {{item.name}}
+						<button @click="removeFromList(key, list)">Remove</button>
+					</div>
+
+				</div> -->
+
+				<div class="uk-grid-small uk-child-width-1-5@m uk-child-width-1-3@s" uk-grid>
+				
+					<div v-for="(item, key) of list">
+
+						<div v-if="item.title">
+					
+							
+			                <div class="fa-poster uk-inline-clip uk-transition-toggle">
+
+			                	<router-link :to="`/movie/${item.id}`">
+									<div v-if="item.poster_path" :style="`background-image: url(https://image.tmdb.org/t/p/w342${item.poster_path});background-size: cover;`">
+									<img class="fa-poster-filler" src="../assets/missingPoster.jpg" alt="">
+									</div>
+
+									<img v-else src="../assets/missingPoster.jpg" alt="">
+								</router-link>
+
+								<div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
+
+									<ul class="uk-iconnav">
+
+										<img 
+										uk-tooltip="title: Remove" 
+										class="fa-poster-icon" 
+										@click="removeFromList(key, list)" 
+										src="../assets/trash.png" 
+										alt="">
+
+									</ul>
+
+								</div>
+
+			                </div>
+			                
+
+		            	</div>
+
+		            	<div v-if="item.name">
+					
+							
+			                <div class="fa-poster uk-inline-clip uk-transition-toggle">
+
+								<router-link :to="`/tv/${item.id}`">
+									<div v-if="item.poster_path" :style="`background-image: url(https://image.tmdb.org/t/p/w342${item.poster_path});background-size: cover;`">
+									<img class="fa-poster-filler" src="../assets/missingPoster.jpg" alt="">
+									</div>
+
+									<img v-else src="../assets/missingPoster.jpg" alt="">
+								</router-link>
+
+								<div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
+
+									<ul class="uk-iconnav">
+
+										<img 
+										uk-tooltip="title: Remove" 
+										class="fa-poster-icon" 
+										@click="removeFromList(key, list)" 
+										src="../assets/trash.png" 
+										alt="">
+
+									</ul>
+
+								</div>
+
+			                </div>
+			                
+
+		            	</div>
+					
+					</div>
+
 				</div>
-				<div v-if="item.name">
-					{{item.id}} - {{item.name}}
-					<button @click="removeFromList(key, list)">Remove</button>
-				</div>
+
+				<hr>
 
 			</div>
-
-			<hr>
 
 		</div>
 

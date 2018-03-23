@@ -44,9 +44,6 @@ export default {
 		getTmdbTvRecomsUrl(id) {
 			return this.apiBase + 'tv/' + id + '/recommendations?api_key=' + this.apiKey;
 		},
-		getTmdbTvViewAllSeasonsUrl(id) {
-			return this.apiBase + 'tv/' + id + '/season?api_key=' + this.apiKey;
-		},
 		getTmdbTvSeasonUrl(id, seasonNum) {
 			return this.apiBase + 'tv/' + id + '/season/' + seasonNum + '?api_key=' + this.apiKey;
 		},

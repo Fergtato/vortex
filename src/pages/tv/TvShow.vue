@@ -148,7 +148,7 @@
             <router-link :to="`/tv/${tvShow.id}/cast`" class="uk-button uk-button-link uk-margin-top">Full Cast & Crew <span uk-icon="arrow-right"></span></router-link>
 
 
-            <h3>Latest Season</h3>
+            <h3>Latest Seasons</h3>
 
             <!-- <pre>{{tvShow.seasons}}</pre> -->
 
