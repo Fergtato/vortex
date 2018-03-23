@@ -37,7 +37,7 @@
 
                         <li><router-link to="/">HOME</router-link></li>
 
-			            <li><a>DISCOVER</a></li>
+			            <li uk-tooltip="title: Planned Feature"><a>DISCOVER</a></li>
 
 			            <li>
 			              <a>MOVIES</a>

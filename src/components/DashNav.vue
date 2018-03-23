@@ -68,7 +68,7 @@
 
             <li><router-link to="/">Home</router-link></li>
 
-            <li><a href="#">Discover</a></li>
+            <li uk-tooltip="title: Planned Feature"><a href="#">Discover</a></li>
 
             <li class="uk-parent">
                 <a href="#">Movies</a>

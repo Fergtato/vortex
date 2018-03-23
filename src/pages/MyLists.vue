@@ -79,12 +79,12 @@
 								</router-link>
 
 								<div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-primary">
-
+									
 									<ul class="uk-iconnav">
 
 										<img 
 										uk-tooltip="title: Remove" 
-										class="fa-poster-icon" 
+										class="fa-poster-icon fa-center-trash" 
 										@click="removeFromList(key, list)" 
 										src="../assets/trash.png" 
 										alt="">

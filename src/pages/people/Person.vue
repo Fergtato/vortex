@@ -58,13 +58,13 @@
 
             <ul class="uk-iconnav">
                 <li>
-                    <a href="" uk-icon="icon: facebook"></a>
+                    <a target="_blank" :href="`https://www.facebook.com/${externalIds.facebook_id}`" uk-icon="icon: facebook"></a>
                 </li>
                 <li>
-                    <a href="#" uk-icon="icon: twitter"></a>
+                    <a target="_blank" :href="`https://www.twitter.com/${externalIds.twitter_id}`" uk-icon="icon: twitter"></a>
                 </li>
                 <li>
-                    <a href="#" uk-icon="icon: instagram"></a>
+                    <a target="_blank" :href="`https://www.instagram.com/${externalIds.instagram_id}`" uk-icon="icon: instagram"></a>
                 </li>
             </ul>
 
@@ -114,10 +114,12 @@ export default {
       tmdbPersonUrl: '',
       tmdbPersonMovieCreditsUrl: '',
       tmdbPersonTvCreditsUrl: '',
+      tmdbPersonExternalIdsUrl: '',
       movie_credits: {},
       //also_known_as: {},
       cast: {},
       crew: {},
+      externalIds: {},
       posterType: 'movie'	
     }
   },
@@ -137,6 +139,11 @@ export default {
         this.crew = response.data.crew;
       });
 
+      axios.get(this.tmdbPersonExternalIdsUrl)
+      .then((response) => {
+        this.externalIds = response.data;
+      });
+
       // axios.get(this.tmdbPersonTvCreditsUrl)
       // .then((response) => {
       //   this.cast = response.data.cast;
@@ -149,6 +156,7 @@ export default {
   		this.tmdbPersonUrl = this.getTmdbPersonUrl(personId);
       this.tmdbPersonMovieCreditsUrl = this.getTmdbPersonMovieCreditsUrl(personId);
       this.tmdbPersonTvCreditsUrl = this.getTmdbPersonTvCreditsUrl(personId);
+      this.tmdbPersonExternalIdsUrl = this.getTmdbPersonExternalIdsUrl(personId);
   	}
 
   },

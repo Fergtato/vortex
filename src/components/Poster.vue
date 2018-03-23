@@ -90,8 +90,55 @@
 			<div :id="`modal${media.id}`" uk-modal>
 			    <div class="uk-modal-dialog uk-margin-auto-vertical uk-modal-body">
 
-			        <h2 v-if="type === 'movie'" class="uk-modal-title">{{media.title}}</h2>
-			        <h2 v-if="type === 'tv'" class="uk-modal-title">{{media.name}}</h2>
+			        <h2 v-if="type === 'movie'" class="uk-modal-title uk-margin-small-bottom">{{media.title}}</h2>
+			        <h2 v-if="type === 'tv'" class="uk-modal-title uk-margin-small-bottom">{{media.name}}</h2>
+
+			        <ul class="uk-iconnav uk-margin-small-bottom">
+					    <img 
+					    	uk-tooltip="title: Add To Favourites" 
+					    	class="fa-poster-icon" 
+					    	v-if="checkList('favourites')" 
+					    	@click="addToList('favourites')" 
+					    	src="../assets/heart-dark.png" 
+					    	alt="">
+					    <img 
+					    	uk-tooltip="title: Remove From Favourites" 
+					    	class="fa-poster-icon-filled" 
+					    	v-else 
+					    	@click="removeFromList('favourites')" 
+					    	src="../assets/heart-filled.png" 
+					    	alt="">
+
+					    <img 
+					    	uk-tooltip="title: Add To Watchlist" 
+					    	class="fa-poster-icon" 
+					    	v-if="checkList('watchlist')" 
+					    	@click="addToList('watchlist')" 
+					    	src="../assets/bookmark-dark.png" 
+					    	alt="">
+					    <img 
+					    	uk-tooltip="title: Remove From Watchlist" 
+					    	class="fa-poster-icon-filled" 
+					    	v-else 
+					    	@click="removeFromList('watchlist')" 
+					    	src="../assets/bookmark-filled.png" 
+					    	alt="">
+
+					    <img 
+					    	uk-tooltip="title: Add To Watched" 
+					    	class="fa-poster-icon" 
+					    	v-if="checkList('watched')" 
+					    	@click="addToList('watched')" 
+					    	src="../assets/plus-circle-dark.png" 
+					    	alt="">
+					    <img 
+					    	uk-tooltip="title: Remove From Watched" 
+					    	class="fa-poster-icon-filled" 
+					    	v-else 
+					    	@click="removeFromList('watched')" 
+					    	src="../assets/plus-circle-filled.png" 
+					    	alt="">
+					</ul>
 
 			        <span v-if="type === 'movie'" class="uk-margin-right">{{media.release_date}}</span>
 			        <span v-if="type === 'tv'" class="uk-margin-right">{{media.first_air_date}}</span>

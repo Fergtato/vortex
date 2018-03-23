@@ -55,6 +55,9 @@ export default {
 		},
 		getTmdbPersonTvCreditsUrl(id) {
 			return this.apiBase + 'person/' + id + '/tv_credits?api_key=' + this.apiKey;
+		},
+		getTmdbPersonExternalIdsUrl(id) {
+			return this.apiBase + 'person/' + id + '/external_ids?api_key=' + this.apiKey;
 		}
 	},
  	created() {
